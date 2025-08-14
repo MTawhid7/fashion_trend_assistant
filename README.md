@@ -1,32 +1,65 @@
 # Fashion Trend Assistant
 
-## Overview
+![Python Version](https://img.shields.io/badge/python-3.10+-blue.svg)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-The Fashion Trend Assistant is an advanced AI-powered command-line application that automates the entire fashion trend research and concept development process. It leverages Google's Gemini API and a sophisticated web scraping engine to synthesize real-world data into actionable creative reports for fashion designers and enthusiasts.
+An AI-powered engine for automated fashion trend research, analysis, and creative concept development. This tool transforms a simple creative hint into a detailed, structured design brief and a complete set of art-directed prompts for visual creation.
 
-The system performs a multi-stage workflow:
-1.  **Intelligence Gathering:** Performs targeted Google searches on authoritative fashion sources (like Vogue, WGSN, etc.).
-2.  **Surgical Scraping:** Uses Playwright to intelligently scrape and extract the main article content from each source.
-3.  **Intelligent Summarization:** Employs the Gemini API to distill each scraped document into a concise, relevant summary, respecting API rate limits with a robust batching system.
-4.  **Data Synthesis:** Analyzes the collection of summaries to generate a single, cohesive, and structured JSON trend report, complete with themes, cultural drivers, key garments, fabrics, and color palettes.
-5.  **Prompt Generation:** Creates a final JSON file containing professionally art-directed prompts (for inspiration boards, mood boards, and final garments) ready to be used in AI image generation models like Midjourney or DALL-E 3.
+## Core Features
 
-## Features
+-   **🧠 Semantic Caching:** Blazing-fast results (<2 seconds) for similar creative briefs. Powered by a persistent ChromaDB vector database, it finds conceptually related past reports, saving significant time and API costs.
+-   **🤖 Intelligent Summarization:** Employs a multi-stage AI workflow. Instead of analyzing raw data, it first uses Gemini to distill dozens of scraped articles into dense, relevant summaries.
+-   **🎯 Surgical Content Extraction:** Uses Playwright and BeautifulSoup to intelligently identify and scrape primary article content, filtering out irrelevant noise like ads, navigation, and footers for higher-quality data.
+-   **🛡️ Robust & Resilient:** Built with modern asynchronous programming (`asyncio`), it handles network errors gracefully and uses a sophisticated batching system to manage API rate limits without crashing.
+-   **📝 Structured & Validated Output:** Generates a detailed JSON trend report that is rigorously validated against Pydantic models, ensuring data integrity and predictability.
+-   **🎨 Creative Prompt Generation:** Produces a final JSON file containing professionally art-directed prompts for generating inspiration boards, mood boards, and final garment concepts in AI image models.
 
--   **Automated Research:** Dynamically generates and executes search queries.
--   **Intelligent Content Extraction:** Focuses on primary article content to improve data quality.
--   **AI-Powered Summarization:** Distills large amounts of text into dense, relevant insights.
--   **Rate Limit Handling:** Uses an asynchronous batching system to manage API calls efficiently.
--   **Structured Data Output:** Generates a validated JSON report based on Pydantic models.
--   **Creative Prompt Engineering:** Produces high-quality, art-directed prompts for visual concept creation.
--   **Comprehensive Logging:** Logs the entire workflow to `logs/app.log` for easy monitoring and debugging.
+## How It Works: Architectural Overview
+
+The application follows a sophisticated, multi-stage intelligence pipeline that mimics an expert human research workflow:
+
+```
+[ User Input: Theme, Season, Year, etc. ]
+              |
+              v
+[ 1. Cache Service: Semantic Check ] --(Cache Hit)--> [ 5. Prompt Generation ]
+              |
+              | (Cache Miss)
+              v
+[ 2. Research Client: Scrape Documents ]
+              |
+              v
+[ 3. LLM Client: Summarize Documents (in Batches) ]
+              |
+              v
+[ 4. LLM Client: Synthesize Summaries into Final Report ]
+              |
+              +--> [ Cache Service: Add New Report to Cache ]
+              |
+              v
+[ 5. Prompt Generation: Create Image Prompts ]
+              |
+              v
+[ Final Output: Two JSON files in /results ]
+```
+
+## Tech Stack
+
+-   **Core Language:** Python 3.10+
+-   **AI & Language Models:** Google Gemini API (`google-genai` SDK)
+-   **Vector Database / Caching:** ChromaDB
+-   **Web Scraping & Automation:** Playwright & BeautifulSoup
+-   **Data Validation:** Pydantic
+-   **API & Search:** Google Custom Search API
+-   **Asynchronous Programming:** `asyncio`
 
 ## Setup and Installation
 
 ### Prerequisites
 
--   Python 3.10+
--   Access to the Google Gemini API and a Google Custom Search Engine.
+-   Python 3.10 or newer.
+-   An active Google Gemini API Key.
+-   A configured Google Cloud Project with the Custom Search API enabled and an API Key / Search Engine ID.
 
 ### 1. Clone the Repository
 
@@ -41,10 +74,10 @@ cd fashion_trend_assistant
 # Create the virtual environment
 python -m venv venv
 
-# Activate it (macOS/Linux)
+# Activate on macOS/Linux
 source venv/bin/activate
 
-# Or activate it (Windows)
+# Activate on Windows
 # venv\Scripts\activate
 ```
 
@@ -58,38 +91,51 @@ pip install -r requirements.txt
 
 ### 4. Install Playwright Browsers
 
-Playwright requires a separate step to download the headless browser binaries.
+Playwright requires a separate one-time step to download the headless browser binaries it uses for scraping.
 
 ```bash
 playwright install
 ```
 
-### 5. Configure Environment Variables
+### 5. Configure Secrets
 
-Create a `.env` file in the root of the project by copying the example:
+The project uses a `.env` file to manage secret API keys. A template is provided.
 
 ```bash
+# Create your personal .env file from the example
 cp .env.example .env
 ```
 
-Now, open the `.env` file and add your secret API keys:
+Now, open the newly created `.env` file and add your secret keys.
 
-```
-GEMINI_API_KEY="YOUR_GEMINI_API_KEY_HERE"
-GOOGLE_API_KEY="YOUR_GOOGLE_CLOUD_API_KEY_HERE"
-SEARCH_ENGINE_ID="YOUR_SEARCH_ENGINE_ID_HERE"
-```
+## Usage
 
-## How to Run
-
-The creative brief (season, year, theme) is configured directly in the main script.
+The creative brief for the trend report is configured directly in the main script.
 
 1.  Open `trend_assistant/main.py`.
-2.  Modify the `SEASON`, `YEAR`, and `THEME_HINT` variables to define your concept.
-3.  Run the application from the root directory:
+2.  Modify the `SEASON`, `YEAR`, and `THEME_HINT` variables. You can also provide optional `TARGET_AUDIENCE` and `REGION` for more specific results.
+3.  Run the application from the project's **root directory**:
 
 ```bash
 python -m trend_assistant.main
 ```
 
-The process will take several minutes to complete. The final output files will be saved in the `/results` directory.
+The process will run for several minutes on a "cache miss" and less than two seconds on a "cache hit." The final output files will be saved in the `/results` directory.
+
+## Understanding the Output
+
+The application generates two key files in the `/results` folder:
+
+1.  **`itemized_fashion_trends.json`**: This is the "brain" of the creative concept. It's a highly structured report containing the overarching theme, cultural drivers, and a detailed breakdown of key clothing pieces with their fabrics, colors, silhouettes, and more.
+2.  **`generated_prompts.json`**: This is the "art director's shot list." It contains ready-to-use, detailed prompts for each key piece, designed to be copied into AI image generation tools (like Midjourney or DALL-E 3) to create visual representations of the concept.
+
+## Project Roadmap
+
+-   [ ] **Tier 1:** Implement a full Command-Line Interface (CLI) using `Typer` or `argparse`.
+-   [ ] **Tier 1:** Add a feature to generate a human-readable Markdown (`.md`) report from the final JSON.
+-   [ ] **Tier 2:** Integrate an image generation API to automatically create and save the visual assets.
+-   [ ] **Tier 3:** Evolve the project into a full web application with a FastAPI backend and a user interface.
+
+## License
+
+This project is licensed under the MIT License. See the `LICENSE` file for details.
