@@ -1,0 +1,344 @@
+{
+  "season": "Fall/Winter",
+  "year": 2025,
+  "overarching_theme": "Sculpted Form & Instinctive Expression: The New Modern Wardrobe",
+  "cultural_drivers": [
+    "Sustainability & Conscious Consumption",
+    "Nostalgia (90s Minimalism, Old Hollywood, 70s)",
+    "Individualism & Self-Expression",
+    "Post-Luxury Evolution (Shift to Modern Elegance)",
+    "Functionality & Utilitarianism",
+    "Body Positivity & Fluidity",
+    "Artistic & Subcultural Influences"
+  ],
+  "influential_models": [],
+  "accessories": [
+    "Minimalist Handbags",
+    "Statement Jewelry (Opulent, Crafty, Animal Motifs)",
+    "Sculpted Footwear (Square-toed Flats, Cowboy Boots, Weathered Boots)",
+    "Oversized Sunglasses",
+    "Leather Belts",
+    "Cashmere Scarves",
+    "Hats (Beanies, Floppy Hats)",
+    "Tech-Inspired Accessories"
+  ],
+  "detailed_key_pieces": [
+    {
+      "key_piece_name": "The Sculpted Power Suit",
+      "description": "A reinterpretation of classic suiting, blending sharp tailoring with exaggerated proportions and fluid lines. It embodies a shift from 'quiet luxury' to a more assertive, modern elegance, often featuring deconstructed elements or curve-enhancing details.",
+      "fabrics": [
+        {
+          "material": "Wool",
+          "texture": "Felted",
+          "sustainable": false
+        },
+        {
+          "material": "Wool",
+          "texture": "Tweed",
+          "sustainable": false
+        },
+        {
+          "material": "Velvet",
+          "texture": "Plush",
+          "sustainable": false
+        },
+        {
+          "material": "Leather",
+          "texture": "Smooth",
+          "sustainable": false
+        },
+        {
+          "material": "Silk",
+          "texture": "Lustrous",
+          "sustainable": false
+        },
+        {
+          "material": "Technical Fabrics",
+          "texture": "Structured",
+          "sustainable": false
+        }
+      ],
+      "colors": [
+        {
+          "name": "True Black",
+          "pantone_code": "19-4005 TCX",
+          "hex_value": "#000000"
+        },
+        {
+          "name": "Charcoal Gray",
+          "pantone_code": "18-0601 TCX",
+          "hex_value": "#36454F"
+        },
+        {
+          "name": "Navy Blue",
+          "pantone_code": "19-4028 TCX",
+          "hex_value": "#000080"
+        },
+        {
+          "name": "Burgundy",
+          "pantone_code": "19-1557 TCX",
+          "hex_value": "#800020"
+        },
+        {
+          "name": "Oatmeal",
+          "pantone_code": "13-0907 TCX",
+          "hex_value": "#D2C2B0"
+        }
+      ],
+      "silhouettes": [
+        "Oversized blazers with cinched waists",
+        "Boxy shoulders",
+        "Slouchy trousers",
+        "Asymmetrical cuts",
+        "Exaggerated hips",
+        "Roomy tailoring",
+        "Fitted to flared"
+      ],
+      "details_trims": [
+        "Asymmetrical lapels",
+        "Pinstripes",
+        "Built-in ties",
+        "Satin lapels",
+        "Cummerbunds",
+        "Deconstructed elements"
+      ],
+      "suggested_pairings": [
+        "Sleek shirting",
+        "Ribbed knit roll neck sweaters",
+        "Classic dress shoes",
+        "Minimalist shoulder bags"
+      ]
+    },
+    {
+      "key_piece_name": "The Architectural Outerwear",
+      "description": "Voluminous and sculptural coats and jackets that serve as a statement piece, often featuring exaggerated collars, padded elements, or protective, utilitarian details. Materials are key, emphasizing tactility and luxurious warmth.",
+      "fabrics": [
+        {
+          "material": "Shearling",
+          "texture": "Plush",
+          "sustainable": false
+        },
+        {
+          "material": "Faux Fur",
+          "texture": "Voluminous",
+          "sustainable": false
+        },
+        {
+          "material": "Wool",
+          "texture": "Felted",
+          "sustainable": false
+        },
+        {
+          "material": "Technical Fabrics",
+          "texture": "Weatherproof",
+          "sustainable": false
+        },
+        {
+          "material": "Leather",
+          "texture": "Washed",
+          "sustainable": false
+        },
+        {
+          "material": "Recycled Polyester",
+          "texture": "Seamless tubular",
+          "sustainable": true
+        }
+      ],
+      "colors": [
+        {
+          "name": "True Black",
+          "pantone_code": "19-4005 TCX",
+          "hex_value": "#000000"
+        },
+        {
+          "name": "Charcoal Gray",
+          "pantone_code": "18-0601 TCX",
+          "hex_value": "#36454F"
+        },
+        {
+          "name": "Forest Green",
+          "pantone_code": "19-5513 TCX",
+          "hex_value": "#228B22"
+        },
+        {
+          "name": "Tobacco Brown",
+          "pantone_code": "18-1022 TCX",
+          "hex_value": "#8B4513"
+        },
+        {
+          "name": "Daffodil",
+          "pantone_code": "13-0752 TCX",
+          "hex_value": "#FFFF31"
+        }
+      ],
+      "silhouettes": [
+        "Oversize / Cape-like",
+        "Cocooned",
+        "Big-shouldered",
+        "Sculptural parkas",
+        "Floor-skimming",
+        "Voluminous bombers",
+        "Padded"
+      ],
+      "details_trims": [
+        "Architectural collars",
+        "Exaggerated necklines",
+        "Oversized pockets",
+        "Adjustable toggles",
+        "Protective hoods",
+        "Paneled construction"
+      ],
+      "suggested_pairings": [
+        "Slim-fitted denim",
+        "Knitted maxidresses",
+        "Chunky boots",
+        "Tailored trousers"
+      ]
+    },
+    {
+      "key_piece_name": "The Elevated Knit Dress",
+      "description": "A versatile and comfortable piece, reimagined with refined textures and sophisticated silhouettes. It embodies effortless ease and can transition from day to evening, reflecting a focus on tactile materials and understated elegance.",
+      "fabrics": [
+        {
+          "material": "Cashmere",
+          "texture": "Soft",
+          "sustainable": false
+        },
+        {
+          "material": "Wool",
+          "texture": "Ribbed",
+          "sustainable": false
+        },
+        {
+          "material": "Jersey",
+          "texture": "Draped",
+          "sustainable": false
+        },
+        {
+          "material": "Knitwear",
+          "texture": "Cable-knit",
+          "sustainable": false
+        }
+      ],
+      "colors": [
+        {
+          "name": "Oatmeal",
+          "pantone_code": "13-0907 TCX",
+          "hex_value": "#D2C2B0"
+        },
+        {
+          "name": "True Black",
+          "pantone_code": "19-4005 TCX",
+          "hex_value": "#000000"
+        },
+        {
+          "name": "Espresso",
+          "pantone_code": "19-1118 TCX",
+          "hex_value": "#5C4033"
+        },
+        {
+          "name": "Powder Pink",
+          "pantone_code": "13-2005 TCX",
+          "hex_value": "#F0E6EF"
+        },
+        {
+          "name": "Sapphire",
+          "pantone_code": "19-4035 TCX",
+          "hex_value": "#0F52BA"
+        }
+      ],
+      "silhouettes": [
+        "Maxi dresses",
+        "Draped midi dress",
+        "Belted shirt dress",
+        "Column silhouette",
+        "Second-skin ease",
+        "Gathered"
+      ],
+      "details_trims": [
+        "Elegant gathering",
+        "Twisted details",
+        "Draped armholes",
+        "Built-in ties",
+        "Metal symbols (amulets)"
+      ],
+      "suggested_pairings": [
+        "Tailored trench coat",
+        "Square-toed flats",
+        "Minimalist jewelry",
+        "Ribbed cardigans"
+      ]
+    },
+    {
+      "key_piece_name": "The Reimagined Utilitarian Denim",
+      "description": "Denim pieces that transcend casual wear, incorporating elements of workwear, tailored precision, or experimental design. This trend highlights denim's versatility, moving beyond traditional jeans into more polished or avant-garde forms.",
+      "fabrics": [
+        {
+          "material": "Denim",
+          "texture": "Twill",
+          "sustainable": false
+        },
+        {
+          "material": "Cotton",
+          "texture": "Heavyweight",
+          "sustainable": false
+        },
+        {
+          "material": "Corduroy",
+          "texture": "Ribbed",
+          "sustainable": false
+        }
+      ],
+      "colors": [
+        {
+          "name": "Royal Denim Blue",
+          "pantone_code": "19-4028 TCX",
+          "hex_value": "#000080"
+        },
+        {
+          "name": "True Black",
+          "pantone_code": "19-4005 TCX",
+          "hex_value": "#000000"
+        },
+        {
+          "name": "Bright White",
+          "pantone_code": "11-0601 TCX",
+          "hex_value": "#F8F8F8"
+        },
+        {
+          "name": "Moss Green",
+          "pantone_code": "18-0521 TCX",
+          "hex_value": "#8A9A5B"
+        },
+        {
+          "name": "Rust",
+          "pantone_code": "18-1248 TCX",
+          "hex_value": "#B7410E"
+        }
+      ],
+      "silhouettes": [
+        "Slim-fitted",
+        "Wide-leg",
+        "Balloon pants",
+        "Straight-cut",
+        "Cocooned",
+        "Exaggerated"
+      ],
+      "details_trims": [
+        "Distressed finishes",
+        "Deep indigo washes",
+        "Workwear pockets",
+        "Snap closures",
+        "Exaggerated details",
+        "Embossed patterns"
+      ],
+      "suggested_pairings": [
+        "Tailored blazers",
+        "Sheer tanks",
+        "Knit polo shirts",
+        "Cowboy boots",
+        "Statement sandals"
+      ]
+    }
+  ]
+}

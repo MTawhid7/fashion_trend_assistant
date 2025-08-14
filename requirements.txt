@@ -1,0 +1,34 @@
+# -----------------------------------------------------------------------------
+# Core Dependencies
+# -----------------------------------------------------------------------------
+
+# For loading environment variables from the .env file.
+python-dotenv
+
+# For data validation and settings management. This ensures the data from the LLM
+# matches our predefined models.
+pydantic
+
+# -----------------------------------------------------------------------------
+# Google API Clients
+# -----------------------------------------------------------------------------
+
+# The official Python SDK for Google's Generative AI models (Gemini).
+# This is the correct package name for installation via pip.
+google-genai
+
+# The Google API Client Library for Python. We will use this specifically for
+# the Custom Search JSON API to find authoritative sources in Phase 2.
+google-api-python-client
+
+# -----------------------------------------------------------------------------
+# Web Scraping & Browser Automation (for Phase 2)
+# -----------------------------------------------------------------------------
+
+# An advanced browser automation tool that allows us to render JavaScript-heavy
+# websites, which is crucial for modern web scraping.
+playwright
+
+# A powerful and popular library for parsing HTML and XML documents. We use it
+# to extract data from the HTML content fetched by Playwright.
+beautifulsoup4
