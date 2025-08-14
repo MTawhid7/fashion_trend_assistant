@@ -1,136 +1,158 @@
-2025-08-14 17:16:55 - INFO - [trend_assistant:18] - Google GenAI client initialized successfully.
-2025-08-14 17:16:55 - INFO - [trend_assistant:32] - =========================================================
-2025-08-14 17:16:55 - INFO - [trend_assistant:33] -     FASHION TREND ASSISTANT - CREATIVE PROCESS STARTED   
-2025-08-14 17:16:55 - INFO - [trend_assistant:34] - =========================================================
-2025-08-14 17:16:55 - INFO - [trend_assistant:131] - --- Starting New Creative Process for Fall/Winter 2025: 'Quiet luxury meets utilitarian workwear' ---
-2025-08-14 17:16:55 - INFO - [trend_assistant:21] - Generating dynamic search queries...
-2025-08-14 17:16:55 - INFO - [trend_assistant:29] - Generated 5 queries.
-2025-08-14 17:16:55 - INFO - [trend_assistant:136] - --- Starting Research Phase: Gathering Raw Documents ---
-2025-08-14 17:16:55 - INFO - [trend_assistant:23] - Executing Google search for: 'WGSN Fall/Winter 2025 fashion trends Quiet luxury meets utilitarian workwear -site:pinterest.com -site:amazon.com'
-2025-08-14 17:16:55 - INFO - [trend_assistant:23] - Executing Google search for: 'Vogue Runway Fall/Winter 2025 trend report analysis -site:pinterest.com -site:amazon.com'
-2025-08-14 17:16:55 - INFO - [trend_assistant:23] - Executing Google search for: 'Business of Fashion Fall/Winter 2025 materials and textiles Quiet luxury meets utilitarian workwear -site:pinterest.com -site:amazon.com'
-2025-08-14 17:16:55 - INFO - [trend_assistant:23] - Executing Google search for: 'Dazed Digital Fall/Winter 2025 Quiet luxury meets utilitarian workwear aesthetic -site:pinterest.com -site:amazon.com'
-2025-08-14 17:16:55 - INFO - [trend_assistant:23] - Executing Google search for: 'latest street style Quiet luxury meets utilitarian workwear -site:pinterest.com -site:amazon.com'
-2025-08-14 17:16:56 - INFO - [trend_assistant:32] - Found 5 URLs for query: 'latest street style Quiet luxury meets utilitarian workwear -site:pinterest.com -site:amazon.com'
-2025-08-14 17:16:56 - INFO - [trend_assistant:32] - Found 5 URLs for query: 'Business of Fashion Fall/Winter 2025 materials and textiles Quiet luxury meets utilitarian workwear -site:pinterest.com -site:amazon.com'
-2025-08-14 17:16:57 - INFO - [trend_assistant:32] - Found 5 URLs for query: 'Dazed Digital Fall/Winter 2025 Quiet luxury meets utilitarian workwear aesthetic -site:pinterest.com -site:amazon.com'
-2025-08-14 17:16:57 - INFO - [trend_assistant:32] - Found 5 URLs for query: 'Vogue Runway Fall/Winter 2025 trend report analysis -site:pinterest.com -site:amazon.com'
-2025-08-14 17:16:57 - INFO - [trend_assistant:32] - Found 5 URLs for query: 'WGSN Fall/Winter 2025 fashion trends Quiet luxury meets utilitarian workwear -site:pinterest.com -site:amazon.com'
-2025-08-14 17:16:57 - INFO - [trend_assistant:163] - Found a total of 24 unique URLs to scrape.
-2025-08-14 17:16:57 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://www.vogue.com/article/modern-contemporary-brands-to-know
-2025-08-14 17:16:57 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://www.voguebusiness.com/story/fashion/the-vogue-business-autumn-winter-2025-size-inclusivity-report
-2025-08-14 17:16:57 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://issuu.com/sourcingjournalevents/docs/rivet_fall_2024_singles_v2?fr=xKAE9_zU1NQ
-2025-08-14 17:16:57 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://www.reddit.com/r/streetwear/comments/1hofim2/what_are_gonna_be_the_most_popular_mens_fashion/
-2025-08-14 17:16:57 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: http://www.zoomagazine.de/
-2025-08-14 17:16:57 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://www.vogue.com/tag/season/trend-reports
-2025-08-14 17:16:57 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://www.vogue.com/fashion-shows
-2025-08-14 17:16:57 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://www.vogue.co.uk/article/autumn-winter-2024-fashion-trends
-2025-08-14 17:16:57 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://www.euronews.com/culture/2023/12/28/euronews-cultures-2024-fashion-trends-preview-what-well-be-wearing-next-year
-2025-08-14 17:16:57 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://www.nytimes.com/2024/09/05/t-magazine/most-influential-mens-wear-collections-postwar.html
-2025-08-14 17:16:57 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://www.caspermagazine.com/feature/beyond-the-puffer
-2025-08-14 17:16:57 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://www.reddit.com/r/femalefashionadvice/comments/16rfeh2/banana_republic_fall_2023_a_review/
-2025-08-14 17:16:57 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://fashionweekonline.com/milan/designers
-2025-08-14 17:16:57 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://www.vogue.com/article/upper-class-workwear-class-appropriation
-2025-08-14 17:16:57 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://thevou.com/blog/fashion-cultures-style-meanings/
-2025-08-14 17:16:57 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://apparelresources.com/fashion-news/trends/fall-winter-2025-menswear-trend-shifts-modifying-market/
-2025-08-14 17:16:57 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://anneofcarversville.com/fashion-archive-2020-forward
-2025-08-14 17:16:57 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://www.vogue.com/fashion/trends
-2025-08-14 17:16:57 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://denimdudes.co/runway-12-definitive-trends-for-fw19/
-2025-08-14 17:16:57 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://hangrr.com/resources/corduroy-jacket-style-guide
-2025-08-14 17:16:57 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://www.reddit.com/r/femalefashionadvice/comments/10xeabo/what_do_people_still_get_wrong_about_the_old/
-2025-08-14 17:16:57 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://www.stylearc.com/magazine/
-2025-08-14 17:16:57 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://luxe.outlookindia.com/whats-new/anne-hathaway-and-meryl-streep-serve-street-style-on-the-devil-wears-prada-2-sets
-2025-08-14 17:16:57 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://made-to-measure-suits.bgfashion.net/article/10265/56/givenchy-spring-summer-2015-menswear-collection
-2025-08-14 17:17:01 - WARNING - [trend_assistant:119] - Scraping failed for https://denimdudes.co/runway-12-definitive-trends-for-fw19/: Page.goto: net::ERR_HTTP2_PROTOCOL_ERROR at https://denimdudes.co/runway-12-definitive-trends-for-fw19/
+2025-08-14 23:41:30 - INFO - [trend_assistant:18] - Google GenAI client initialized successfully.
+2025-08-14 23:41:31 - INFO - [trend_assistant:24] - ChromaDB cache service initialized. Collection 'fashion_reports' loaded/created.
+2025-08-14 23:41:31 - INFO - [trend_assistant:32] - =========================================================
+2025-08-14 23:41:31 - INFO - [trend_assistant:33] -     FASHION TREND ASSISTANT - CREATIVE PROCESS STARTED   
+2025-08-14 23:41:31 - INFO - [trend_assistant:34] - =========================================================
+2025-08-14 23:41:31 - INFO - [trend_assistant:147] - --- Starting New Creative Process for Fall/Winter 2025: 'Quiet luxury meets utilitarian workwear' ---
+2025-08-14 23:41:31 - INFO - [trend_assistant:48] - Checking semantic cache for theme hint: 'Quiet luxury meets utilitarian workwear'
+2025-08-14 23:41:31 - INFO - [trend_assistant:36] - Generating embedding for text: 'Quiet luxury meets utilitarian workwear...'
+2025-08-14 23:41:32 - INFO - [trend_assistant:48] - Successfully generated embedding.
+2025-08-14 23:41:32 - INFO - [trend_assistant:99] - CACHE MISS: No documents found for this query.
+2025-08-14 23:41:32 - INFO - [trend_assistant:173] - --- Starting Full Research & Synthesis Workflow ---
+2025-08-14 23:41:32 - INFO - [trend_assistant:38] - Generating dynamic search queries...
+2025-08-14 23:41:32 - INFO - [trend_assistant:48] - Generated 5 specific queries.
+2025-08-14 23:41:32 - INFO - [trend_assistant:136] - --- Starting Research Phase: Gathering Raw Documents ---
+2025-08-14 23:41:32 - INFO - [trend_assistant:23] - Executing Google search for: 'WGSN Fall/Winter 2025 fashion trends Quiet luxury meets utilitarian workwear -site:pinterest.com -site:amazon.com'
+2025-08-14 23:41:32 - INFO - [trend_assistant:23] - Executing Google search for: 'Vogue Runway None Fall/Winter 2025 trend report analysis -site:pinterest.com -site:amazon.com'
+2025-08-14 23:41:32 - INFO - [trend_assistant:23] - Executing Google search for: 'Business of Fashion Fall/Winter 2025 materials Quiet luxury meets utilitarian workwear -site:pinterest.com -site:amazon.com'
+2025-08-14 23:41:32 - INFO - [trend_assistant:23] - Executing Google search for: 'Dazed Digital Quiet luxury meets utilitarian workwear aesthetic -site:pinterest.com -site:amazon.com'
+2025-08-14 23:41:32 - INFO - [trend_assistant:23] - Executing Google search for: 'latest street style Quiet luxury meets utilitarian workwear -site:pinterest.com -site:amazon.com'
+2025-08-14 23:41:33 - INFO - [trend_assistant:32] - Found 5 URLs for query: 'Vogue Runway None Fall/Winter 2025 trend report analysis -site:pinterest.com -site:amazon.com'
+2025-08-14 23:41:33 - INFO - [trend_assistant:32] - Found 5 URLs for query: 'Business of Fashion Fall/Winter 2025 materials Quiet luxury meets utilitarian workwear -site:pinterest.com -site:amazon.com'
+2025-08-14 23:41:33 - INFO - [trend_assistant:32] - Found 5 URLs for query: 'latest street style Quiet luxury meets utilitarian workwear -site:pinterest.com -site:amazon.com'
+2025-08-14 23:41:33 - INFO - [trend_assistant:32] - Found 5 URLs for query: 'WGSN Fall/Winter 2025 fashion trends Quiet luxury meets utilitarian workwear -site:pinterest.com -site:amazon.com'
+2025-08-14 23:41:33 - INFO - [trend_assistant:32] - Found 5 URLs for query: 'Dazed Digital Quiet luxury meets utilitarian workwear aesthetic -site:pinterest.com -site:amazon.com'
+2025-08-14 23:41:33 - INFO - [trend_assistant:163] - Found a total of 25 unique URLs to scrape.
+2025-08-14 23:41:33 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://www.voguebusiness.com/fashion/the-vogue-business-autumnwinter-2023-size-inclusivity-report
+2025-08-14 23:41:33 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://www.reddit.com/r/femalefashionadvice/comments/10xeabo/what_do_people_still_get_wrong_about_the_old/
+2025-08-14 23:41:33 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://www.vogue.com/article/modern-contemporary-brands-to-know
+2025-08-14 23:41:33 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://iaminteligenciaemmoda.com.br/wp-content/uploads/2017/06/A-Cultural-History-of-Fashion-i-Bonnie-English-1.pdf
+2025-08-14 23:41:33 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://www.nytimes.com/2024/09/05/t-magazine/most-influential-mens-wear-collections-postwar.html
+2025-08-14 23:41:33 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://www.reddit.com/r/streetwear/comments/1hofim2/what_are_gonna_be_the_most_popular_mens_fashion/
+2025-08-14 23:41:33 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://www.vogue.com/article/fall-2024-handbag-trends
+2025-08-14 23:41:33 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://www.joor.com/insights/fashion-trend-report
+2025-08-14 23:41:33 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://www.caspermagazine.com/feature/beyond-the-puffer
+2025-08-14 23:41:33 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://www.vogue.com/article/upper-class-workwear-class-appropriation
+2025-08-14 23:41:33 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://fashionweekonline.com/milan/designers
+2025-08-14 23:41:33 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://in.apparelresources.com/
+2025-08-14 23:41:33 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://www.vogue.com/fashion/trends
+2025-08-14 23:41:33 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://apparelresources.com/fashion-news/trends/fall-winter-2025-menswear-trend-shifts-modifying-market/
+2025-08-14 23:41:33 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://luxe.outlookindia.com/whats-new/anne-hathaway-and-meryl-streep-serve-street-style-on-the-devil-wears-prada-2-sets
+2025-08-14 23:41:33 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://issuu.com/sourcingjournalevents/docs/rivet_fall_2024_singles_v2?fr=xKAE9_zU1NQ
+2025-08-14 23:41:33 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://www.vogue.com/article/fall-2022-menswear-trend-report
+2025-08-14 23:41:33 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://www.wallpaper.com/fashion-beauty/connor-mcknight-new-york-designer-interview
+2025-08-14 23:41:33 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://denimdudes.co/runway-12-definitive-trends-for-fw19/
+2025-08-14 23:41:33 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://www.reddit.com/r/femalefashionadvice/comments/16rfeh2/banana_republic_fall_2023_a_review/
+2025-08-14 23:41:33 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://www.euronews.com/culture/2023/12/28/euronews-cultures-2024-fashion-trends-preview-what-well-be-wearing-next-year
+2025-08-14 23:41:33 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://made-to-measure-suits.bgfashion.net/article/10265/56/givenchy-spring-summer-2015-menswear-collection
+2025-08-14 23:41:33 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://thevou.com/blog/fashion-cultures-style-meanings/
+2025-08-14 23:41:33 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: http://www.zoomagazine.de/
+2025-08-14 23:41:33 - INFO - [trend_assistant:54] - Starting intelligent scrape for URL: https://www.voguebusiness.com/story/fashion/the-vogue-business-autumn-winter-2025-size-inclusivity-report
+2025-08-14 23:41:38 - WARNING - [trend_assistant:109] - URL https://www.nytimes.com/2024/09/05/t-magazine/most-influential-mens-wear-collections-postwar.html has insufficient content (11 chars), skipping.
+2025-08-14 23:41:38 - INFO - [trend_assistant:97] - Found main content using selector 'article' for https://luxe.outlookindia.com/whats-new/anne-hathaway-and-meryl-streep-serve-street-style-on-the-devil-wears-prada-2-sets
+2025-08-14 23:41:38 - INFO - [trend_assistant:114] - Successfully extracted 4616 characters of targeted content from https://luxe.outlookindia.com/whats-new/anne-hathaway-and-meryl-streep-serve-street-style-on-the-devil-wears-prada-2-sets
+2025-08-14 23:41:40 - INFO - [trend_assistant:97] - Found main content using selector 'article' for https://www.wallpaper.com/fashion-beauty/connor-mcknight-new-york-designer-interview
+2025-08-14 23:41:40 - INFO - [trend_assistant:114] - Successfully extracted 8692 characters of targeted content from https://www.wallpaper.com/fashion-beauty/connor-mcknight-new-york-designer-interview
+2025-08-14 23:41:40 - WARNING - [trend_assistant:109] - URL https://www.reddit.com/r/femalefashionadvice/comments/10xeabo/what_do_people_still_get_wrong_about_the_old/ has insufficient content (143 chars), skipping.
+2025-08-14 23:41:40 - WARNING - [trend_assistant:119] - Scraping failed for https://denimdudes.co/runway-12-definitive-trends-for-fw19/: Page.content: Unable to retrieve content because the page is navigating and changing the content.
+2025-08-14 23:41:40 - WARNING - [trend_assistant:109] - URL https://www.reddit.com/r/femalefashionadvice/comments/16rfeh2/banana_republic_fall_2023_a_review/ has insufficient content (143 chars), skipping.
+2025-08-14 23:41:41 - WARNING - [trend_assistant:119] - Scraping failed for https://iaminteligenciaemmoda.com.br/wp-content/uploads/2017/06/A-Cultural-History-of-Fashion-i-Bonnie-English-1.pdf: Page.goto: net::ERR_ABORTED at https://iaminteligenciaemmoda.com.br/wp-content/uploads/2017/06/A-Cultural-History-of-Fashion-i-Bonnie-English-1.pdf
 Call log:
-  - navigating to "https://denimdudes.co/runway-12-definitive-trends-for-fw19/", waiting until "domcontentloaded"
+  - navigating to "https://iaminteligenciaemmoda.com.br/wp-content/uploads/2017/06/A-Cultural-History-of-Fashion-i-Bonnie-English-1.pdf", waiting until "domcontentloaded"
 
-2025-08-14 17:17:01 - WARNING - [trend_assistant:109] - URL https://www.nytimes.com/2024/09/05/t-magazine/most-influential-mens-wear-collections-postwar.html has insufficient content (11 chars), skipping.
-2025-08-14 17:17:10 - WARNING - [trend_assistant:109] - URL https://issuu.com/sourcingjournalevents/docs/rivet_fall_2024_singles_v2?fr=xKAE9_zU1NQ has insufficient content (49 chars), skipping.
-2025-08-14 17:17:11 - INFO - [trend_assistant:97] - Found main content using selector 'article' for https://luxe.outlookindia.com/whats-new/anne-hathaway-and-meryl-streep-serve-street-style-on-the-devil-wears-prada-2-sets
-2025-08-14 17:17:11 - INFO - [trend_assistant:114] - Successfully extracted 4616 characters of targeted content from https://luxe.outlookindia.com/whats-new/anne-hathaway-and-meryl-streep-serve-street-style-on-the-devil-wears-prada-2-sets
-2025-08-14 17:17:11 - INFO - [trend_assistant:114] - Successfully extracted 14007 characters of targeted content from https://hangrr.com/resources/corduroy-jacket-style-guide
-2025-08-14 17:17:16 - INFO - [trend_assistant:97] - Found main content using selector 'article' for https://www.euronews.com/culture/2023/12/28/euronews-cultures-2024-fashion-trends-preview-what-well-be-wearing-next-year
-2025-08-14 17:17:16 - WARNING - [trend_assistant:109] - URL https://www.euronews.com/culture/2023/12/28/euronews-cultures-2024-fashion-trends-preview-what-well-be-wearing-next-year has insufficient content (67 chars), skipping.
-2025-08-14 17:17:17 - INFO - [trend_assistant:97] - Found main content using selector 'article' for https://www.voguebusiness.com/story/fashion/the-vogue-business-autumn-winter-2025-size-inclusivity-report
-2025-08-14 17:17:17 - INFO - [trend_assistant:114] - Successfully extracted 9907 characters of targeted content from https://www.voguebusiness.com/story/fashion/the-vogue-business-autumn-winter-2025-size-inclusivity-report
-2025-08-14 17:17:17 - INFO - [trend_assistant:97] - Found main content using selector 'article' for https://thevou.com/blog/fashion-cultures-style-meanings/
-2025-08-14 17:17:17 - INFO - [trend_assistant:114] - Successfully extracted 17000 characters of targeted content from https://thevou.com/blog/fashion-cultures-style-meanings/
-2025-08-14 17:17:25 - INFO - [trend_assistant:97] - Found main content using selector '#content' for https://anneofcarversville.com/fashion-archive-2020-forward
-2025-08-14 17:17:25 - INFO - [trend_assistant:114] - Successfully extracted 546300 characters of targeted content from https://anneofcarversville.com/fashion-archive-2020-forward
-2025-08-14 17:17:26 - INFO - [trend_assistant:97] - Found main content using selector 'article' for https://www.caspermagazine.com/feature/beyond-the-puffer
-2025-08-14 17:17:26 - INFO - [trend_assistant:114] - Successfully extracted 400 characters of targeted content from https://www.caspermagazine.com/feature/beyond-the-puffer
-2025-08-14 17:17:27 - INFO - [trend_assistant:97] - Found main content using selector 'article' for https://www.vogue.co.uk/article/autumn-winter-2024-fashion-trends
-2025-08-14 17:17:27 - INFO - [trend_assistant:114] - Successfully extracted 18010 characters of targeted content from https://www.vogue.co.uk/article/autumn-winter-2024-fashion-trends
-2025-08-14 17:17:29 - INFO - [trend_assistant:114] - Successfully extracted 2694 characters of targeted content from https://made-to-measure-suits.bgfashion.net/article/10265/56/givenchy-spring-summer-2015-menswear-collection
-2025-08-14 17:17:29 - INFO - [trend_assistant:97] - Found main content using selector 'article' for https://apparelresources.com/fashion-news/trends/fall-winter-2025-menswear-trend-shifts-modifying-market/
-2025-08-14 17:17:29 - INFO - [trend_assistant:114] - Successfully extracted 13369 characters of targeted content from https://apparelresources.com/fashion-news/trends/fall-winter-2025-menswear-trend-shifts-modifying-market/
-2025-08-14 17:17:30 - INFO - [trend_assistant:114] - Successfully extracted 37224 characters of targeted content from https://fashionweekonline.com/milan/designers
-2025-08-14 17:17:30 - INFO - [trend_assistant:97] - Found main content using selector 'main' for https://www.reddit.com/r/femalefashionadvice/comments/16rfeh2/banana_republic_fall_2023_a_review/
-2025-08-14 17:17:30 - INFO - [trend_assistant:114] - Successfully extracted 3733 characters of targeted content from https://www.reddit.com/r/femalefashionadvice/comments/16rfeh2/banana_republic_fall_2023_a_review/
-2025-08-14 17:17:30 - INFO - [trend_assistant:97] - Found main content using selector 'main' for https://www.reddit.com/r/femalefashionadvice/comments/10xeabo/what_do_people_still_get_wrong_about_the_old/
-2025-08-14 17:17:30 - INFO - [trend_assistant:114] - Successfully extracted 394 characters of targeted content from https://www.reddit.com/r/femalefashionadvice/comments/10xeabo/what_do_people_still_get_wrong_about_the_old/
-2025-08-14 17:17:30 - INFO - [trend_assistant:97] - Found main content using selector 'main' for https://www.reddit.com/r/streetwear/comments/1hofim2/what_are_gonna_be_the_most_popular_mens_fashion/
-2025-08-14 17:17:30 - INFO - [trend_assistant:114] - Successfully extracted 803 characters of targeted content from https://www.reddit.com/r/streetwear/comments/1hofim2/what_are_gonna_be_the_most_popular_mens_fashion/
-2025-08-14 17:17:30 - INFO - [trend_assistant:97] - Found main content using selector 'main' for https://www.vogue.com/fashion-shows
-2025-08-14 17:17:30 - INFO - [trend_assistant:114] - Successfully extracted 4319 characters of targeted content from https://www.vogue.com/fashion-shows
-2025-08-14 17:17:30 - INFO - [trend_assistant:97] - Found main content using selector 'main' for https://www.vogue.com/fashion/trends
-2025-08-14 17:17:30 - INFO - [trend_assistant:114] - Successfully extracted 6279 characters of targeted content from https://www.vogue.com/fashion/trends
-2025-08-14 17:17:30 - INFO - [trend_assistant:97] - Found main content using selector 'article' for https://www.vogue.com/tag/season/trend-reports
-2025-08-14 17:17:30 - INFO - [trend_assistant:114] - Successfully extracted 2434 characters of targeted content from https://www.vogue.com/tag/season/trend-reports
-2025-08-14 17:17:30 - INFO - [trend_assistant:97] - Found main content using selector 'article' for https://www.vogue.com/article/upper-class-workwear-class-appropriation
-2025-08-14 17:17:30 - INFO - [trend_assistant:114] - Successfully extracted 4598 characters of targeted content from https://www.vogue.com/article/upper-class-workwear-class-appropriation
-2025-08-14 17:17:31 - INFO - [trend_assistant:97] - Found main content using selector 'article' for https://www.vogue.com/article/modern-contemporary-brands-to-know
-2025-08-14 17:17:31 - INFO - [trend_assistant:114] - Successfully extracted 13266 characters of targeted content from https://www.vogue.com/article/modern-contemporary-brands-to-know
-2025-08-14 17:17:32 - INFO - [trend_assistant:97] - Found main content using selector 'article' for https://www.stylearc.com/magazine/
-2025-08-14 17:17:32 - INFO - [trend_assistant:114] - Successfully extracted 323 characters of targeted content from https://www.stylearc.com/magazine/
-2025-08-14 17:17:36 - INFO - [trend_assistant:97] - Found main content using selector '#content' for http://www.zoomagazine.de/
-2025-08-14 17:17:36 - INFO - [trend_assistant:114] - Successfully extracted 3814025 characters of targeted content from http://www.zoomagazine.de/
-2025-08-14 17:17:36 - INFO - [trend_assistant:168] - Successfully scraped content from 20 out of 24 URLs.
-2025-08-14 17:17:36 - INFO - [trend_assistant:144] - --- Starting Intelligent Summarization of 20 documents ---
-2025-08-14 17:17:36 - INFO - [trend_assistant:110] - Running batch 1 of 5 with 5 tasks...
-2025-08-14 17:17:36 - INFO - [trend_assistant:48] - Submitting async text generation task to thread pool...
-2025-08-14 17:17:36 - INFO - [trend_assistant:48] - Submitting async text generation task to thread pool...
-2025-08-14 17:17:36 - INFO - [trend_assistant:48] - Submitting async text generation task to thread pool...
-2025-08-14 17:17:36 - INFO - [trend_assistant:48] - Submitting async text generation task to thread pool...
-2025-08-14 17:17:36 - INFO - [trend_assistant:48] - Submitting async text generation task to thread pool...
-2025-08-14 17:19:51 - WARNING - [trend_assistant:118] - Batch complete. Waiting for 61 seconds to respect API rate limit...
-2025-08-14 17:20:52 - INFO - [trend_assistant:110] - Running batch 2 of 5 with 5 tasks...
-2025-08-14 17:20:52 - INFO - [trend_assistant:48] - Submitting async text generation task to thread pool...
-2025-08-14 17:20:52 - INFO - [trend_assistant:48] - Submitting async text generation task to thread pool...
-2025-08-14 17:20:52 - INFO - [trend_assistant:48] - Submitting async text generation task to thread pool...
-2025-08-14 17:20:52 - INFO - [trend_assistant:48] - Submitting async text generation task to thread pool...
-2025-08-14 17:20:52 - INFO - [trend_assistant:48] - Submitting async text generation task to thread pool...
-2025-08-14 17:21:13 - WARNING - [trend_assistant:118] - Batch complete. Waiting for 61 seconds to respect API rate limit...
-2025-08-14 17:22:14 - INFO - [trend_assistant:110] - Running batch 3 of 5 with 5 tasks...
-2025-08-14 17:22:14 - INFO - [trend_assistant:48] - Submitting async text generation task to thread pool...
-2025-08-14 17:22:14 - INFO - [trend_assistant:48] - Submitting async text generation task to thread pool...
-2025-08-14 17:22:14 - INFO - [trend_assistant:48] - Submitting async text generation task to thread pool...
-2025-08-14 17:22:14 - INFO - [trend_assistant:48] - Submitting async text generation task to thread pool...
-2025-08-14 17:22:14 - INFO - [trend_assistant:48] - Submitting async text generation task to thread pool...
-2025-08-14 17:26:52 - WARNING - [trend_assistant:118] - Batch complete. Waiting for 61 seconds to respect API rate limit...
-2025-08-14 17:27:53 - INFO - [trend_assistant:110] - Running batch 4 of 5 with 5 tasks...
-2025-08-14 17:27:53 - INFO - [trend_assistant:48] - Submitting async text generation task to thread pool...
-2025-08-14 17:27:53 - INFO - [trend_assistant:48] - Submitting async text generation task to thread pool...
-2025-08-14 17:27:53 - INFO - [trend_assistant:48] - Submitting async text generation task to thread pool...
-2025-08-14 17:27:53 - INFO - [trend_assistant:48] - Submitting async text generation task to thread pool...
-2025-08-14 17:27:53 - INFO - [trend_assistant:48] - Submitting async text generation task to thread pool...
-2025-08-14 17:28:04 - INFO - [trend_assistant:172] - Successfully generated 17 summaries. Total context length: 56333
-2025-08-14 17:28:04 - INFO - [trend_assistant:176] - --- Starting Final Data Synthesis Phase ---
-2025-08-14 17:28:04 - INFO - [trend_assistant:59] - Sending prompt to Gemini model 'models/gemini-2.5-flash' for JSON generation...
-2025-08-14 17:28:57 - INFO - [trend_assistant:67] - Successfully received structured response from Gemini API.
-2025-08-14 17:28:57 - INFO - [trend_assistant:192] - Successfully validated final LLM response against Pydantic model.
-2025-08-14 17:28:57 - INFO - [trend_assistant:39] - Saving data to '/Users/tawhid/Documents/Codes/Fashion_Trend_Assistant/results/itemized_fashion_trends.json'...
-2025-08-14 17:28:57 - INFO - [trend_assistant:43] - Successfully saved file: itemized_fashion_trends.json
-2025-08-14 17:28:57 - INFO - [trend_assistant:52] - --- Starting Prompt Generation Phase ---
-2025-08-14 17:28:57 - INFO - [trend_assistant:67] - Generating prompts for key piece: 'The Sculpted Power Suit'
-2025-08-14 17:28:57 - INFO - [trend_assistant:67] - Generating prompts for key piece: 'The Architectural Outerwear'
-2025-08-14 17:28:57 - INFO - [trend_assistant:67] - Generating prompts for key piece: 'The Elevated Knit Dress'
-2025-08-14 17:28:57 - INFO - [trend_assistant:67] - Generating prompts for key piece: 'The Reimagined Utilitarian Denim'
-2025-08-14 17:28:57 - INFO - [trend_assistant:99] - --- Prompt Generation Phase Complete ---
-2025-08-14 17:28:57 - INFO - [trend_assistant:39] - Saving data to '/Users/tawhid/Documents/Codes/Fashion_Trend_Assistant/results/generated_prompts.json'...
-2025-08-14 17:28:57 - INFO - [trend_assistant:43] - Successfully saved file: generated_prompts.json
-2025-08-14 17:28:57 - INFO - [trend_assistant:211] - --- Creative Process for Fall/Winter 2025: 'Quiet luxury meets utilitarian workwear' Completed Successfully ---
-2025-08-14 17:28:57 - INFO - [trend_assistant:53] - =========================================================
-2025-08-14 17:28:57 - INFO - [trend_assistant:54] -     CREATIVE PROCESS FINISHED in 721.89 seconds
-2025-08-14 17:28:57 - INFO - [trend_assistant:55] - =========================================================
+2025-08-14 23:41:41 - WARNING - [trend_assistant:109] - URL https://thevou.com/blog/fashion-cultures-style-meanings/ has insufficient content (54 chars), skipping.
+2025-08-14 23:41:41 - INFO - [trend_assistant:97] - Found main content using selector 'article' for https://www.euronews.com/culture/2023/12/28/euronews-cultures-2024-fashion-trends-preview-what-well-be-wearing-next-year
+2025-08-14 23:41:41 - WARNING - [trend_assistant:109] - URL https://www.euronews.com/culture/2023/12/28/euronews-cultures-2024-fashion-trends-preview-what-well-be-wearing-next-year has insufficient content (65 chars), skipping.
+2025-08-14 23:41:43 - INFO - [trend_assistant:97] - Found main content using selector 'article' for https://in.apparelresources.com/
+2025-08-14 23:41:43 - WARNING - [trend_assistant:109] - URL https://in.apparelresources.com/ has insufficient content (95 chars), skipping.
+2025-08-14 23:41:43 - WARNING - [trend_assistant:109] - URL https://www.reddit.com/r/streetwear/comments/1hofim2/what_are_gonna_be_the_most_popular_mens_fashion/ has insufficient content (143 chars), skipping.
+2025-08-14 23:41:43 - INFO - [trend_assistant:97] - Found main content using selector 'article' for https://www.caspermagazine.com/feature/beyond-the-puffer
+2025-08-14 23:41:43 - INFO - [trend_assistant:114] - Successfully extracted 400 characters of targeted content from https://www.caspermagazine.com/feature/beyond-the-puffer
+2025-08-14 23:41:44 - WARNING - [trend_assistant:109] - URL https://issuu.com/sourcingjournalevents/docs/rivet_fall_2024_singles_v2?fr=xKAE9_zU1NQ has insufficient content (49 chars), skipping.
+2025-08-14 23:41:47 - INFO - [trend_assistant:97] - Found main content using selector 'article' for https://apparelresources.com/fashion-news/trends/fall-winter-2025-menswear-trend-shifts-modifying-market/
+2025-08-14 23:41:47 - INFO - [trend_assistant:114] - Successfully extracted 13369 characters of targeted content from https://apparelresources.com/fashion-news/trends/fall-winter-2025-menswear-trend-shifts-modifying-market/
+2025-08-14 23:41:48 - INFO - [trend_assistant:114] - Successfully extracted 2694 characters of targeted content from https://made-to-measure-suits.bgfashion.net/article/10265/56/givenchy-spring-summer-2015-menswear-collection
+2025-08-14 23:41:48 - INFO - [trend_assistant:114] - Successfully extracted 7831 characters of targeted content from https://www.joor.com/insights/fashion-trend-report
+2025-08-14 23:41:50 - INFO - [trend_assistant:114] - Successfully extracted 37224 characters of targeted content from https://fashionweekonline.com/milan/designers
+2025-08-14 23:41:55 - INFO - [trend_assistant:97] - Found main content using selector 'article' for https://www.voguebusiness.com/story/fashion/the-vogue-business-autumn-winter-2025-size-inclusivity-report
+2025-08-14 23:41:55 - INFO - [trend_assistant:114] - Successfully extracted 9907 characters of targeted content from https://www.voguebusiness.com/story/fashion/the-vogue-business-autumn-winter-2025-size-inclusivity-report
+2025-08-14 23:41:57 - INFO - [trend_assistant:97] - Found main content using selector 'article' for https://www.voguebusiness.com/fashion/the-vogue-business-autumnwinter-2023-size-inclusivity-report
+2025-08-14 23:41:57 - INFO - [trend_assistant:114] - Successfully extracted 15774 characters of targeted content from https://www.voguebusiness.com/fashion/the-vogue-business-autumnwinter-2023-size-inclusivity-report
+2025-08-14 23:41:58 - INFO - [trend_assistant:97] - Found main content using selector 'main' for https://www.vogue.com/fashion/trends
+2025-08-14 23:41:58 - INFO - [trend_assistant:114] - Successfully extracted 6279 characters of targeted content from https://www.vogue.com/fashion/trends
+2025-08-14 23:41:59 - INFO - [trend_assistant:97] - Found main content using selector 'article' for https://www.vogue.com/article/fall-2024-handbag-trends
+2025-08-14 23:41:59 - INFO - [trend_assistant:114] - Successfully extracted 9684 characters of targeted content from https://www.vogue.com/article/fall-2024-handbag-trends
+2025-08-14 23:41:59 - INFO - [trend_assistant:97] - Found main content using selector 'article' for https://www.vogue.com/article/fall-2022-menswear-trend-report
+2025-08-14 23:41:59 - INFO - [trend_assistant:114] - Successfully extracted 5831 characters of targeted content from https://www.vogue.com/article/fall-2022-menswear-trend-report
+2025-08-14 23:41:59 - INFO - [trend_assistant:97] - Found main content using selector 'article' for https://www.vogue.com/article/upper-class-workwear-class-appropriation
+2025-08-14 23:41:59 - INFO - [trend_assistant:114] - Successfully extracted 4598 characters of targeted content from https://www.vogue.com/article/upper-class-workwear-class-appropriation
+2025-08-14 23:41:59 - INFO - [trend_assistant:97] - Found main content using selector 'article' for https://www.vogue.com/article/modern-contemporary-brands-to-know
+2025-08-14 23:41:59 - INFO - [trend_assistant:114] - Successfully extracted 13266 characters of targeted content from https://www.vogue.com/article/modern-contemporary-brands-to-know
+2025-08-14 23:42:05 - INFO - [trend_assistant:97] - Found main content using selector '#content' for http://www.zoomagazine.de/
+2025-08-14 23:42:05 - INFO - [trend_assistant:114] - Successfully extracted 3816151 characters of targeted content from http://www.zoomagazine.de/
+2025-08-14 23:42:05 - INFO - [trend_assistant:168] - Successfully scraped content from 15 out of 25 URLs.
+2025-08-14 23:42:05 - INFO - [trend_assistant:184] - --- Starting Intelligent Summarization of 15 documents ---
+2025-08-14 23:42:05 - INFO - [trend_assistant:123] - Running batch 1 of 3 with 5 tasks...
+2025-08-14 23:42:05 - INFO - [trend_assistant:83] - Submitting async text generation task to thread pool...
+2025-08-14 23:42:05 - INFO - [trend_assistant:83] - Submitting async text generation task to thread pool...
+2025-08-14 23:42:05 - INFO - [trend_assistant:83] - Submitting async text generation task to thread pool...
+2025-08-14 23:42:05 - INFO - [trend_assistant:83] - Submitting async text generation task to thread pool...
+2025-08-14 23:42:05 - INFO - [trend_assistant:83] - Submitting async text generation task to thread pool...
+2025-08-14 23:42:35 - WARNING - [trend_assistant:129] - Batch complete. Waiting for 61 seconds to respect API rate limit...
+2025-08-14 23:43:36 - INFO - [trend_assistant:123] - Running batch 2 of 3 with 5 tasks...
+2025-08-14 23:43:36 - INFO - [trend_assistant:83] - Submitting async text generation task to thread pool...
+2025-08-14 23:43:36 - INFO - [trend_assistant:83] - Submitting async text generation task to thread pool...
+2025-08-14 23:43:36 - INFO - [trend_assistant:83] - Submitting async text generation task to thread pool...
+2025-08-14 23:43:36 - INFO - [trend_assistant:83] - Submitting async text generation task to thread pool...
+2025-08-14 23:43:36 - INFO - [trend_assistant:83] - Submitting async text generation task to thread pool...
+2025-08-14 23:44:06 - WARNING - [trend_assistant:129] - Batch complete. Waiting for 61 seconds to respect API rate limit...
+2025-08-14 23:45:07 - INFO - [trend_assistant:123] - Running batch 3 of 3 with 5 tasks...
+2025-08-14 23:45:07 - INFO - [trend_assistant:83] - Submitting async text generation task to thread pool...
+2025-08-14 23:45:07 - INFO - [trend_assistant:83] - Submitting async text generation task to thread pool...
+2025-08-14 23:45:07 - INFO - [trend_assistant:83] - Submitting async text generation task to thread pool...
+2025-08-14 23:45:07 - INFO - [trend_assistant:83] - Submitting async text generation task to thread pool...
+2025-08-14 23:45:07 - INFO - [trend_assistant:83] - Submitting async text generation task to thread pool...
+2025-08-14 23:46:36 - INFO - [trend_assistant:211] - Successfully generated 14 summaries.
+2025-08-14 23:46:36 - INFO - [trend_assistant:213] - --- Starting Final Data Synthesis Phase ---
+2025-08-14 23:46:36 - INFO - [trend_assistant:94] - Sending prompt to Gemini model 'models/gemini-2.5-flash' for JSON generation...
+2025-08-14 23:47:25 - INFO - [trend_assistant:102] - Successfully received structured response from Gemini API.
+2025-08-14 23:47:25 - INFO - [trend_assistant:229] - Successfully validated final LLM response against Pydantic model.
+2025-08-14 23:47:25 - INFO - [trend_assistant:57] - Saving data to '/Users/tawhid/Documents/Codes/Fashion_Trend_Assistant/results/itemized_fashion_trends.json'...
+2025-08-14 23:47:25 - INFO - [trend_assistant:60] - Successfully saved file: itemized_fashion_trends.json
+2025-08-14 23:47:25 - INFO - [trend_assistant:147] - Attempting to add new report to cache for theme: 'Quiet luxury meets utilitarian workwear'
+2025-08-14 23:47:25 - INFO - [trend_assistant:36] - Generating embedding for text: 'Quiet luxury meets utilitarian workwear...'
+2025-08-14 23:47:25 - INFO - [trend_assistant:48] - Successfully generated embedding.
+2025-08-14 23:47:26 - INFO - [trend_assistant:165] - Successfully added/updated report with ID fa665a42e6485718be036f9f52d3dcf75c9948fc0b066453bc0b0c744cf964d4 in the cache.
+2025-08-14 23:47:26 - INFO - [trend_assistant:69] - --- Starting Prompt Generation Phase ---
+2025-08-14 23:47:26 - INFO - [trend_assistant:78] - Generating prompts for key piece: 'The Sculpted Power Suit'
+2025-08-14 23:47:26 - INFO - [trend_assistant:78] - Generating prompts for key piece: 'The Elevated Technical Coat'
+2025-08-14 23:47:26 - INFO - [trend_assistant:109] - --- Prompt Generation Phase Complete ---
+2025-08-14 23:47:26 - INFO - [trend_assistant:57] - Saving data to '/Users/tawhid/Documents/Codes/Fashion_Trend_Assistant/results/generated_prompts.json'...
+2025-08-14 23:47:26 - INFO - [trend_assistant:60] - Successfully saved file: generated_prompts.json
+2025-08-14 23:47:26 - INFO - [trend_assistant:251] - --- Creative Process for Fall/Winter 2025: 'Quiet luxury meets utilitarian workwear' Completed Successfully ---
+2025-08-14 23:47:26 - INFO - [trend_assistant:53] - =========================================================
+2025-08-14 23:47:26 - INFO - [trend_assistant:54] -     CREATIVE PROCESS FINISHED in 354.47 seconds
+2025-08-14 23:47:26 - INFO - [trend_assistant:55] - =========================================================
+2025-08-14 23:48:03 - INFO - [trend_assistant:18] - Google GenAI client initialized successfully.
+2025-08-14 23:48:03 - INFO - [trend_assistant:24] - ChromaDB cache service initialized. Collection 'fashion_reports' loaded/created.
+2025-08-14 23:48:03 - INFO - [trend_assistant:32] - =========================================================
+2025-08-14 23:48:03 - INFO - [trend_assistant:33] -     FASHION TREND ASSISTANT - CREATIVE PROCESS STARTED   
+2025-08-14 23:48:03 - INFO - [trend_assistant:34] - =========================================================
+2025-08-14 23:48:03 - INFO - [trend_assistant:147] - --- Starting New Creative Process for Fall/Winter 2025: 'Quiet luxury meets utilitarian workwear' ---
+2025-08-14 23:48:03 - INFO - [trend_assistant:48] - Checking semantic cache for theme hint: 'Quiet luxury meets utilitarian workwear'
+2025-08-14 23:48:03 - INFO - [trend_assistant:36] - Generating embedding for text: 'Quiet luxury meets utilitarian workwear...'
+2025-08-14 23:48:03 - INFO - [trend_assistant:48] - Successfully generated embedding.
+2025-08-14 23:48:04 - WARNING - [trend_assistant:120] - CACHE HIT! Found a similar report for theme 'Quiet luxury meets utilitarian workwear' with distance 0.0000.
+2025-08-14 23:48:04 - WARNING - [trend_assistant:154] - --- Workflow Bypassed: Using Semantically Similar Cached Report ---
+2025-08-14 23:48:04 - INFO - [trend_assistant:57] - Saving data to '/Users/tawhid/Documents/Codes/Fashion_Trend_Assistant/results/itemized_fashion_trends.json'...
+2025-08-14 23:48:04 - INFO - [trend_assistant:60] - Successfully saved file: itemized_fashion_trends.json
+2025-08-14 23:48:04 - INFO - [trend_assistant:69] - --- Starting Prompt Generation Phase ---
+2025-08-14 23:48:04 - INFO - [trend_assistant:78] - Generating prompts for key piece: 'The Sculpted Power Suit'
+2025-08-14 23:48:04 - INFO - [trend_assistant:78] - Generating prompts for key piece: 'The Elevated Technical Coat'
+2025-08-14 23:48:04 - INFO - [trend_assistant:109] - --- Prompt Generation Phase Complete ---
+2025-08-14 23:48:04 - INFO - [trend_assistant:57] - Saving data to '/Users/tawhid/Documents/Codes/Fashion_Trend_Assistant/results/generated_prompts.json'...
+2025-08-14 23:48:04 - INFO - [trend_assistant:60] - Successfully saved file: generated_prompts.json
+2025-08-14 23:48:04 - INFO - [trend_assistant:165] - --- Cached Process Completed Successfully ---
+2025-08-14 23:48:04 - INFO - [trend_assistant:53] - =========================================================
+2025-08-14 23:48:04 - INFO - [trend_assistant:54] -     CREATIVE PROCESS FINISHED in 0.81 seconds
+2025-08-14 23:48:04 - INFO - [trend_assistant:55] - =========================================================

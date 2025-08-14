@@ -19,11 +19,15 @@ DOCUMENT TEXT:
 ---
 """
 
-# --- Phase 3: Main Data Synthesis Prompt ---
+# --- Phase 3: Main Data Synthesis Prompt (UPGRADED) ---
 ITEMIZED_REPORT_PROMPT = """
 You are the Lead Trend Forecaster for 'The Future of Fashion', a globally respected trend analysis firm.
 Your task is to synthesize the provided collection of research summaries into a single, cohesive, and insightful fashion trend report.
 You MUST base your analysis strictly on the information provided in the summaries below. Do not invent or hallucinate information.
+
+**ADDITIONAL RULES:**
+1.  All lists in your response must be de-duplicated and contain only unique items.
+2.  For the 'colors' array, you MUST provide real Pantone TCX codes and their corresponding hex values. Find the closest match if the exact one is unknown. **DO NOT leave `pantone_code` or `hex_value` as null.**
 
 RESEARCH SUMMARIES:
 ---
@@ -33,37 +37,44 @@ RESEARCH SUMMARIES:
 Based ONLY on the provided research, generate a single, valid JSON object for the {season} {year} season.
 The JSON object MUST strictly adhere to the following schema.
 
-**CRITICAL INSTRUCTION FOR COLORS:** For the 'colors' array, you MUST provide real Pantone TCX codes and their corresponding hex values. If an exact match is unknown from the text, use your knowledge to find the closest, most appropriate Pantone TCX code for the color name mentioned. **DO NOT leave `pantone_code` or `hex_value` as null or empty.**
-
 SCHEMA:
 {{
   "season": "{season}",
   "year": {year},
-  "overarching_theme": "A concise, evocative name for the entire collection's theme that synthesizes the provided information.",
-  "cultural_drivers": ["A list of the high-level socio-cultural influences driving the trend (e.g., 'Sustainability', '90s Nostalgia', 'Post-Pandemic Comfort')."],
-  "influential_models": ["A list of names of models, celebrities, or style icons mentioned who embody the trend's aesthetic."],
-  "accessories": ["A list of general accessories that complement the collection, based on the research summaries."],
+  "overarching_theme": "A concise, evocative name for the entire collection's theme.",
+  "cultural_drivers": ["A list of the high-level socio-cultural influences driving the trend."],
+  "influential_models": ["A list of names of models or style icons. CRITICAL: If no specific names are found, suggest 2-3 archetypal style icons who embody the theme."],
+  "accessories": {{
+    "Bags": ["A list of relevant bag styles."],
+    "Footwear": ["A list of relevant shoe and boot styles."],
+    "Jewelry": ["A list of relevant jewelry styles."],
+    "Other": ["A list of other relevant accessories like hats, belts, or scarves."]
+  }},
   "detailed_key_pieces": [
     {{
-      "key_piece_name": "The descriptive name of a key garment identified in the research (e.g., 'The Utilitarian Field Jacket').",
-      "description": "A brief, insightful explanation of this item's role and significance within the overarching theme.",
+      "key_piece_name": "The descriptive name of a key garment identified in the research.",
+      "description": "A brief, insightful explanation of this item's role and significance.",
+
+      "inspired_by_designers": ["CRITICAL: Based on the aesthetic, suggest 1-2 real-world designers (e.g., 'Rick Owens', 'Phoebe Philo') known for this type of garment."],
+
       "fabrics": [
         {{
-          "material": "The base material (e.g., 'Organic Cotton', 'Recycled Nylon').",
-          "texture": "The specific surface texture (e.g., 'Heavy Twill', 'Liquid Silk').",
-          "sustainable": "boolean indicating if the fabric is a sustainable choice."
+          "material": "The base material (e.g., 'Leather', 'Organic Cotton').",
+          "texture": "The specific surface texture (e.g., 'Pebbled', 'Satin Weave').",
+          "sustainable": "boolean indicating if the primary material is sustainable.",
+          "sustainability_comment": "INSIGHT: If 'sustainable' is false, provide a brief, specific alternative (e.g., 'Consider Mushroom or Apple Leather'). If true, state why (e.g., 'Natural, biodegradable fiber')."
         }}
       ],
       "colors": [
         {{
-          "name": "The common name of the color (e.g., 'Desert Khaki').",
-          "pantone_code": "CRITICAL: The official Pantone TCX code (e.g., '15-1214 TCX'). MUST NOT BE NULL.",
-          "hex_value": "CRITICAL: The hex value of the color (e.g., '#C2B280'). MUST NOT BE NULL."
+          "name": "The common name of the color.",
+          "pantone_code": "CRITICAL: The official Pantone TCX code. MUST NOT BE NULL.",
+          "hex_value": "CRITICAL: The hex value of the color. MUST NOT BE NULL."
         }}
       ],
-      "silhouettes": ["A list of specific cuts and shapes for this item (e.g., 'Boxy and oversized', 'Sharply tailored')."],
-      "details_trims": ["A list of specific design details, hardware, or trims (e.g., 'Oversized cargo pockets', 'Matte black hardware')."],
-      "suggested_pairings": ["A list of other items this piece could be styled with to complete the look."]
+      "silhouettes": ["A list of specific cuts and shapes for this item."],
+      "details_trims": ["A list of specific design details, hardware, or trims."],
+      "suggested_pairings": ["A list of other items this piece could be styled with."]
     }}
   ]
 }}

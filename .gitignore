@@ -19,3 +19,6 @@ __pycache__/
 # Operating System files
 .DS_Store
 Thumbs.db
+
+# ChromaDB persistent cache
+/chroma_cache/

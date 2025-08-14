@@ -7,9 +7,9 @@ Google GenAI SDK with a client-based approach.
 """
 
 import asyncio
-from typing import Optional
+from typing import Optional, List
 from google import genai
-from google.genai.types import GenerateContentConfig
+from google.genai.types import GenerateContentConfig, EmbedContentConfig
 from .. import config
 from ..utils.logger import logger
 
@@ -21,6 +21,45 @@ except Exception as e:
         f"CRITICAL: Failed to initialize Google GenAI client: {e}", exc_info=True
     )
     client = None
+
+
+def generate_embedding(text: str) -> Optional[List[float]]:
+    """
+    Generates a vector embedding for a given text string with robust error handling.
+    """
+    if client is None:
+        logger.error(
+            "Cannot generate embedding because GenAI client is not initialized."
+        )
+        return None
+
+    logger.info(f"Generating embedding for text: '{text[:50]}...'")
+    try:
+        result = client.models.embed_content(
+            model=config.EMBEDDING_MODEL_NAME,
+            contents=[text],
+            config=EmbedContentConfig(task_type="RETRIEVAL_DOCUMENT"),
+        )
+
+        # --- CRITICAL FIX: Defensive check for a valid response ---
+        # This prevents the "None is not subscriptable" or "AttributeError" crash.
+        # It checks if the result exists AND if the embeddings list is not empty.
+        if result and result.embeddings:
+            logger.info("Successfully generated embedding.")
+            return result.embeddings[0].values
+        else:
+            # This case handles a successful API call that returns an empty response.
+            logger.warning(
+                "Embedding generation call succeeded but returned no embeddings."
+            )
+            return None
+
+    except Exception as e:
+        # This case handles all other errors (network, API key, etc.).
+        logger.error(
+            f"An error occurred during embedding generation: {e}", exc_info=True
+        )
+        return None
 
 
 def _sync_generate_text(prompt: str) -> Optional[str]:
@@ -40,11 +79,7 @@ def _sync_generate_text(prompt: str) -> Optional[str]:
 
 
 async def generate_text_async(prompt: str) -> Optional[str]:
-    """
-    Asynchronously generates plain text by running the sync call in a thread.
-    The semaphore logic has been removed as rate-limiting is now handled
-    by the calling service's batching mechanism.
-    """
+    """Asynchronously generates plain text by running the sync call in a thread."""
     logger.info("Submitting async text generation task to thread pool...")
     loop = asyncio.get_running_loop()
     return await loop.run_in_executor(None, _sync_generate_text, prompt)

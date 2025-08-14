@@ -2,7 +2,7 @@
 Pydantic Models for Fashion Trend Data Structures.
 """
 
-from typing import List, Optional
+from typing import List, Optional, Dict
 from pydantic import BaseModel, Field
 
 
@@ -22,13 +22,26 @@ class FabricTrend(BaseModel):
         None, description="The surface texture of the fabric."
     )
     sustainable: bool = Field(
-        ..., description="Indicates if the fabric is sustainable."
+        ..., description="Indicates if the primary material is sustainable."
+    )
+
+    # --- NEW FIELD ---
+    # This will hold the actionable sustainability advice.
+    sustainability_comment: Optional[str] = Field(
+        None, description="Suggests a sustainable alternative if the material is not."
     )
 
 
 class KeyPieceDetail(BaseModel):
     key_piece_name: str = Field(..., description="The descriptive name of the garment.")
     description: str = Field(..., description="This item's role and significance.")
+
+    # --- NEW FIELD ---
+    # Adds a direct creative reference for designers.
+    inspired_by_designers: List[str] = Field(
+        ..., description="Real-world designers known for this aesthetic."
+    )
+
     fabrics: List[FabricTrend] = Field(..., description="Recommended fabrics.")
     colors: List[ColorTrend] = Field(
         ..., description="Curated list of suitable colors."
@@ -50,8 +63,8 @@ class FashionTrendReport(BaseModel):
     influential_models: List[str] = Field(
         ..., description="Style icons who embody the trend."
     )
-    accessories: List[str] = Field(
-        ..., description="General accessories for the collection."
+    accessories: Dict[str, List[str]] = Field(
+        ..., description="Accessories grouped by category."
     )
     detailed_key_pieces: List[KeyPieceDetail] = Field(
         ..., description="Detailed breakdown of each garment."

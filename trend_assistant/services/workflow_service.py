@@ -1,11 +1,22 @@
 """
 Core Workflow Service for the Fashion Trend Assistant.
+
+This module orchestrates the entire process, from the initial cache check
+to generating the final prompt outputs. It directs the flow of data between
+the various client and utility modules and includes a robust batching system
+for rate-limiting API calls on a cache miss.
 """
 
 import json
 import os
 import asyncio
-from typing import Dict, List, Any, Coroutine
+
+# --- MODIFIED IMPORT ---
+# Import Sequence to fix the static typing error.
+from typing import Dict, List, Any, Coroutine, Optional, Sequence
+
+# --- NEW IMPORT ---
+from . import cache_service
 
 from .. import config
 from ..clients import llm_client, research_client
@@ -16,17 +27,25 @@ from ..utils.logger import logger
 # --- Helper Functions --------------------------------------------------------
 
 
-def _generate_search_queries(season: str, year: int, theme_hint: str) -> List[str]:
-    """Creates a list of targeted search queries based on the initial brief."""
+def _generate_search_queries(
+    season: str,
+    year: int,
+    theme_hint: str,
+    target_audience: Optional[str] = None,
+    region: Optional[str] = None,
+) -> List[str]:
+    """Creates targeted search queries, incorporating advanced parameters if provided."""
     logger.info("Generating dynamic search queries...")
+    audience_query = f" for {target_audience}" if target_audience else ""
+    region_query = f" in {region}" if region else ""
     queries = [
-        f"WGSN {season} {year} fashion trends {theme_hint}",
-        f"Vogue Runway {season} {year} trend report analysis",
-        f"Business of Fashion {season} {year} materials and textiles {theme_hint}",
-        f"Dazed Digital {season} {year} {theme_hint} aesthetic",
-        f"latest street style {theme_hint}",
+        f"WGSN {season} {year} fashion trends {theme_hint}{audience_query}",
+        f"Vogue Runway {region} {season} {year} trend report analysis",
+        f"Business of Fashion {season} {year} materials {theme_hint}",
+        f"Dazed Digital {theme_hint} aesthetic{audience_query}{region_query}",
+        f"latest street style {theme_hint}{region_query}",
     ]
-    logger.info(f"Generated {len(queries)} queries.")
+    logger.info(f"Generated {len(queries)} specific queries.")
     return queries
 
 
@@ -35,11 +54,9 @@ def _save_json_to_results(data: Dict[str, Any], filename: str) -> bool:
     try:
         config.RESULTS_DIR.mkdir(exist_ok=True)
         file_path = os.path.join(config.RESULTS_DIR, filename)
-
         logger.info(f"Saving data to '{file_path}'...")
         with open(file_path, "w", encoding="utf-8") as f:
             json.dump(data, f, indent=2)
-
         logger.info(f"Successfully saved file: {filename}")
         return True
     except Exception as e:
@@ -50,19 +67,13 @@ def _save_json_to_results(data: Dict[str, Any], filename: str) -> bool:
 def _generate_final_prompts(report: FashionTrendReport) -> Dict[str, Any]:
     """Generates the final image prompts from the validated trend report."""
     logger.info("--- Starting Prompt Generation Phase ---")
-
-    # CRITICAL SAFEGUARD: Check if the key pieces list is empty.
     if not report.detailed_key_pieces:
-        logger.error(
-            "Cannot generate prompts because the 'detailed_key_pieces' list in the report is empty. Check the synthesized JSON."
-        )
+        logger.error("Cannot generate prompts because 'detailed_key_pieces' is empty.")
         return {}
-
     all_prompts = {}
     model_style = (
         report.influential_models[0] if report.influential_models else "a fashion model"
     )
-
     for piece in report.detailed_key_pieces:
         logger.info(f"Generating prompts for key piece: '{piece.key_piece_name}'")
         main_fabric = (
@@ -72,7 +83,6 @@ def _generate_final_prompts(report: FashionTrendReport) -> Dict[str, Any]:
         silhouette = (
             piece.silhouettes[0] if piece.silhouettes else "a modern silhouette"
         )
-
         piece_prompts = {
             "inspiration_board": prompt_library.INSPIRATION_BOARD_PROMPT_TEMPLATE.format(
                 theme=report.overarching_theme,
@@ -100,64 +110,93 @@ def _generate_final_prompts(report: FashionTrendReport) -> Dict[str, Any]:
     return all_prompts
 
 
+# --- MODIFIED FUNCTION SIGNATURE ---
+# Changed 'List[Coroutine]' to 'Sequence[Coroutine]' to fix the type variance issue.
 async def _run_tasks_in_batches(
-    tasks: List[Coroutine], batch_size: int, delay_seconds: int
+    tasks: Sequence[Coroutine], batch_size: int, delay_seconds: int
 ) -> List[Any]:
-    """Runs a list of awaitable tasks in batches to respect API rate limits."""
+    """Runs a sequence of awaitable tasks in batches to respect API rate limits."""
     all_results = []
+    # The 'tasks' variable is a list, so slicing works perfectly.
     for i in range(0, len(tasks), batch_size):
         batch = tasks[i : i + batch_size]
         logger.info(
-            f"Running batch {i//batch_size + 1} of {len(tasks)//batch_size + 1} with {len(batch)} tasks..."
+            f"Running batch {i//batch_size + 1} of {(len(tasks) + batch_size - 1)//batch_size} with {len(batch)} tasks..."
         )
-
         batch_results = await asyncio.gather(*batch)
         all_results.extend(batch_results)
-
         if i + batch_size < len(tasks):
             logger.warning(
                 f"Batch complete. Waiting for {delay_seconds} seconds to respect API rate limit..."
             )
             await asyncio.sleep(delay_seconds)
-
     return all_results
 
 
 # --- Main Service Function ---------------------------------------------------
 
 
-async def run_creative_process(season: str, year: int, theme_hint: str):
-    """Executes the full workflow with intelligent summarization and batched rate limiting."""
+async def run_creative_process(
+    season: str,
+    year: int,
+    theme_hint: str,
+    target_audience: Optional[str] = None,
+    region: Optional[str] = None,
+):
+    """Executes the full workflow, now with a semantic cache check at the beginning."""
     logger.info(
         f"--- Starting New Creative Process for {season} {year}: '{theme_hint}' ---"
     )
 
-    queries = _generate_search_queries(season, year, theme_hint)
+    cached_report_json = cache_service.check_cache(theme_hint)
+
+    if cached_report_json:
+        logger.warning(
+            "--- Workflow Bypassed: Using Semantically Similar Cached Report ---"
+        )
+        try:
+            report_data = json.loads(cached_report_json)
+            validated_report = FashionTrendReport(**report_data)
+            _save_json_to_results(
+                validated_report.model_dump(), config.TREND_REPORT_FILENAME
+            )
+            final_prompts = _generate_final_prompts(validated_report)
+            _save_json_to_results(final_prompts, config.PROMPTS_FILENAME)
+            logger.info("--- Cached Process Completed Successfully ---")
+            return
+        except (json.JSONDecodeError, Exception) as e:
+            logger.error(
+                f"Failed to process cached report. Error: {e}. Proceeding with full workflow.",
+                exc_info=True,
+            )
+
+    logger.info("--- Starting Full Research & Synthesis Workflow ---")
+
+    queries = _generate_search_queries(
+        season, year, theme_hint, target_audience, region
+    )
     scraped_documents = await research_client.gather_research_documents(queries)
 
     if not scraped_documents:
-        logger.error(
-            "Halting process: No content was successfully scraped from any URLs."
-        )
+        logger.error("Halting process: No content was successfully scraped.")
         return
 
     logger.info(
         f"--- Starting Intelligent Summarization of {len(scraped_documents)} documents ---"
     )
-
-    summarization_tasks = []
-    for doc in scraped_documents:
-        prompt = prompt_library.SUMMARIZATION_PROMPT_TEMPLATE.format(
-            document_text=doc[:150000]
+    summarization_tasks = [
+        llm_client.generate_text_async(
+            prompt_library.SUMMARIZATION_PROMPT_TEMPLATE.format(
+                document_text=doc[:150000]
+            )
         )
-        summarization_tasks.append(llm_client.generate_text_async(prompt))
-
+        for doc in scraped_documents
+    ]
     summaries = await _run_tasks_in_batches(
         tasks=summarization_tasks,
         batch_size=config.GEMINI_API_CONCURRENCY_LIMIT,
         delay_seconds=61,
     )
-
     valid_summaries = [
         s for s in summaries if s and "No relevant information." not in s
     ]
@@ -169,9 +208,7 @@ async def run_creative_process(season: str, year: int, theme_hint: str):
         return
 
     research_context = "\n\n--- DOCUMENT SUMMARY ---\n\n".join(valid_summaries)
-    logger.info(
-        f"Successfully generated {len(valid_summaries)} summaries. Total context length: {len(research_context)}"
-    )
+    logger.info(f"Successfully generated {len(valid_summaries)} summaries.")
 
     logger.info("--- Starting Final Data Synthesis Phase ---")
     final_prompt = prompt_library.ITEMIZED_REPORT_PROMPT.format(
@@ -182,7 +219,7 @@ async def run_creative_process(season: str, year: int, theme_hint: str):
 
     if not json_response:
         logger.error(
-            "Halting process: Failed to get a valid JSON response from the LLM for the final report."
+            "Halting process: Failed to get a valid JSON response from the LLM."
         )
         return
 
@@ -193,6 +230,9 @@ async def run_creative_process(season: str, year: int, theme_hint: str):
         _save_json_to_results(
             validated_report.model_dump(), config.TREND_REPORT_FILENAME
         )
+
+        cache_service.add_to_cache(theme_hint, validated_report.model_dump_json())
+
     except (json.JSONDecodeError, Exception) as e:
         logger.error(
             f"Halting process: Final LLM response failed validation. Error: {e}",
