@@ -419,3 +419,224 @@ Call log:
 2025-08-15 22:17:31 - INFO - [trend_assistant:64] - =========================================================
 2025-08-15 22:17:31 - INFO - [trend_assistant:65] -     CREATIVE PROCESS FINISHED in 666.05 seconds
 2025-08-15 22:17:31 - INFO - [trend_assistant:66] - =========================================================
+2025-08-15 23:05:54 - INFO - [trend_assistant:18] - Google GenAI client initialized successfully.
+2025-08-15 23:05:54 - INFO - [trend_assistant:24] - ChromaDB cache service initialized. Collection 'fashion_reports' loaded/created.
+2025-08-15 23:05:54 - INFO - [trend_assistant:33] - =========================================================
+2025-08-15 23:05:54 - INFO - [trend_assistant:34] -     FASHION TREND ASSISTANT - CREATIVE PROCESS STARTED   
+2025-08-15 23:05:54 - INFO - [trend_assistant:35] - =========================================================
+2025-08-15 23:05:54 - INFO - [trend_assistant:42] - Using manually specified region: Bali, Indonesia
+2025-08-15 23:05:54 - INFO - [trend_assistant:172] - --- Received New Creative Brief ---
+2025-08-15 23:05:54 - INFO - [trend_assistant:200] - --- Starting New Creative Process for Resort/Cruise 2025: 'Biodegradable swimwear and tropical botanical prints' ---
+2025-08-15 23:05:54 - INFO - [trend_assistant:204] - Target Audience: Eco-luxury beachgoers (30-55)
+2025-08-15 23:05:54 - INFO - [trend_assistant:206] - Region: Bali, Indonesia
+2025-08-15 23:05:54 - INFO - [trend_assistant:48] - Checking semantic cache for theme hint: 'Biodegradable swimwear and tropical botanical prints_Bali, Indonesia_Eco-luxury beachgoers (30-55)'
+2025-08-15 23:05:54 - INFO - [trend_assistant:36] - Generating embedding for text: 'Biodegradable swimwear and tropical botanical prin...'
+2025-08-15 23:05:55 - INFO - [trend_assistant:48] - Successfully generated embedding.
+2025-08-15 23:05:55 - INFO - [trend_assistant:125] - CACHE MISS. Closest document distance (0.2555) is above the threshold.
+2025-08-15 23:05:55 - INFO - [trend_assistant:231] - --- Starting Full Research & Synthesis Workflow ---
+2025-08-15 23:05:55 - INFO - [trend_assistant:33] - Generating a flexible, context-aware set of professional search queries...
+2025-08-15 23:05:55 - INFO - [trend_assistant:72] - Generated 12 flexible queries for global and regional analysis.
+2025-08-15 23:05:55 - INFO - [trend_assistant:184] - --- Starting Research Phase: Gathering Raw Documents ---
+2025-08-15 23:05:55 - INFO - [trend_assistant:27] - Executing Google search for: 'Vogue  in Bali, Indonesia Resort/Cruise 2025 runway trend report -site:pinterest.com -site:amazon.com'
+2025-08-15 23:05:55 - INFO - [trend_assistant:27] - Executing Google search for: 'WWD Resort/Cruise 2025  in Bali, Indonesia runway analysis Biodegradable swimwear and tropical botanical prints -site:pinterest.com -site:amazon.com'
+2025-08-15 23:05:55 - INFO - [trend_assistant:27] - Executing Google search for: 'Business of Fashion Resort/Cruise 2025  in Bali, Indonesia collection reviews -site:pinterest.com -site:amazon.com'
+2025-08-15 23:05:55 - INFO - [trend_assistant:27] - Executing Google search for: 'Elle  in Bali, Indonesia Resort/Cruise 2025 fashion week highlights -site:pinterest.com -site:amazon.com'
+2025-08-15 23:05:55 - INFO - [trend_assistant:27] - Executing Google search for: 'WGSN Resort/Cruise 2025 key trends Biodegradable swimwear and tropical botanical prints -site:pinterest.com -site:amazon.com'
+2025-08-15 23:05:55 - INFO - [trend_assistant:27] - Executing Google search for: 'Trendstop forecast Resort/Cruise 2025 Biodegradable swimwear and tropical botanical prints -site:pinterest.com -site:amazon.com'
+2025-08-15 23:05:55 - INFO - [trend_assistant:27] - Executing Google search for: 'Pantone Color Institute fashion color trend report Resort/Cruise 2025 -site:pinterest.com -site:amazon.com'
+2025-08-15 23:05:55 - INFO - [trend_assistant:27] - Executing Google search for: 'Première Vision Resort/Cruise 2025 fabric and textile news -site:pinterest.com -site:amazon.com'
+2025-08-15 23:05:55 - INFO - [trend_assistant:27] - Executing Google search for: ''Biodegradable swimwear and tropical botanical prints' aesthetic in contemporary art and fashion in Bali, Indonesia -site:pinterest.com -site:amazon.com'
+2025-08-15 23:05:55 - INFO - [trend_assistant:27] - Executing Google search for: 'latest street style Biodegradable swimwear and tropical botanical prints in Bali, Indonesia for Eco-luxury beachgoers (30-55) -site:pinterest.com -site:amazon.com'
+2025-08-15 23:05:55 - INFO - [trend_assistant:27] - Executing Google search for: 'top fashion influencers  in Bali, Indonesia 2025 -site:pinterest.com -site:amazon.com'
+2025-08-15 23:05:55 - INFO - [trend_assistant:27] - Executing Google search for: 'subculture style trends 2025 for Eco-luxury beachgoers (30-55) in Bali, Indonesia -site:pinterest.com -site:amazon.com'
+2025-08-15 23:05:56 - INFO - [trend_assistant:36] - Found 3 URLs for query: 'WGSN Resort/Cruise 2025 key trends Biodegradable swimwear and tropical botanical prints -site:pinterest.com -site:amazon.com'
+2025-08-15 23:05:57 - INFO - [trend_assistant:36] - Found 0 URLs for query: 'subculture style trends 2025 for Eco-luxury beachgoers (30-55) in Bali, Indonesia -site:pinterest.com -site:amazon.com'
+2025-08-15 23:05:57 - INFO - [trend_assistant:36] - Found 3 URLs for query: 'Trendstop forecast Resort/Cruise 2025 Biodegradable swimwear and tropical botanical prints -site:pinterest.com -site:amazon.com'
+2025-08-15 23:05:57 - INFO - [trend_assistant:36] - Found 3 URLs for query: 'Elle  in Bali, Indonesia Resort/Cruise 2025 fashion week highlights -site:pinterest.com -site:amazon.com'
+2025-08-15 23:05:57 - INFO - [trend_assistant:36] - Found 3 URLs for query: 'top fashion influencers  in Bali, Indonesia 2025 -site:pinterest.com -site:amazon.com'
+2025-08-15 23:05:57 - INFO - [trend_assistant:36] - Found 3 URLs for query: 'WWD Resort/Cruise 2025  in Bali, Indonesia runway analysis Biodegradable swimwear and tropical botanical prints -site:pinterest.com -site:amazon.com'
+2025-08-15 23:05:57 - INFO - [trend_assistant:36] - Found 3 URLs for query: ''Biodegradable swimwear and tropical botanical prints' aesthetic in contemporary art and fashion in Bali, Indonesia -site:pinterest.com -site:amazon.com'
+2025-08-15 23:05:57 - INFO - [trend_assistant:36] - Found 3 URLs for query: 'Vogue  in Bali, Indonesia Resort/Cruise 2025 runway trend report -site:pinterest.com -site:amazon.com'
+2025-08-15 23:05:57 - INFO - [trend_assistant:36] - Found 3 URLs for query: 'Pantone Color Institute fashion color trend report Resort/Cruise 2025 -site:pinterest.com -site:amazon.com'
+2025-08-15 23:05:57 - INFO - [trend_assistant:36] - Found 3 URLs for query: 'Première Vision Resort/Cruise 2025 fabric and textile news -site:pinterest.com -site:amazon.com'
+2025-08-15 23:05:57 - INFO - [trend_assistant:36] - Found 1 URLs for query: 'latest street style Biodegradable swimwear and tropical botanical prints in Bali, Indonesia for Eco-luxury beachgoers (30-55) -site:pinterest.com -site:amazon.com'
+2025-08-15 23:05:57 - INFO - [trend_assistant:36] - Found 3 URLs for query: 'Business of Fashion Resort/Cruise 2025  in Bali, Indonesia collection reviews -site:pinterest.com -site:amazon.com'
+2025-08-15 23:05:57 - INFO - [trend_assistant:224] - Filtered out 3 direct file links.
+2025-08-15 23:05:57 - INFO - [trend_assistant:231] - Found a total of 27 valid URLs to scrape.
+2025-08-15 23:05:57 - INFO - [trend_assistant:54] - Starting advanced scrape for URL: https://www.lemon8-app.com/aannamxriee/7219412635836695045?region=us
+2025-08-15 23:05:57 - INFO - [trend_assistant:54] - Starting advanced scrape for URL: https://www.instagram.com/sophiekasaei_/
+2025-08-15 23:05:57 - INFO - [trend_assistant:54] - Starting advanced scrape for URL: https://www.favikon.com/blog/top-instagram-influencers-indonesia
+2025-08-15 23:05:57 - INFO - [trend_assistant:54] - Starting advanced scrape for URL: https://afterlives.hum.uchicago.edu/wp-content/uploads/2025/07/?id=lizzo-breaks-silence-on-ozempic-a-deep-dive-into-her-transformation-20304751
+2025-08-15 23:05:57 - INFO - [trend_assistant:54] - Starting advanced scrape for URL: https://wwd.com/eye/lifestyle/feature/pantone-unveils-fashion-color-trend-report-for-nyfw-spring-1234908577/
+2025-08-15 23:05:57 - INFO - [trend_assistant:54] - Starting advanced scrape for URL: https://www.abouther.com/node/13131/fashion/fashion-news/top-10-color-palette-fallwinter-2018
+2025-08-15 23:05:57 - INFO - [trend_assistant:54] - Starting advanced scrape for URL: https://afterlives.hum.uchicago.edu/wp-content/uploads/2025/07/?id=kelly-clarksons-60-lb-weight-loss-transformation-a-deep-dive-into-her-journey-from-struggles-to-triumph-43924029
+2025-08-15 23:05:57 - INFO - [trend_assistant:54] - Starting advanced scrape for URL: https://www.reddit.com/r/bali/comments/yfmpah/firsttimer_bali_review_plus_lots_of_advice/
+2025-08-15 23:05:57 - INFO - [trend_assistant:54] - Starting advanced scrape for URL: https://www.vogue.com/article/chasing-komodo-dragons-on-indonesias-latest-super-yacht-prana
+2025-08-15 23:05:57 - INFO - [trend_assistant:54] - Starting advanced scrape for URL: https://earth.org/most-sustainable-fashion-brands/
+2025-08-15 23:05:57 - INFO - [trend_assistant:54] - Starting advanced scrape for URL: https://www.tiktok.com/discover/aruba-la-cabana
+2025-08-15 23:05:57 - INFO - [trend_assistant:54] - Starting advanced scrape for URL: http://mit.edu/~mkgray/jik/src/Attic/kerberos_password_hacker/allwords
+2025-08-15 23:05:57 - INFO - [trend_assistant:54] - Starting advanced scrape for URL: https://www.marriott.com/en-us/hotels/dpswi-the-westin-resort-nusa-dua-bali/overview/
+2025-08-15 23:05:57 - INFO - [trend_assistant:54] - Starting advanced scrape for URL: https://influencers.feedspot.com/indonesian_fashion_instagram_influencers/
+2025-08-15 23:05:57 - INFO - [trend_assistant:54] - Starting advanced scrape for URL: https://www.vogue.com/article/best-snorkeling-destinations
+2025-08-15 23:05:57 - INFO - [trend_assistant:54] - Starting advanced scrape for URL: https://epdf.pub/frommers-bahamas-2008-frommers-complete.html
+2025-08-15 23:05:57 - INFO - [trend_assistant:54] - Starting advanced scrape for URL: https://afterlives.hum.uchicago.edu/wp-content/uploads/2025/07/?id=exclusive-uncover-lizzos-shocking-weight-loss-secretunveiling-lizzos-weight-loss-odyssey-beyond-the-rumors-and-into-her-transformative-journey-87058547
+2025-08-15 23:05:57 - INFO - [trend_assistant:54] - Starting advanced scrape for URL: https://www.chch.com/morning-live/2019-infiniti-qx50-autograph/
+2025-08-15 23:05:57 - INFO - [trend_assistant:54] - Starting advanced scrape for URL: https://ecocult.com/9-sexiest-sustainable-bathing-suit-brands/
+2025-08-15 23:05:57 - INFO - [trend_assistant:54] - Starting advanced scrape for URL: https://boston.lti.cs.cmu.edu/appendices/WSDM2018-ConvKNRM/K-NRM/bing/vocab
+2025-08-15 23:05:57 - INFO - [trend_assistant:54] - Starting advanced scrape for URL: https://www.instagram.com/p/DL-OmdpSRYH/
+2025-08-15 23:05:57 - INFO - [trend_assistant:54] - Starting advanced scrape for URL: https://ukft.org/ukftglobalbrands/
+2025-08-15 23:05:57 - INFO - [trend_assistant:54] - Starting advanced scrape for URL: https://fabriclore.com/blogs/fashion-business-lifestyle-trends/how-to-plan-your-collection-around-the-fashion-season-in-usa
+2025-08-15 23:05:57 - INFO - [trend_assistant:54] - Starting advanced scrape for URL: https://fashionunited.com/specials/spring-summer-2025-trends
+2025-08-15 23:05:57 - INFO - [trend_assistant:54] - Starting advanced scrape for URL: https://issuu.com/mannpublicationsmagazines/docs/september_2024_digital
+2025-08-15 23:05:57 - INFO - [trend_assistant:54] - Starting advanced scrape for URL: https://www.scribd.com/document/803945035/the-swimsuit-fashion-from-poolside-to-catwalk-9780857851222-9780857851239-9781474280051-9780857851246-compress
+2025-08-15 23:05:57 - INFO - [trend_assistant:54] - Starting advanced scrape for URL: https://www.tripadvisor.com/Attraction_Review-g297700-d7101808-Reviews-Semaya_One_Fast_Cruise-Sanur_Denpasar_Bali.html
+2025-08-15 23:06:30 - INFO - [trend_assistant:90] - Successfully clicked cookie banner on https://issuu.com/mannpublicationsmagazines/docs/september_2024_digital
+2025-08-15 23:06:34 - INFO - [trend_assistant:114] - Smart wait successful: Found a content selector for https://afterlives.hum.uchicago.edu/wp-content/uploads/2025/07/?id=lizzo-breaks-silence-on-ozempic-a-deep-dive-into-her-transformation-20304751
+2025-08-15 23:06:35 - INFO - [trend_assistant:114] - Smart wait successful: Found a content selector for https://issuu.com/mannpublicationsmagazines/docs/september_2024_digital
+2025-08-15 23:06:36 - INFO - [trend_assistant:133] - Surgical extraction successful with selector 'article' for https://afterlives.hum.uchicago.edu/wp-content/uploads/2025/07/?id=lizzo-breaks-silence-on-ozempic-a-deep-dive-into-her-transformation-20304751
+2025-08-15 23:06:36 - WARNING - [trend_assistant:160] - URL https://afterlives.hum.uchicago.edu/wp-content/uploads/2025/07/?id=lizzo-breaks-silence-on-ozempic-a-deep-dive-into-her-transformation-20304751 has insufficient content (133 chars), skipping.
+2025-08-15 23:06:39 - INFO - [trend_assistant:114] - Smart wait successful: Found a content selector for https://afterlives.hum.uchicago.edu/wp-content/uploads/2025/07/?id=exclusive-uncover-lizzos-shocking-weight-loss-secretunveiling-lizzos-weight-loss-odyssey-beyond-the-rumors-and-into-her-transformative-journey-87058547
+2025-08-15 23:06:41 - INFO - [trend_assistant:114] - Smart wait successful: Found a content selector for https://afterlives.hum.uchicago.edu/wp-content/uploads/2025/07/?id=kelly-clarksons-60-lb-weight-loss-transformation-a-deep-dive-into-her-journey-from-struggles-to-triumph-43924029
+2025-08-15 23:06:44 - INFO - [trend_assistant:114] - Smart wait successful: Found a content selector for https://influencers.feedspot.com/indonesian_fashion_instagram_influencers/
+2025-08-15 23:06:44 - INFO - [trend_assistant:114] - Smart wait successful: Found a content selector for https://earth.org/most-sustainable-fashion-brands/
+2025-08-15 23:06:45 - INFO - [trend_assistant:133] - Surgical extraction successful with selector 'article' for https://afterlives.hum.uchicago.edu/wp-content/uploads/2025/07/?id=exclusive-uncover-lizzos-shocking-weight-loss-secretunveiling-lizzos-weight-loss-odyssey-beyond-the-rumors-and-into-her-transformative-journey-87058547
+2025-08-15 23:06:45 - WARNING - [trend_assistant:160] - URL https://afterlives.hum.uchicago.edu/wp-content/uploads/2025/07/?id=exclusive-uncover-lizzos-shocking-weight-loss-secretunveiling-lizzos-weight-loss-odyssey-beyond-the-rumors-and-into-her-transformative-journey-87058547 has insufficient content (133 chars), skipping.
+2025-08-15 23:06:45 - INFO - [trend_assistant:133] - Surgical extraction successful with selector 'article' for https://afterlives.hum.uchicago.edu/wp-content/uploads/2025/07/?id=kelly-clarksons-60-lb-weight-loss-transformation-a-deep-dive-into-her-journey-from-struggles-to-triumph-43924029
+2025-08-15 23:06:45 - WARNING - [trend_assistant:160] - URL https://afterlives.hum.uchicago.edu/wp-content/uploads/2025/07/?id=kelly-clarksons-60-lb-weight-loss-transformation-a-deep-dive-into-her-journey-from-struggles-to-triumph-43924029 has insufficient content (133 chars), skipping.
+2025-08-15 23:06:47 - INFO - [trend_assistant:133] - Surgical extraction successful with selector '.post-content' for https://earth.org/most-sustainable-fashion-brands/
+2025-08-15 23:06:47 - INFO - [trend_assistant:165] - Successfully extracted 16437 characters of targeted content from https://earth.org/most-sustainable-fashion-brands/
+2025-08-15 23:06:47 - INFO - [trend_assistant:114] - Smart wait successful: Found a content selector for https://ukft.org/ukftglobalbrands/
+2025-08-15 23:06:47 - INFO - [trend_assistant:114] - Smart wait successful: Found a content selector for https://fashionunited.com/specials/spring-summer-2025-trends
+2025-08-15 23:06:47 - INFO - [trend_assistant:133] - Surgical extraction successful with selector 'article' for https://influencers.feedspot.com/indonesian_fashion_instagram_influencers/
+2025-08-15 23:06:47 - INFO - [trend_assistant:165] - Successfully extracted 15975 characters of targeted content from https://influencers.feedspot.com/indonesian_fashion_instagram_influencers/
+2025-08-15 23:06:47 - INFO - [trend_assistant:114] - Smart wait successful: Found a content selector for https://www.instagram.com/p/DL-OmdpSRYH/
+2025-08-15 23:06:49 - INFO - [trend_assistant:133] - Surgical extraction successful with selector 'main' for https://ukft.org/ukftglobalbrands/
+2025-08-15 23:06:49 - INFO - [trend_assistant:165] - Successfully extracted 19988 characters of targeted content from https://ukft.org/ukftglobalbrands/
+2025-08-15 23:06:49 - INFO - [trend_assistant:133] - Surgical extraction successful with selector 'main' for https://fashionunited.com/specials/spring-summer-2025-trends
+2025-08-15 23:06:49 - INFO - [trend_assistant:165] - Successfully extracted 5992 characters of targeted content from https://fashionunited.com/specials/spring-summer-2025-trends
+2025-08-15 23:06:53 - INFO - [trend_assistant:133] - Surgical extraction successful with selector 'main' for https://www.instagram.com/p/DL-OmdpSRYH/
+2025-08-15 23:06:53 - INFO - [trend_assistant:165] - Successfully extracted 1387 characters of targeted content from https://www.instagram.com/p/DL-OmdpSRYH/
+2025-08-15 23:06:56 - INFO - [trend_assistant:114] - Smart wait successful: Found a content selector for https://ecocult.com/9-sexiest-sustainable-bathing-suit-brands/
+2025-08-15 23:06:59 - WARNING - [trend_assistant:118] - Smart wait timed out for https://www.chch.com/morning-live/2019-infiniti-qx50-autograph/. Proceeding with available HTML.
+2025-08-15 23:07:02 - INFO - [trend_assistant:133] - Surgical extraction successful with selector 'main' for https://issuu.com/mannpublicationsmagazines/docs/september_2024_digital
+2025-08-15 23:07:03 - WARNING - [trend_assistant:160] - URL https://issuu.com/mannpublicationsmagazines/docs/september_2024_digital has insufficient content (0 chars), skipping.
+2025-08-15 23:07:03 - WARNING - [trend_assistant:118] - Smart wait timed out for https://www.marriott.com/en-us/hotels/dpswi-the-westin-resort-nusa-dua-bali/overview/. Proceeding with available HTML.
+2025-08-15 23:07:03 - WARNING - [trend_assistant:118] - Smart wait timed out for http://mit.edu/~mkgray/jik/src/Attic/kerberos_password_hacker/allwords. Proceeding with available HTML.
+2025-08-15 23:07:03 - WARNING - [trend_assistant:160] - URL https://www.chch.com/morning-live/2019-infiniti-qx50-autograph/ has insufficient content (33 chars), skipping.
+2025-08-15 23:07:03 - INFO - [trend_assistant:165] - Successfully extracted 270 characters of targeted content from https://www.marriott.com/en-us/hotels/dpswi-the-westin-resort-nusa-dua-bali/overview/
+2025-08-15 23:07:03 - INFO - [trend_assistant:114] - Smart wait successful: Found a content selector for https://fabriclore.com/blogs/fashion-business-lifestyle-trends/how-to-plan-your-collection-around-the-fashion-season-in-usa
+2025-08-15 23:07:03 - INFO - [trend_assistant:165] - Successfully extracted 1129363 characters of targeted content from http://mit.edu/~mkgray/jik/src/Attic/kerberos_password_hacker/allwords
+2025-08-15 23:07:04 - INFO - [trend_assistant:114] - Smart wait successful: Found a content selector for https://www.reddit.com/r/bali/comments/yfmpah/firsttimer_bali_review_plus_lots_of_advice/
+2025-08-15 23:07:04 - INFO - [trend_assistant:133] - Surgical extraction successful with selector 'main' for https://fabriclore.com/blogs/fashion-business-lifestyle-trends/how-to-plan-your-collection-around-the-fashion-season-in-usa
+2025-08-15 23:07:04 - INFO - [trend_assistant:165] - Successfully extracted 32274 characters of targeted content from https://fabriclore.com/blogs/fashion-business-lifestyle-trends/how-to-plan-your-collection-around-the-fashion-season-in-usa
+2025-08-15 23:07:04 - INFO - [trend_assistant:114] - Smart wait successful: Found a content selector for https://www.instagram.com/sophiekasaei_/
+2025-08-15 23:07:04 - INFO - [trend_assistant:133] - Surgical extraction successful with selector 'article' for https://ecocult.com/9-sexiest-sustainable-bathing-suit-brands/
+2025-08-15 23:07:04 - INFO - [trend_assistant:165] - Successfully extracted 14048 characters of targeted content from https://ecocult.com/9-sexiest-sustainable-bathing-suit-brands/
+2025-08-15 23:07:05 - INFO - [trend_assistant:133] - Surgical extraction successful with selector 'main' for https://www.reddit.com/r/bali/comments/yfmpah/firsttimer_bali_review_plus_lots_of_advice/
+2025-08-15 23:07:05 - INFO - [trend_assistant:165] - Successfully extracted 19184 characters of targeted content from https://www.reddit.com/r/bali/comments/yfmpah/firsttimer_bali_review_plus_lots_of_advice/
+2025-08-15 23:07:05 - WARNING - [trend_assistant:118] - Smart wait timed out for https://boston.lti.cs.cmu.edu/appendices/WSDM2018-ConvKNRM/K-NRM/bing/vocab. Proceeding with available HTML.
+2025-08-15 23:07:06 - INFO - [trend_assistant:133] - Surgical extraction successful with selector 'article' for https://www.instagram.com/sophiekasaei_/
+2025-08-15 23:07:06 - INFO - [trend_assistant:165] - Successfully extracted 4068 characters of targeted content from https://www.instagram.com/sophiekasaei_/
+2025-08-15 23:07:06 - INFO - [trend_assistant:165] - Successfully extracted 2031967 characters of targeted content from https://boston.lti.cs.cmu.edu/appendices/WSDM2018-ConvKNRM/K-NRM/bing/vocab
+2025-08-15 23:07:08 - INFO - [trend_assistant:114] - Smart wait successful: Found a content selector for https://www.abouther.com/node/13131/fashion/fashion-news/top-10-color-palette-fallwinter-2018
+2025-08-15 23:07:08 - INFO - [trend_assistant:133] - Surgical extraction successful with selector 'article' for https://www.abouther.com/node/13131/fashion/fashion-news/top-10-color-palette-fallwinter-2018
+2025-08-15 23:07:08 - WARNING - [trend_assistant:160] - URL https://www.abouther.com/node/13131/fashion/fashion-news/top-10-color-palette-fallwinter-2018 has insufficient content (91 chars), skipping.
+2025-08-15 23:07:13 - INFO - [trend_assistant:114] - Smart wait successful: Found a content selector for https://www.tripadvisor.com/Attraction_Review-g297700-d7101808-Reviews-Semaya_One_Fast_Cruise-Sanur_Denpasar_Bali.html
+2025-08-15 23:07:13 - INFO - [trend_assistant:133] - Surgical extraction successful with selector 'main' for https://www.tripadvisor.com/Attraction_Review-g297700-d7101808-Reviews-Semaya_One_Fast_Cruise-Sanur_Denpasar_Bali.html
+2025-08-15 23:07:14 - INFO - [trend_assistant:165] - Successfully extracted 36214 characters of targeted content from https://www.tripadvisor.com/Attraction_Review-g297700-d7101808-Reviews-Semaya_One_Fast_Cruise-Sanur_Denpasar_Bali.html
+2025-08-15 23:07:17 - WARNING - [trend_assistant:118] - Smart wait timed out for https://www.favikon.com/blog/top-instagram-influencers-indonesia. Proceeding with available HTML.
+2025-08-15 23:07:17 - INFO - [trend_assistant:165] - Successfully extracted 16122 characters of targeted content from https://www.favikon.com/blog/top-instagram-influencers-indonesia
+2025-08-15 23:07:20 - WARNING - [trend_assistant:118] - Smart wait timed out for https://epdf.pub/frommers-bahamas-2008-frommers-complete.html. Proceeding with available HTML.
+2025-08-15 23:07:21 - INFO - [trend_assistant:165] - Successfully extracted 1040637 characters of targeted content from https://epdf.pub/frommers-bahamas-2008-frommers-complete.html
+2025-08-15 23:07:21 - INFO - [trend_assistant:114] - Smart wait successful: Found a content selector for https://www.vogue.com/article/chasing-komodo-dragons-on-indonesias-latest-super-yacht-prana
+2025-08-15 23:07:22 - INFO - [trend_assistant:133] - Surgical extraction successful with selector 'article' for https://www.vogue.com/article/chasing-komodo-dragons-on-indonesias-latest-super-yacht-prana
+2025-08-15 23:07:22 - INFO - [trend_assistant:165] - Successfully extracted 4249 characters of targeted content from https://www.vogue.com/article/chasing-komodo-dragons-on-indonesias-latest-super-yacht-prana
+2025-08-15 23:07:24 - INFO - [trend_assistant:114] - Smart wait successful: Found a content selector for https://www.vogue.com/article/best-snorkeling-destinations
+2025-08-15 23:07:24 - INFO - [trend_assistant:133] - Surgical extraction successful with selector 'article' for https://www.vogue.com/article/best-snorkeling-destinations
+2025-08-15 23:07:24 - INFO - [trend_assistant:165] - Successfully extracted 13620 characters of targeted content from https://www.vogue.com/article/best-snorkeling-destinations
+2025-08-15 23:07:28 - INFO - [trend_assistant:114] - Smart wait successful: Found a content selector for https://www.lemon8-app.com/aannamxriee/7219412635836695045?region=us
+2025-08-15 23:07:28 - INFO - [trend_assistant:133] - Surgical extraction successful with selector 'article' for https://www.lemon8-app.com/aannamxriee/7219412635836695045?region=us
+2025-08-15 23:07:28 - WARNING - [trend_assistant:160] - URL https://www.lemon8-app.com/aannamxriee/7219412635836695045?region=us has insufficient content (193 chars), skipping.
+2025-08-15 23:07:35 - WARNING - [trend_assistant:118] - Smart wait timed out for https://www.tiktok.com/discover/aruba-la-cabana. Proceeding with available HTML.
+2025-08-15 23:07:35 - INFO - [trend_assistant:165] - Successfully extracted 2549 characters of targeted content from https://www.tiktok.com/discover/aruba-la-cabana
+2025-08-15 23:07:46 - WARNING - [trend_assistant:118] - Smart wait timed out for https://www.scribd.com/document/803945035/the-swimsuit-fashion-from-poolside-to-catwalk-9780857851222-9780857851239-9781474280051-9780857851246-compress. Proceeding with available HTML.
+2025-08-15 23:07:46 - WARNING - [trend_assistant:118] - Smart wait timed out for https://wwd.com/eye/lifestyle/feature/pantone-unveils-fashion-color-trend-report-for-nyfw-spring-1234908577/. Proceeding with available HTML.
+2025-08-15 23:07:46 - WARNING - [trend_assistant:160] - URL https://wwd.com/eye/lifestyle/feature/pantone-unveils-fashion-color-trend-report-for-nyfw-spring-1234908577/ has insufficient content (0 chars), skipping.
+2025-08-15 23:07:46 - INFO - [trend_assistant:133] - Surgical extraction successful with selector 'main' for https://www.scribd.com/document/803945035/the-swimsuit-fashion-from-poolside-to-catwalk-9780857851222-9780857851239-9781474280051-9780857851246-compress
+2025-08-15 23:07:46 - INFO - [trend_assistant:165] - Successfully extracted 5374 characters of targeted content from https://www.scribd.com/document/803945035/the-swimsuit-fashion-from-poolside-to-catwalk-9780857851222-9780857851239-9781474280051-9780857851246-compress
+2025-08-15 23:07:46 - INFO - [trend_assistant:235] - Successfully scraped content from 19 out of 27 URLs.
+2025-08-15 23:07:46 - INFO - [trend_assistant:242] - --- Starting Intelligent Summarization of 19 documents ---
+2025-08-15 23:07:46 - INFO - [trend_assistant:146] - Running batch 1 of 4 with 5 tasks...
+2025-08-15 23:07:46 - INFO - [trend_assistant:83] - Submitting async text generation task to thread pool...
+2025-08-15 23:07:46 - INFO - [trend_assistant:83] - Submitting async text generation task to thread pool...
+2025-08-15 23:07:46 - INFO - [trend_assistant:83] - Submitting async text generation task to thread pool...
+2025-08-15 23:07:46 - INFO - [trend_assistant:83] - Submitting async text generation task to thread pool...
+2025-08-15 23:07:46 - INFO - [trend_assistant:83] - Submitting async text generation task to thread pool...
+2025-08-15 23:08:09 - WARNING - [trend_assistant:152] - Batch complete. Waiting for 61 seconds to respect API rate limit...
+2025-08-15 23:09:10 - INFO - [trend_assistant:146] - Running batch 2 of 4 with 5 tasks...
+2025-08-15 23:09:10 - INFO - [trend_assistant:83] - Submitting async text generation task to thread pool...
+2025-08-15 23:09:10 - INFO - [trend_assistant:83] - Submitting async text generation task to thread pool...
+2025-08-15 23:09:10 - INFO - [trend_assistant:83] - Submitting async text generation task to thread pool...
+2025-08-15 23:09:10 - INFO - [trend_assistant:83] - Submitting async text generation task to thread pool...
+2025-08-15 23:09:10 - INFO - [trend_assistant:83] - Submitting async text generation task to thread pool...
+2025-08-15 23:09:33 - WARNING - [trend_assistant:152] - Batch complete. Waiting for 61 seconds to respect API rate limit...
+2025-08-15 23:10:34 - INFO - [trend_assistant:146] - Running batch 3 of 4 with 5 tasks...
+2025-08-15 23:10:34 - INFO - [trend_assistant:83] - Submitting async text generation task to thread pool...
+2025-08-15 23:10:34 - INFO - [trend_assistant:83] - Submitting async text generation task to thread pool...
+2025-08-15 23:10:34 - INFO - [trend_assistant:83] - Submitting async text generation task to thread pool...
+2025-08-15 23:10:34 - INFO - [trend_assistant:83] - Submitting async text generation task to thread pool...
+2025-08-15 23:10:34 - INFO - [trend_assistant:83] - Submitting async text generation task to thread pool...
+2025-08-15 23:11:26 - WARNING - [trend_assistant:152] - Batch complete. Waiting for 61 seconds to respect API rate limit...
+2025-08-15 23:12:27 - INFO - [trend_assistant:146] - Running batch 4 of 4 with 4 tasks...
+2025-08-15 23:12:27 - INFO - [trend_assistant:83] - Submitting async text generation task to thread pool...
+2025-08-15 23:12:27 - INFO - [trend_assistant:83] - Submitting async text generation task to thread pool...
+2025-08-15 23:12:27 - INFO - [trend_assistant:83] - Submitting async text generation task to thread pool...
+2025-08-15 23:12:27 - INFO - [trend_assistant:83] - Submitting async text generation task to thread pool...
+2025-08-15 23:12:47 - INFO - [trend_assistant:269] - Successfully generated 12 summaries.
+2025-08-15 23:12:47 - INFO - [trend_assistant:271] - --- Starting Final Data Synthesis Phase ---
+2025-08-15 23:12:47 - INFO - [trend_assistant:94] - Sending prompt to Gemini model 'models/gemini-2.5-flash' for JSON generation...
+2025-08-15 23:13:15 - INFO - [trend_assistant:102] - Successfully received structured response from Gemini API.
+2025-08-15 23:13:15 - INFO - [trend_assistant:287] - Successfully validated final LLM response against Pydantic model.
+2025-08-15 23:13:15 - INFO - [trend_assistant:83] - Saving data to '/Users/tawhid/Documents/Codes/Fashion_Trend_Assistant/results/itemized_fashion_trends.json'...
+2025-08-15 23:13:15 - INFO - [trend_assistant:86] - Successfully saved file: itemized_fashion_trends.json
+2025-08-15 23:13:15 - INFO - [trend_assistant:147] - Attempting to add new report to cache for theme: 'Biodegradable swimwear and tropical botanical prints_Bali, Indonesia_Eco-luxury beachgoers (30-55)'
+2025-08-15 23:13:15 - INFO - [trend_assistant:36] - Generating embedding for text: 'Biodegradable swimwear and tropical botanical prin...'
+2025-08-15 23:13:16 - INFO - [trend_assistant:48] - Successfully generated embedding.
+2025-08-15 23:13:16 - INFO - [trend_assistant:165] - Successfully added/updated report with ID 59638dbc1c1d127da8528c84df51695a5be8e7c8030e6ed8ba4be56d7b2fd3b7 in the cache.
+2025-08-15 23:13:16 - INFO - [trend_assistant:95] - --- Starting Prompt Generation Phase ---
+2025-08-15 23:13:16 - INFO - [trend_assistant:104] - Generating prompts for key piece: 'The Versatile Sustainable Swimsuit'
+2025-08-15 23:13:16 - INFO - [trend_assistant:104] - Generating prompts for key piece: 'The Elevated Linen Co-ord Set'
+2025-08-15 23:13:16 - INFO - [trend_assistant:135] - --- Prompt Generation Phase Complete ---
+2025-08-15 23:13:16 - INFO - [trend_assistant:83] - Saving data to '/Users/tawhid/Documents/Codes/Fashion_Trend_Assistant/results/generated_prompts.json'...
+2025-08-15 23:13:16 - INFO - [trend_assistant:86] - Successfully saved file: generated_prompts.json
+2025-08-15 23:13:16 - INFO - [trend_assistant:310] - --- Creative Process for Resort/Cruise 2025: 'Biodegradable swimwear and tropical botanical prints' Completed Successfully ---
+2025-08-15 23:13:16 - INFO - [trend_assistant:64] - =========================================================
+2025-08-15 23:13:16 - INFO - [trend_assistant:65] -     CREATIVE PROCESS FINISHED in 441.63 seconds
+2025-08-15 23:13:16 - INFO - [trend_assistant:66] - =========================================================
+2025-08-15 23:15:20 - INFO - [trend_assistant:18] - Google GenAI client initialized successfully.
+2025-08-15 23:15:20 - INFO - [trend_assistant:24] - ChromaDB cache service initialized. Collection 'fashion_reports' loaded/created.
+2025-08-15 23:15:20 - INFO - [trend_assistant:33] - =========================================================
+2025-08-15 23:15:20 - INFO - [trend_assistant:34] -     FASHION TREND ASSISTANT - CREATIVE PROCESS STARTED   
+2025-08-15 23:15:20 - INFO - [trend_assistant:35] - =========================================================
+2025-08-15 23:15:20 - INFO - [trend_assistant:42] - Using manually specified region: Bali, Indonesia
+2025-08-15 23:15:20 - INFO - [trend_assistant:172] - --- Received New Creative Brief ---
+2025-08-15 23:15:20 - INFO - [trend_assistant:200] - --- Starting New Creative Process for Resort/Cruise 2025: 'Biodegradable swimwear and tropical botanical prints' ---
+2025-08-15 23:15:20 - INFO - [trend_assistant:204] - Target Audience: Eco-luxury beachgoers (30-55)
+2025-08-15 23:15:20 - INFO - [trend_assistant:206] - Region: Bali, Indonesia
+2025-08-15 23:15:20 - INFO - [trend_assistant:48] - Checking semantic cache for theme hint: 'Biodegradable swimwear and tropical botanical prints_Bali, Indonesia_Eco-luxury beachgoers (30-55)'
+2025-08-15 23:15:20 - INFO - [trend_assistant:36] - Generating embedding for text: 'Biodegradable swimwear and tropical botanical prin...'
+2025-08-15 23:15:21 - INFO - [trend_assistant:48] - Successfully generated embedding.
+2025-08-15 23:15:21 - WARNING - [trend_assistant:120] - CACHE HIT! Found a similar report for theme 'Biodegradable swimwear and tropical botanical prints_Bali, Indonesia_Eco-luxury beachgoers (30-55)' with distance 0.0000.
+2025-08-15 23:15:21 - WARNING - [trend_assistant:212] - --- Workflow Bypassed: Using Semantically Similar Cached Report ---
+2025-08-15 23:15:21 - INFO - [trend_assistant:83] - Saving data to '/Users/tawhid/Documents/Codes/Fashion_Trend_Assistant/results/itemized_fashion_trends.json'...
+2025-08-15 23:15:21 - INFO - [trend_assistant:86] - Successfully saved file: itemized_fashion_trends.json
+2025-08-15 23:15:21 - INFO - [trend_assistant:95] - --- Starting Prompt Generation Phase ---
+2025-08-15 23:15:21 - INFO - [trend_assistant:104] - Generating prompts for key piece: 'The Versatile Sustainable Swimsuit'
+2025-08-15 23:15:21 - INFO - [trend_assistant:104] - Generating prompts for key piece: 'The Elevated Linen Co-ord Set'
+2025-08-15 23:15:21 - INFO - [trend_assistant:135] - --- Prompt Generation Phase Complete ---
+2025-08-15 23:15:21 - INFO - [trend_assistant:83] - Saving data to '/Users/tawhid/Documents/Codes/Fashion_Trend_Assistant/results/generated_prompts.json'...
+2025-08-15 23:15:21 - INFO - [trend_assistant:86] - Successfully saved file: generated_prompts.json
+2025-08-15 23:15:21 - INFO - [trend_assistant:223] - --- Cached Process Completed Successfully ---
+2025-08-15 23:15:21 - INFO - [trend_assistant:64] - =========================================================
+2025-08-15 23:15:21 - INFO - [trend_assistant:65] -     CREATIVE PROCESS FINISHED in 0.89 seconds
+2025-08-15 23:15:21 - INFO - [trend_assistant:66] - =========================================================

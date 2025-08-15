@@ -1,186 +1,291 @@
 {
-  "season": "Pre-Fall",
+  "season": "Resort/Cruise",
   "year": 2025,
-  "overarching_theme": "Dualities of Dress: Craft, Provocation, and Conscious Evolution",
+  "overarching_theme": "Conscious Coastal Comfort: Elevated Escapism",
   "cultural_drivers": [
-    "Nostalgia (70s, 80s, 90s)",
-    "Sustainability & Circularity",
-    "Technological Integration (AI, Biotech)",
-    "Gender Fluidity & Body Acceptance",
-    "Rebellious Subcultures",
-    "Understated Luxury & Craftsmanship"
+    "Sustainability and Ethical Production",
+    "Prioritization of Comfort and Practicality",
+    "Inclusivity and Diverse Representation",
+    "Longevity and Timeless Design",
+    "Casualization of Everyday Fashion",
+    "Wellness and Escapism through Travel"
   ],
   "influential_models": [
-    "Marlon Brando",
-    "Jacqueline Kennedy",
-    "Peter Berlin"
+    "The Conscious Wanderer",
+    "The Effortless Minimalist",
+    "The Inclusive Adventurer"
   ],
   "accessories": {
     "Bags": [
-      "Jackie 1961 bags",
-      "Blondie bags",
-      "Suede bags",
-      "Top handle bags",
-      "Mini bags",
-      "Belt bags",
-      "Quilted bags"
+      "Totes",
+      "Crossbodies",
+      "Minimalist Bags",
+      "Apple-Leather Bags"
     ],
     "Footwear": [
-      "Cowboy Boots",
-      "Biker Boots",
-      "Mules",
-      "Platforms",
-      "Sneakers",
-      "Neon Crocs"
+      "Flip-flops",
+      "Comfortable Sturdy Shoes",
+      "Sea Shoes",
+      "Sandals",
+      "Sneakers"
     ],
     "Jewelry": [
-      "Layered Necklaces",
-      "Statement Earrings",
-      "Signet Rings",
-      "Pearls"
+      "Shell Jewelry",
+      "Lightweight Aluminium Jewelry",
+      "Gold Accented Jewelry",
+      "Silver Accented Jewelry",
+      "Natural Hag Stone Inspired Jewelry",
+      "Earrings",
+      "Necklaces",
+      "Bracelets",
+      "Rings"
     ],
     "Other": [
-      "Scarves (especially head-tied)",
-      "Sunglasses (Cat Eye, Aviator)",
-      "Cowboy Hats",
-      "Leather Gloves",
-      "Ties"
+      "Versatile Multi-Way Styling Accessories",
+      "Elaborate Headdresses (Festive)",
+      "Sunglasses",
+      "Watches",
+      "Belts",
+      "Scarves",
+      "Hats"
     ]
   },
   "detailed_key_pieces": [
     {
-      "key_piece_name": "The Reimagined Perfecto Jacket",
-      "description": "A symbol of rebellion and subculture, this jacket is updated with a sharper, more refined edge, reflecting a blend of raw energy and sophisticated tailoring. Its significance lies in its connection to historical counter-culture movements, now reinterpreted for a modern, grown-up aesthetic, embodying the 'Rebellious Subcultures' cultural driver.",
+      "key_piece_name": "The Versatile Sustainable Swimsuit",
+      "description": "This key piece embodies the Resort/Cruise 2025 ethos by offering comfort, practicality, and style for diverse body types and preferences. Its focus on sustainable materials and inclusive design directly addresses the 'Sustainability and Ethical Production' and 'Inclusivity and Diverse Representation' cultural drivers, while its adaptability caters to the 'Casualization of Everyday Fashion' and 'Wellness and Escapism' trends.",
       "inspired_by_designers": [
-        "Eli Russell Linnetz",
-        "Saint Laurent"
+        "Natasha Tonic",
+        "Mara Hoffman"
       ],
       "fabrics": [
         {
-          "material": "Leather",
-          "texture": "Supple",
-          "sustainable": false,
-          "sustainability_comment": "Consider vegan leather alternatives or upcycled leather."
+          "material": "Regenerated Nylon (Econyl)",
+          "texture": "Smooth",
+          "sustainable": true,
+          "sustainability_comment": "Recycled from ocean plastic waste and fishing nets, reducing environmental impact."
         },
         {
-          "material": "Cotton",
-          "texture": "Grubby",
+          "material": "Recycled PET Plastic Bottles",
+          "texture": "Smooth",
           "sustainable": true,
-          "sustainability_comment": "Natural, breathable fiber; look for organic or recycled cotton."
+          "sustainability_comment": "Diverts plastic waste from landfills and oceans, reducing reliance on virgin plastics."
+        },
+        {
+          "material": "Hemp",
+          "texture": "Soft",
+          "sustainable": true,
+          "sustainability_comment": "Natural, highly renewable fiber requiring minimal water and no pesticides."
+        },
+        {
+          "material": "Organic Cotton",
+          "texture": "Soft",
+          "sustainable": true,
+          "sustainability_comment": "GOTS Certified, grown without harmful chemicals, promoting soil health and biodiversity."
+        },
+        {
+          "material": "Tencel Lyocell",
+          "texture": "Silky",
+          "sustainable": true,
+          "sustainability_comment": "Modern fiber derived from sustainably harvested wood pulp, known for its closed-loop production process."
+        },
+        {
+          "material": "Deadstock Fabric",
+          "texture": "Varied",
+          "sustainable": true,
+          "sustainability_comment": "Utilizes existing textile waste, preventing new production and reducing landfill burden."
+        },
+        {
+          "material": "Elastane",
+          "texture": "Smooth",
+          "sustainable": false,
+          "sustainability_comment": "Consider recycled elastane alternatives for future collections."
         }
       ],
       "colors": [
+        {
+          "name": "Butter Yellow",
+          "pantone_code": "12-0713 TCX",
+          "hex_value": "#FCE38A"
+        },
+        {
+          "name": "Bright Lime Green",
+          "pantone_code": "14-0452 TCX",
+          "hex_value": "#A2D149"
+        },
+        {
+          "name": "Aqua",
+          "pantone_code": "14-4810 TCX",
+          "hex_value": "#7BCDC8"
+        },
+        {
+          "name": "Coral Pink",
+          "pantone_code": "16-1529 TCX",
+          "hex_value": "#F88379"
+        },
+        {
+          "name": "Bright Yellow",
+          "pantone_code": "13-0859 TCX",
+          "hex_value": "#FDD700"
+        },
+        {
+          "name": "White",
+          "pantone_code": "11-0601 TCX",
+          "hex_value": "#FFFFFF"
+        },
         {
           "name": "Black",
           "pantone_code": "19-4005 TCX",
           "hex_value": "#000000"
         },
         {
-          "name": "Chocolate Brown",
-          "pantone_code": "19-1321 TCX",
-          "hex_value": "#4B2F2F"
+          "name": "Gold",
+          "pantone_code": "16-0836 TCX",
+          "hex_value": "#B8860B"
         },
         {
-          "name": "Burgundy",
-          "pantone_code": "19-1718 TCX",
-          "hex_value": "#7B2D2D"
+          "name": "Silver",
+          "pantone_code": "14-4201 TCX",
+          "hex_value": "#C0C0C0"
         }
       ],
       "silhouettes": [
-        "Slim",
-        "Cropped",
-        "Bold shoulders"
+        "Minimalist",
+        "Classic",
+        "Sporty",
+        "Sleek",
+        "High Coverage",
+        "Tiny",
+        "Flattering",
+        "One-Piece",
+        "Two-Piece",
+        "Bikini",
+        "Swim Binder",
+        "Swim Tank",
+        "Swim Skirt"
       ],
       "details_trims": [
-        "Zippered details",
-        "Metal accents",
-        "Buckle details",
-        "Studded details"
+        "Adjustable Strap Sliders",
+        "Hardware Details (Zippers, Cinching)",
+        "Tie Strings",
+        "Compression Features",
+        "Support Features",
+        "Solid Pieces",
+        "Patterned Pieces",
+        "Upcycled Tie Dye",
+        "Bold Patterns"
       ],
       "suggested_pairings": [
-        "Baby tees",
-        "Henleys",
-        "Boot-cut jeans",
-        "Pleated trousers",
-        "Cowboy boots",
-        "Chunky sole sneakers"
+        "Beach Cover-ups",
+        "Lightweight Maxi Dresses",
+        "Vacation-Ready Coordinates",
+        "Simple Linen Shirts",
+        "Sea Shoes"
       ]
     },
     {
-      "key_piece_name": "The Conscious Grandeur Trench Coat",
-      "description": "An elevated classic, this trench coat embodies the 'Quiet Luxury' and 'Corp Core' aesthetics, focusing on impeccable craftsmanship and elongated silhouettes. Its modern iteration integrates sustainable materials and processes, reflecting the growing emphasis on 'Sustainability & Circularity' and 'Technological Integration' in luxury fashion. It's a statement of understated wealth and environmental responsibility.",
+      "key_piece_name": "The Elevated Linen Co-ord Set",
+      "description": "This ensemble redefines casual elegance for Resort/Cruise 2025, directly addressing the 'Casualization of Everyday Fashion' and 'Prioritization of Comfort and Practicality' cultural drivers. Its timeless design and natural fabrication align with 'Longevity and Timeless Design' and 'Sustainability and Ethical Production', offering a sophisticated yet relaxed option for travel and leisure.",
       "inspired_by_designers": [
-        "Burberry",
-        "Gucci",
-        "Chanel"
+        "Ralph Lauren",
+        "ARKET"
       ],
       "fabrics": [
         {
-          "material": "Cotton",
-          "texture": "Canvas",
+          "material": "Linen",
+          "texture": "Crinkled",
           "sustainable": true,
-          "sustainability_comment": "Natural, breathable fiber; look for organic or recycled cotton."
+          "sustainability_comment": "Natural, breathable, and durable fiber with a low environmental footprint."
         },
         {
-          "material": "Faux Fur",
-          "texture": "Plush",
-          "sustainable": false,
-          "sustainability_comment": "Consider bio-based or recycled faux fur alternatives."
-        },
-        {
-          "material": "Shearling",
-          "texture": "Coziness",
-          "sustainable": false,
-          "sustainability_comment": "Consider plant-based or recycled shearling alternatives."
-        },
-        {
-          "material": "Denim",
-          "texture": "Reinvented",
+          "material": "Organic Cotton",
+          "texture": "Soft",
           "sustainable": true,
-          "sustainability_comment": "Focus on ethical denim, sustainable dyes, and circular production."
+          "sustainability_comment": "GOTS Certified, grown without harmful chemicals, promoting soil health and biodiversity."
+        },
+        {
+          "material": "Bamboo",
+          "texture": "Soft",
+          "sustainable": true,
+          "sustainability_comment": "Highly renewable resource, fast-growing and requires minimal water."
+        },
+        {
+          "material": "Hemp",
+          "texture": "Soft",
+          "sustainable": true,
+          "sustainability_comment": "Extremely durable and sustainable, requiring little water and no pesticides."
+        },
+        {
+          "material": "Tencel",
+          "texture": "Smooth",
+          "sustainable": true,
+          "sustainability_comment": "Derived from sustainably sourced wood, produced in a closed-loop system."
+        },
+        {
+          "material": "Cotton Poplin",
+          "texture": "Smooth",
+          "sustainable": false,
+          "sustainability_comment": "Consider organic or recycled cotton poplin for enhanced sustainability."
         }
       ],
       "colors": [
         {
-          "name": "Camel",
-          "pantone_code": "16-1336 TCX",
-          "hex_value": "#B8860B"
+          "name": "Butter Yellow",
+          "pantone_code": "12-0713 TCX",
+          "hex_value": "#FCE38A"
         },
         {
-          "name": "Mocha Mousse",
-          "pantone_code": "16-1108 TCX",
-          "hex_value": "#967C6E"
+          "name": "Sky Blue",
+          "pantone_code": "14-4123 TCX",
+          "hex_value": "#87CEEB"
         },
         {
-          "name": "Dark Green",
-          "pantone_code": "19-5513 TCX",
-          "hex_value": "#004B49"
+          "name": "Coral",
+          "pantone_code": "16-1529 TCX",
+          "hex_value": "#F88379"
         },
         {
-          "name": "Grey",
-          "pantone_code": "17-4402 TCX",
-          "hex_value": "#808080"
+          "name": "Mint",
+          "pantone_code": "13-5408 TCX",
+          "hex_value": "#98FB98"
+        },
+        {
+          "name": "White",
+          "pantone_code": "11-0601 TCX",
+          "hex_value": "#FFFFFF"
+        },
+        {
+          "name": "Beige",
+          "pantone_code": "13-0905 TCX",
+          "hex_value": "#F5F5DC"
+        },
+        {
+          "name": "Olive",
+          "pantone_code": "18-0625 TCX",
+          "hex_value": "#6B8E23"
         }
       ],
       "silhouettes": [
-        "Elongated",
-        "Oversized",
-        "Fluid",
-        "Play on Proportions"
+        "Relaxed",
+        "Breezy Cuts",
+        "Loose",
+        "Wide",
+        "Barrel Legs",
+        "Cinched Waists",
+        "Balloon-Shaped"
       ],
       "details_trims": [
-        "Belted (cinched)",
-        "Draped fabrics",
-        "Integrated scarf designs",
-        "Delicate flower appliqu\u00e9s"
+        "Minimalist Design",
+        "Natural Dyes",
+        "Non-Toxic Dyes",
+        "Versatile Styling (Looping, Bonding, Cinching)"
       ],
       "suggested_pairings": [
-        "Silk dresses",
-        "Tunics",
-        "Pinstripe suits",
-        "Wide-leg trousers",
-        "Loafers",
-        "Statement bags (Jackie 1961)"
+        "Comfortable Sturdy Shoes",
+        "Flip-flops",
+        "Minimalist Bags",
+        "Shell Jewelry",
+        "Simple T-shirts"
       ]
     }
   ]

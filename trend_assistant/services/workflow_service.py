@@ -6,6 +6,7 @@ Core Workflow Service for the Fashion Trend Assistant.
 import json
 import os
 import asyncio
+from datetime import datetime
 from typing import Dict, List, Any, Coroutine, Optional, Sequence
 
 from . import cache_service
@@ -155,17 +156,47 @@ async def _run_tasks_in_batches(
     return all_results
 
 
-# --- Main Service Function ---------------------------------------------------
+# --- Main Service Function (UPGRADED) ---------------------------------------
 
 
 async def run_creative_process(
-    season: str,
-    year: int,
-    theme_hint: str,
+    season: Optional[str],
+    year: Optional[int],
+    theme_hint: Optional[str],
     target_audience: Optional[str] = None,
     region: Optional[str] = None,
 ):
-    """Executes the full workflow using the flexible, context-aware search strategy."""
+    """
+    Executes the full workflow, now with input validation and smart defaults.
+    """
+    logger.info(f"--- Received New Creative Brief ---")
+
+    # --- STEP 1: VALIDATE AND SET DEFAULTS ---
+
+    # The THEME_HINT is the only truly essential creative input.
+    if not theme_hint or not theme_hint.strip():
+        logger.critical(
+            "Halting process: 'THEME_HINT' cannot be empty. Please provide a creative direction."
+        )
+        return
+
+    # For SEASON, provide a smart default based on the current month.
+    if not season:
+        current_month = datetime.now().month
+        # Spring/Summer season roughly from April to September
+        if 4 <= current_month <= 9:
+            season = "Spring/Summer"
+        else:
+            season = "Fall/Winter"
+        logger.warning(f"No SEASON provided. Defaulting to current season: '{season}'")
+
+    # For YEAR, provide a smart default based on the current year.
+    if not year:
+        year = datetime.now().year
+        logger.warning(f"No YEAR provided. Defaulting to current year: {year}")
+
+    # --- The rest of the function proceeds with validated/defaulted inputs ---
+
     logger.info(
         f"--- Starting New Creative Process for {season} {year}: '{theme_hint}' ---"
     )
@@ -174,8 +205,6 @@ async def run_creative_process(
     if region:
         logger.info(f"Region: {region}")
 
-    # --- MODIFIED CACHE KEY ---
-    # The cache key now includes all creative inputs to differentiate between regional searches.
     cache_key = f"{theme_hint}_{region or 'global'}_{target_audience or 'all'}"
     cached_report_json = cache_service.check_cache(cache_key)
 
