@@ -1,63 +1,70 @@
 """
 Main entry point for the Fashion Trend Assistant application.
-
-This script initializes the application and starts the creative workflow.
-To run the assistant, execute this file from the command line:
-`python -m trend_assistant.main`
 """
 
 import asyncio
 import time
 
-# Import the main service function and the logger
+# --- MODIFIED IMPORTS ---
 from .services import workflow_service
 from .utils.logger import logger
+from .utils.location_helper import get_location_from_ip  # Import our new function
 
 # --- Creative Brief Configuration --------------------------------------------
-# This is the main control panel for the user.
-# Define the high-level creative direction for the desired trend report.
 
-SEASON = "Fall/Winter"
+# --- Tier 1: Core Creative Idea (Required) ---
+SEASON = "Pre-Fall"
 YEAR = 2025
-THEME_HINT = "Quiet luxury meets utilitarian workwear"
+THEME_HINT = "Neo-vintage with modular design"
+TARGET_AUDIENCE = "Creative professionals, style experimenters (25-40)"
 
+# --- Tier 2: Location (Dynamic with Manual Override) ---
+# The system will try to detect your location automatically.
+# If you want to override it, simply type a location into the REGION variable.
+# Default is None, which means it will try to detect automatically.
+# Example: REGION = "Paris, France"
+REGION_OVERRIDE = "Berlin, Germany"
 
 # --- Main Application Logic --------------------------------------------------
 
 
 async def main():
-    """
-    The main asynchronous function that orchestrates the application run.
-    """
+    """The main asynchronous function that orchestrates the application run."""
     logger.info("=========================================================")
     logger.info("    FASHION TREND ASSISTANT - CREATIVE PROCESS STARTED   ")
     logger.info("=========================================================")
 
-    start_time = time.time()
+    # --- DYNAMIC REGION LOGIC ---
+    # Determine the final region to use for the creative brief.
+    # If the user has provided a manual override, use it.
+    if REGION_OVERRIDE:
+        final_region = REGION_OVERRIDE
+        logger.info(f"Using manually specified region: {final_region}")
+    else:
+        # Otherwise, attempt to detect the location automatically.
+        final_region = get_location_from_ip()
+        if not final_region:
+            logger.warning(
+                "Could not determine location automatically. Proceeding with a broader, non-regional search."
+            )
 
+    start_time = time.time()
     try:
-        # Call the main service function with the defined creative brief.
-        # This single call will trigger the entire four-phase workflow.
         await workflow_service.run_creative_process(
-            season=SEASON, year=YEAR, theme_hint=THEME_HINT
+            season=SEASON,
+            year=YEAR,
+            theme_hint=THEME_HINT,
+            target_audience=TARGET_AUDIENCE,
+            region=final_region,  # Pass the final, determined region to the service
         )
     except Exception as e:
-        # A top-level exception handler to catch any unexpected critical errors
-        # that might not have been caught in the lower-level modules.
-        logger.critical(
-            f"A critical unexpected error occurred at the top level: {e}", exc_info=True
-        )
+        logger.critical(f"A critical unexpected error occurred: {e}", exc_info=True)
     finally:
-        end_time = time.time()
-        duration = end_time - start_time
+        duration = time.time() - start_time
         logger.info("=========================================================")
         logger.info(f"    CREATIVE PROCESS FINISHED in {duration:.2f} seconds")
         logger.info("=========================================================")
 
 
-# --- Script Execution --------------------------------------------------------
-
 if __name__ == "__main__":
-    # This block allows the script to be run directly.
-    # `asyncio.run()` starts the asynchronous event loop.
     asyncio.run(main())

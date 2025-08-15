@@ -26,10 +26,10 @@ if not SEARCH_ENGINE_ID:
 
 # --- LLM & Search Configuration ---
 GEMINI_MODEL_NAME = "gemini-2.5-flash"
-SEARCH_NUM_RESULTS = 5
+# --- MODIFIED: Focus on higher quality results ---
+SEARCH_NUM_RESULTS = 3
 
 # --- Embedding & Caching Configuration ---
-# CORRECTED: Using the official model name from the Gemini API SDK documentation.
 EMBEDDING_MODEL_NAME = "gemini-embedding-001"
 CHROMA_COLLECTION_NAME = "fashion_reports"
 CACHE_DISTANCE_THRESHOLD = 0.2

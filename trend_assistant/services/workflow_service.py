@@ -1,23 +1,14 @@
 """
 Core Workflow Service for the Fashion Trend Assistant.
-
-This module orchestrates the entire process, from the initial cache check
-to generating the final prompt outputs. It directs the flow of data between
-the various client and utility modules and includes a robust batching system
-for rate-limiting API calls on a cache miss.
+(Upgraded with a global-first, context-aware search strategy)
 """
 
 import json
 import os
 import asyncio
-
-# --- MODIFIED IMPORT ---
-# Import Sequence to fix the static typing error.
 from typing import Dict, List, Any, Coroutine, Optional, Sequence
 
-# --- NEW IMPORT ---
 from . import cache_service
-
 from .. import config
 from ..clients import llm_client, research_client
 from ..models.trend_models import FashionTrendReport
@@ -34,18 +25,52 @@ def _generate_search_queries(
     target_audience: Optional[str] = None,
     region: Optional[str] = None,
 ) -> List[str]:
-    """Creates targeted search queries, incorporating advanced parameters if provided."""
-    logger.info("Generating dynamic search queries...")
+    """
+    Creates a sophisticated, multi-tiered list of search queries that is
+    flexible and adapts to the specified region for global relevance.
+    """
+    logger.info(
+        "Generating a flexible, context-aware set of professional search queries..."
+    )
+
+    # These fragments will be empty if no region/audience is specified,
+    # allowing the queries to gracefully become global.
     audience_query = f" for {target_audience}" if target_audience else ""
-    region_query = f" in {region}" if region else ""
-    queries = [
-        f"WGSN {season} {year} fashion trends {theme_hint}{audience_query}",
-        f"Vogue Runway {region} {season} {year} trend report analysis",
-        f"Business of Fashion {season} {year} materials {theme_hint}",
-        f"Dazed Digital {theme_hint} aesthetic{audience_query}{region_query}",
-        f"latest street style {theme_hint}{region_query}",
+    # For search, "in {region}" is more natural than just the region name.
+    region_search_query = f" in {region}" if region else ""
+
+    # --- Tier 1: High-Fashion & Regional Runway Analysis ---
+    # We no longer use the restrictive 'site:' operator. Instead, we make the
+    # region a core part of the query, trusting Google's localization.
+    tier1_queries = [
+        f"Vogue {region_search_query} {season} {year} runway trend report",
+        f"WWD {season} {year} {region_search_query} runway analysis {theme_hint}",
+        f"Business of Fashion {season} {year} {region_search_query} collection reviews",
+        f"Elle {region_search_query} {season} {year} fashion week highlights",
     ]
-    logger.info(f"Generated {len(queries)} specific queries.")
+
+    # --- Tier 2: Global Trend Forecasting & Material Innovation ---
+    # These sources are inherently global, so we query them directly without region.
+    tier2_queries = [
+        f"WGSN {season} {year} key trends {theme_hint}",
+        f"Trendstop forecast {season} {year} {theme_hint}",
+        f"Pantone Color Institute fashion color trend report {season} {year}",
+        f"Première Vision {season} {year} fabric and textile news",
+    ]
+
+    # --- Tier 3: Cultural & Street-Level Inspiration ---
+    # These queries are designed to find local and subcultural context.
+    tier3_queries = [
+        f"'{theme_hint}' aesthetic in contemporary art and fashion{region_search_query}",
+        f"latest street style {theme_hint}{region_search_query}{audience_query}",
+        f"top fashion influencers {region_search_query} {year}",
+        f"subculture style trends {year}{audience_query}{region_search_query}",
+    ]
+
+    queries = tier1_queries + tier2_queries + tier3_queries
+    logger.info(
+        f"Generated {len(queries)} flexible queries for global and regional analysis."
+    )
     return queries
 
 
@@ -110,14 +135,11 @@ def _generate_final_prompts(report: FashionTrendReport) -> Dict[str, Any]:
     return all_prompts
 
 
-# --- MODIFIED FUNCTION SIGNATURE ---
-# Changed 'List[Coroutine]' to 'Sequence[Coroutine]' to fix the type variance issue.
 async def _run_tasks_in_batches(
     tasks: Sequence[Coroutine], batch_size: int, delay_seconds: int
 ) -> List[Any]:
     """Runs a sequence of awaitable tasks in batches to respect API rate limits."""
     all_results = []
-    # The 'tasks' variable is a list, so slicing works perfectly.
     for i in range(0, len(tasks), batch_size):
         batch = tasks[i : i + batch_size]
         logger.info(
@@ -143,12 +165,19 @@ async def run_creative_process(
     target_audience: Optional[str] = None,
     region: Optional[str] = None,
 ):
-    """Executes the full workflow, now with a semantic cache check at the beginning."""
+    """Executes the full workflow using the flexible, context-aware search strategy."""
     logger.info(
         f"--- Starting New Creative Process for {season} {year}: '{theme_hint}' ---"
     )
+    if target_audience:
+        logger.info(f"Target Audience: {target_audience}")
+    if region:
+        logger.info(f"Region: {region}")
 
-    cached_report_json = cache_service.check_cache(theme_hint)
+    # --- MODIFIED CACHE KEY ---
+    # The cache key now includes all creative inputs to differentiate between regional searches.
+    cache_key = f"{theme_hint}_{region or 'global'}_{target_audience or 'all'}"
+    cached_report_json = cache_service.check_cache(cache_key)
 
     if cached_report_json:
         logger.warning(
@@ -231,7 +260,8 @@ async def run_creative_process(
             validated_report.model_dump(), config.TREND_REPORT_FILENAME
         )
 
-        cache_service.add_to_cache(theme_hint, validated_report.model_dump_json())
+        # Add the new report to the cache using the more specific key.
+        cache_service.add_to_cache(cache_key, validated_report.model_dump_json())
 
     except (json.JSONDecodeError, Exception) as e:
         logger.error(

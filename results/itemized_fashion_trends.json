@@ -1,132 +1,72 @@
 {
-  "season": "Fall/Winter",
+  "season": "Pre-Fall",
   "year": 2025,
-  "overarching_theme": "Dynamic Duality: Form & Function",
+  "overarching_theme": "Dualities of Dress: Craft, Provocation, and Conscious Evolution",
   "cultural_drivers": [
-    "Body Positivity & Inclusivity",
-    "Reimagined Heritage & Dandyism",
-    "Utilitarian & Performance-Driven Design",
-    "Sustainable & Circular Practices",
-    "Maximalist Expression & Theatricality",
-    "Blurring Gender Lines",
-    "Pop Culture & Nostalgia"
+    "Nostalgia (70s, 80s, 90s)",
+    "Sustainability & Circularity",
+    "Technological Integration (AI, Biotech)",
+    "Gender Fluidity & Body Acceptance",
+    "Rebellious Subcultures",
+    "Understated Luxury & Craftsmanship"
   ],
   "influential_models": [
-    "The Modern Dandy",
-    "The Sculptural Minimalist",
-    "The Empowered Maximalist"
+    "Marlon Brando",
+    "Jacqueline Kennedy",
+    "Peter Berlin"
   ],
   "accessories": {
     "Bags": [
-      "Luxe Holdalls",
-      "Structured Top-Handle Bags",
-      "XXL Shoulder Bags",
-      "Oversized Hobo Bags",
-      "Ladylike Clutches",
-      "Envelope Pouches",
-      "Utility Totes",
-      "Cargo Bags (with exterior pockets)",
-      "East-West Shoulder Bags",
-      "Cylindrical Shoulder Bags",
-      "Bracelet Bags",
-      "Wristlets",
-      "Monogrammed Totes",
-      "Sleek Leather Document Holders",
-      "Work Bags",
-      "Crossbody Bags",
-      "Raffia Bags",
-      "Mesh Totes",
-      "Life-size Animal-shaped Bags",
-      "Toolbox-inspired Handbags",
-      "LV BIKER Bag",
-      "Gucci Blondie Bag",
-      "Di Bag Folio",
-      "Di Bag Swing"
+      "Jackie 1961 bags",
+      "Blondie bags",
+      "Suede bags",
+      "Top handle bags",
+      "Mini bags",
+      "Belt bags",
+      "Quilted bags"
     ],
     "Footwear": [
-      "Reimagined Cowboy Boots",
-      "Chunky Moccasins",
-      "Sleek Pointed Heels",
-      "Red Slingback Heels",
-      "Retro Sneakers",
-      "Hiking Sneakers (with technical soles)",
-      "Platform Flip-Flops",
-      "Croc Loafers",
-      "Miss Z Pumps",
-      "Miss Z Mules",
-      "Rasant Trainers",
-      "Gucci Horsebit Loafers",
-      "Jelly Moccasins",
-      "Graphic Heeled Sandals (with ankle ribbons)",
-      "Classic Dress Shoes"
+      "Cowboy Boots",
+      "Biker Boots",
+      "Mules",
+      "Platforms",
+      "Sneakers",
+      "Neon Crocs"
     ],
     "Jewelry": [
-      "Pearls",
-      "Emerald-cut Diamond Pendants",
-      "Diorette Charms",
-      "Rococo-inspired Roses",
-      "Damier-engraved Jewelry",
-      "Monogram Flower Motifs",
-      "Mother-of-pearl Jewelry",
-      "Cornelian Jewelry",
-      "Malachite Jewelry",
-      "Onyx Jewelry",
-      "Amazonite Jewelry",
-      "Gold Jewelry",
-      "Merit Badges and Medals",
-      "Oversized Crystals",
-      "Bold Earrings"
+      "Layered Necklaces",
+      "Statement Earrings",
+      "Signet Rings",
+      "Pearls"
     ],
     "Other": [
-      "Oversized Dark Sunglasses",
-      "Tiger-print Sunglasses",
-      "Gold-accent Belts",
-      "Balaclavas",
-      "Gigantic Scarves",
-      "XL Scarves",
-      "Ties",
-      "Masculine Hats (oversized)",
-      "Logo-heavy Beanies",
-      "Customizable Luxury Eyewear",
-      "Shawls",
-      "Regimental Neckties",
-      "Tassels",
-      "Passementerie",
-      "Beading"
+      "Scarves (especially head-tied)",
+      "Sunglasses (Cat Eye, Aviator)",
+      "Cowboy Hats",
+      "Leather Gloves",
+      "Ties"
     ]
   },
   "detailed_key_pieces": [
     {
-      "key_piece_name": "The Sculpted Power Suit",
-      "description": "A modern reinterpretation of power dressing, featuring exaggerated yet refined silhouettes that sculpt and enhance the body's natural curves, often incorporating internal structure or stretch for a custom fit. This piece embodies confidence and a bold, contemporary femininity or masculinity.",
+      "key_piece_name": "The Reimagined Perfecto Jacket",
+      "description": "A symbol of rebellion and subculture, this jacket is updated with a sharper, more refined edge, reflecting a blend of raw energy and sophisticated tailoring. Its significance lies in its connection to historical counter-culture movements, now reinterpreted for a modern, grown-up aesthetic, embodying the 'Rebellious Subcultures' cultural driver.",
       "inspired_by_designers": [
-        "Karoline Vitto",
-        "Sportmax"
+        "Eli Russell Linnetz",
+        "Saint Laurent"
       ],
       "fabrics": [
         {
-          "material": "Wool",
-          "texture": "Tailored",
-          "sustainable": true,
-          "sustainability_comment": "Natural, renewable fiber, offering excellent drape and structure."
-        },
-        {
-          "material": "Jersey",
-          "texture": "Stretch",
-          "sustainable": false,
-          "sustainability_comment": "Consider recycled jersey or organic cotton jersey for a more sustainable alternative."
-        },
-        {
           "material": "Leather",
-          "texture": "Smooth",
+          "texture": "Supple",
           "sustainable": false,
-          "sustainability_comment": "Explore innovative alternatives like mushroom leather or apple leather for ethical and environmental benefits."
+          "sustainability_comment": "Consider vegan leather alternatives or upcycled leather."
         },
         {
-          "material": "Twill",
-          "texture": "Crisp",
+          "material": "Cotton",
+          "texture": "Grubby",
           "sustainable": true,
-          "sustainability_comment": "Often made from cotton or wool, natural fibers with good durability."
+          "sustainability_comment": "Natural, breathable fiber; look for organic or recycled cotton."
         }
       ],
       "colors": [
@@ -136,170 +76,111 @@
           "hex_value": "#000000"
         },
         {
-          "name": "Charcoal",
-          "pantone_code": "19-4007 TCX",
-          "hex_value": "#36454F"
-        },
-        {
-          "name": "Navy",
-          "pantone_code": "19-4028 TCX",
-          "hex_value": "#264367"
-        },
-        {
-          "name": "Fiery Red",
-          "pantone_code": "18-1664 TCX",
-          "hex_value": "#B22222"
+          "name": "Chocolate Brown",
+          "pantone_code": "19-1321 TCX",
+          "hex_value": "#4B2F2F"
         },
         {
           "name": "Burgundy",
-          "pantone_code": "19-1557 TCX",
-          "hex_value": "#800020"
-        },
-        {
-          "name": "White",
-          "pantone_code": "11-0601 TCX",
-          "hex_value": "#FFFFFF"
+          "pantone_code": "19-1718 TCX",
+          "hex_value": "#7B2D2D"
         }
       ],
       "silhouettes": [
-        "Super Tailored",
-        "Hourglass Curves",
-        "Exaggerated Shapes",
-        "Towering Shoulders",
-        "Razor-sharp Necklines",
-        "Cinched Waists",
-        "Wide-leg Trousers",
-        "Nipped Waist Tailoring",
-        "Structured yet Wearable"
+        "Slim",
+        "Cropped",
+        "Bold shoulders"
       ],
       "details_trims": [
-        "Precision Seaming",
-        "Sharp Lines",
-        "Built-in Ties",
-        "Peplum Details",
-        "Asymmetrical Cuts",
-        "Wrapped Lapels",
-        "Portrait Necklines",
-        "Couture-level Embroidery",
-        "Oversized Crystals",
-        "Strategic Embellishments",
-        "Gold-accent Belts"
+        "Zippered details",
+        "Metal accents",
+        "Buckle details",
+        "Studded details"
       ],
       "suggested_pairings": [
-        "Sculpted Blazers",
-        "Relaxed Trousers",
-        "Pleated Maxiskirts",
-        "Silk Blouses",
-        "Ribbed Tank Tops",
-        "Sleek Pointed Heels",
-        "Minimalist Shoulder Bags",
-        "Oversized Dark Sunglasses"
+        "Baby tees",
+        "Henleys",
+        "Boot-cut jeans",
+        "Pleated trousers",
+        "Cowboy boots",
+        "Chunky sole sneakers"
       ]
     },
     {
-      "key_piece_name": "The Elevated Technical Coat",
-      "description": "A sophisticated fusion of performance-driven utility and luxurious design, featuring advanced fabrications, modular layering, and architectural silhouettes, often with heritage-inspired details and a focus on weather resistance and durability.",
+      "key_piece_name": "The Conscious Grandeur Trench Coat",
+      "description": "An elevated classic, this trench coat embodies the 'Quiet Luxury' and 'Corp Core' aesthetics, focusing on impeccable craftsmanship and elongated silhouettes. Its modern iteration integrates sustainable materials and processes, reflecting the growing emphasis on 'Sustainability & Circularity' and 'Technological Integration' in luxury fashion. It's a statement of understated wealth and environmental responsibility.",
       "inspired_by_designers": [
-        "Sacai",
-        "Stone Island"
+        "Burberry",
+        "Gucci",
+        "Chanel"
       ],
       "fabrics": [
         {
-          "material": "Technical Nylon",
-          "texture": "Weatherproof",
+          "material": "Cotton",
+          "texture": "Canvas",
+          "sustainable": true,
+          "sustainability_comment": "Natural, breathable fiber; look for organic or recycled cotton."
+        },
+        {
+          "material": "Faux Fur",
+          "texture": "Plush",
           "sustainable": false,
-          "sustainability_comment": "Opt for recycled nylon (e.g., Prada Re-Nylon) or bio-based nylon for reduced environmental impact."
+          "sustainability_comment": "Consider bio-based or recycled faux fur alternatives."
         },
         {
           "material": "Shearling",
-          "texture": "Plush",
+          "texture": "Coziness",
           "sustainable": false,
-          "sustainability_comment": "Prioritize high-quality faux shearling or recycled wool blends as more sustainable alternatives."
+          "sustainability_comment": "Consider plant-based or recycled shearling alternatives."
         },
         {
-          "material": "Wool",
-          "texture": "Felted",
+          "material": "Denim",
+          "texture": "Reinvented",
           "sustainable": true,
-          "sustainability_comment": "A natural, renewable fiber known for its warmth and durability."
-        },
-        {
-          "material": "Tweed",
-          "texture": "Textured",
-          "sustainable": true,
-          "sustainability_comment": "Often made from wool, a natural and durable fiber, contributing to longevity."
+          "sustainability_comment": "Focus on ethical denim, sustainable dyes, and circular production."
         }
       ],
       "colors": [
         {
-          "name": "Tobacco",
-          "pantone_code": "18-1024 TCX",
-          "hex_value": "#7B5C40"
+          "name": "Camel",
+          "pantone_code": "16-1336 TCX",
+          "hex_value": "#B8860B"
         },
         {
-          "name": "Deep Forest Green",
+          "name": "Mocha Mousse",
+          "pantone_code": "16-1108 TCX",
+          "hex_value": "#967C6E"
+        },
+        {
+          "name": "Dark Green",
           "pantone_code": "19-5513 TCX",
-          "hex_value": "#2A4232"
+          "hex_value": "#004B49"
         },
         {
           "name": "Grey",
-          "pantone_code": "17-4014 TCX",
-          "hex_value": "#62666B"
-        },
-        {
-          "name": "Ivory",
-          "pantone_code": "11-0604 TCX",
-          "hex_value": "#F0EAD6"
-        },
-        {
-          "name": "Khaki",
-          "pantone_code": "16-0726 TCX",
-          "hex_value": "#C3B091"
-        },
-        {
-          "name": "Paul & Shark Blue",
-          "pantone_code": "19-4056 TCX",
-          "hex_value": "#006699"
+          "pantone_code": "17-4402 TCX",
+          "hex_value": "#808080"
         }
       ],
       "silhouettes": [
+        "Elongated",
         "Oversized",
-        "Sculptural",
-        "Boxy",
-        "Draped",
-        "Longline",
-        "Cocooned",
-        "Architectural",
-        "Bulky",
-        "Exaggerated",
-        "Cinched (trench coats)",
-        "Bomber",
-        "Parka"
+        "Fluid",
+        "Play on Proportions"
       ],
       "details_trims": [
-        "Oversized Pockets",
-        "Adjustable Toggles",
-        "Protective Hoods",
-        "Weatherproof Coatings",
-        "Modular Layering",
-        "Technical Yokes",
-        "Snap Buttons",
-        "Structured Shoulder Yokes",
-        "Topstitching",
-        "Quilting",
-        "Faux Fur Trims",
-        "Exaggerated Collars",
-        "Mono-color Badges"
+        "Belted (cinched)",
+        "Draped fabrics",
+        "Integrated scarf designs",
+        "Delicate flower appliqu\u00e9s"
       ],
       "suggested_pairings": [
-        "Slim-fitted Jeans",
-        "Relaxed Tailoring",
-        "Knit-on-knit Styling",
-        "Cargo Trousers",
-        "Utility Totes",
-        "Chunky Moccasins",
-        "Retro Sneakers",
-        "Balaclavas",
-        "Gigantic Scarves"
+        "Silk dresses",
+        "Tunics",
+        "Pinstripe suits",
+        "Wide-leg trousers",
+        "Loafers",
+        "Statement bags (Jackie 1961)"
       ]
     }
   ]
