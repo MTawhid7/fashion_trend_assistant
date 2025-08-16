@@ -8,21 +8,22 @@ An AI-powered engine for automated fashion trend research, analysis, and creativ
 ## Core Features
 
 -   **🧠 Semantic Caching:** Blazing-fast results (<2 seconds) for similar creative briefs. Powered by a persistent ChromaDB vector database, it finds conceptually related past reports, saving significant time and API costs.
+-   **🛡️ Self-Correcting AI:** Implements a sophisticated validation and self-correction loop. If the AI's initial JSON output fails validation, the system automatically sends the error report back to the AI, instructing it to fix its own mistakes.
 -   **🤖 Intelligent Summarization:** Employs a multi-stage AI workflow. Instead of analyzing raw data, it first uses Gemini to distill dozens of scraped articles into dense, relevant summaries.
--   **🎯 Surgical Content Extraction:** Uses Playwright and BeautifulSoup to intelligently identify and scrape primary article content, filtering out irrelevant noise like ads, navigation, and footers for higher-quality data.
--   **🛡️ Robust & Resilient:** Built with modern asynchronous programming (`asyncio`), it handles network errors gracefully and uses a sophisticated batching system to manage API rate limits without crashing.
+-   **🌍 Global-First Research Strategy:** Dynamically generates context-aware search queries that adapt to user-specified regions, ensuring relevant, non-biased results for users worldwide.
+-   **🎯 Advanced Web Scraping:** Uses a resilient Playwright scraper equipped with stealth plugins, User-Agent rotation, smart waits, and automatic cookie banner handling to maximize data extraction success.
 -   **📝 Structured & Validated Output:** Generates a detailed JSON trend report that is rigorously validated against Pydantic models, ensuring data integrity and predictability.
--   **🎨 Creative Prompt Generation:** Produces a final JSON file containing professionally art-directed prompts for generating inspiration boards, mood boards, and final garment concepts in AI image models.
+-   **🎨 A+ Grade Prompt Engineering:** Produces a final JSON file containing professionally art-directed prompts for generating inspiration boards, mood boards, and final garment concepts in AI image models.
 
 ## How It Works: Architectural Overview
 
 The application follows a sophisticated, multi-stage intelligence pipeline that mimics an expert human research workflow:
 
 ```
-[ User Input: Theme, Season, Year, etc. ]
+[ User Input: Theme, Season, Year, Region, etc. ]
               |
               v
-[ 1. Cache Service: Semantic Check ] --(Cache Hit)--> [ 5. Prompt Generation ]
+[ 1. Cache Service: Semantic Check ] --(Cache Hit)--> [ 6. Prompt Generation ]
               |
               | (Cache Miss)
               v
@@ -34,10 +35,13 @@ The application follows a sophisticated, multi-stage intelligence pipeline that 
               v
 [ 4. LLM Client: Synthesize Summaries into Final Report ]
               |
-              +--> [ Cache Service: Add New Report to Cache ]
+              +--> [ Self-Correction Loop (if validation fails) ]
               |
               v
-[ 5. Prompt Generation: Create Image Prompts ]
+[ 5. Cache Service: Add New Report to Cache ]
+              |
+              v
+[ 6. Prompt Generation: Create Image Prompts ]
               |
               v
 [ Final Output: Two JSON files in /results ]
@@ -113,7 +117,7 @@ Now, open the newly created `.env` file and add your secret keys.
 The creative brief for the trend report is configured directly in the main script.
 
 1.  Open `trend_assistant/main.py`.
-2.  Modify the `SEASON`, `YEAR`, and `THEME_HINT` variables. You can also provide optional `TARGET_AUDIENCE` and `REGION` for more specific results.
+2.  Modify the `SEASON`, `YEAR`, `THEME_HINT`, and optional `TARGET_AUDIENCE` and `REGION_OVERRIDE` variables to define your concept.
 3.  Run the application from the project's **root directory**:
 
 ```bash

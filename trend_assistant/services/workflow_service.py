@@ -28,50 +28,61 @@ def _generate_search_queries(
     region: Optional[str] = None,
 ) -> List[str]:
     """
-    Creates a sophisticated, multi-tiered list of search queries that is
-    flexible and hyper-targeted to find culturally specific information.
+    Creates a definitive, multi-tiered list of search queries that is
+    consolidated, refined, and globally aware.
     """
     logger.info(
-        "Generating a flexible, hyper-targeted set of professional search queries..."
+        "Generating a definitive, consolidated set of professional search queries..."
     )
 
     audience_query = f" for {target_audience}" if target_audience else ""
     region_search_query = f" in {region}" if region else ""
 
-    # --- Tier 1: High-Fashion & Regional Runway Analysis ---
-    tier1_queries = [
-        f"Vogue {region_search_query} {season} {year} runway trend report",
-        f"WWD {season} {year} {region_search_query} runway analysis {theme_hint}",
-        f"Business of Fashion {season} {year} {region_search_query} collection reviews",
-        f"Elle {region_search_query} {season} {year} fashion week highlights",
-    ]
+    # --- Tier 1: Runway & Trend Analysis (Consolidated) ---
+    # Combines the top 4 runway authorities into one powerful query.
+    tier1_query = (
+        f"({season} {year} OR SS{str(year)[-2:]} OR FW{str(year)[-2:]}) "
+        f"({theme_hint} OR trend report OR collection review OR runway analysis) "
+        f"(Vogue OR WWD OR Business of Fashion OR Elle){region_search_query}"
+    )
 
-    # --- Tier 2: Global Trend Forecasting & Material Innovation ---
-    tier2_queries = [
-        f"WGSN {season} {year} key trends {theme_hint}",
-        f"Trendstop forecast {season} {year} {theme_hint}",
-        f"Pantone Color Institute fashion color trend report {season} {year}",
-        f"Première Vision {season} {year} fabric and textile news",
-    ]
+    # --- Tier 2: Forecasting & Materials (Consolidated) ---
+    # Combines the top 4 forecasting and material authorities.
+    tier2_query = (
+        f"({season} {year} OR SS{str(year)[-2:]} OR FW{str(year)[-2:]}) "
+        f"({theme_hint} OR key trends OR forecast OR color OR fabric) "
+        f"(WGSN OR Trendstop OR Pantone OR Première Vision)"
+    )
 
-    # --- Tier 3: Specific Garment & Item Analysis ---
-    tier3_queries = [
-        f"'{theme_hint}' key pieces {season} {year}{region_search_query}",
-        f"must-have garments {season} {year} fashion {region_search_query}",
-        f"top fashion items {audience_query}{region_search_query} {year}",
-    ]
+    # --- Tier 3: Key Garments & Street Style (Consolidated & Refined) ---
+    # Combines the search for specific items and how they are worn.
+    tier3_query1 = f"({theme_hint} OR key pieces OR must-have items) {season} {year}{region_search_query}"
+    tier3_query2 = (
+        f"latest street style {theme_hint}{region_search_query}{audience_query}"
+    )
 
-    # --- Tier 4: Cultural & Tastemaker Inspiration (UPGRADED) ---
-    tier4_queries = [
-        f"'{theme_hint}' aesthetic in contemporary art and fashion{region_search_query}",
-        f"latest street style {theme_hint}{region_search_query}{audience_query}",
-        # UPGRADED: More specific queries for influencers and designers
-        f"top fashion bloggers and street style stars in {region}",
-        f"emerging fashion designers to watch in {region} {year}",
-    ]
+    # --- Tier 4: Cultural Inspiration & Tastemakers (Refined) ---
+    # Keeps the focus on finding unique, non-fashion inspiration and local influencers.
+    tier4_query1 = (
+        f"'{theme_hint}' aesthetic in contemporary art and fashion{region_search_query}"
+    )
+    tier4_query2 = f"'{theme_hint}' film and cinema costume style analysis"
+    tier4_query3 = f"top fashion bloggers and street style stars in {region}"
+    tier4_query4 = f"emerging fashion designers to watch in {region} {year}"
 
-    queries = tier1_queries + tier2_queries + tier3_queries + tier4_queries
-    logger.info(f"Generated {len(queries)} flexible queries across 4 strategic tiers.")
+    # We only run the last two queries if a region is specified, as they are region-dependent.
+    queries = [
+        tier1_query,
+        tier2_query,
+        tier3_query1,
+        tier3_query2,
+        tier4_query1,
+        tier4_query2,
+    ]
+    if region:
+        queries.extend([tier4_query3, tier4_query4])
+
+    logger.info(f"Generated {len(queries)} definitive, high-quality queries.")
     return queries
 
 
