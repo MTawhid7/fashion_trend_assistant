@@ -1,9 +1,9 @@
 """
 A library of master prompt templates for the Fashion Trend Assistant.
-(A+ version, upgraded for cultural specificity and garment name preservation)
+(Definitive A+ version, upgraded for cultural specificity and data integrity)
 """
 
-# --- Phase 2.5: Intelligent Summarization Prompt (UPGRADED) ---
+# --- Phase 2.5: Intelligent Summarization Prompt (Upgraded) ---
 SUMMARIZATION_PROMPT_TEMPLATE = """
 Your role is a meticulous Research Analyst for a top-tier fashion forecasting agency.
 Your task is to analyze the following document and extract ONLY the most critical, factual information related to fashion trends.
@@ -21,16 +21,18 @@ DOCUMENT TEXT:
 ---
 """
 
-# --- Phase 3: Main Data Synthesis Prompt (UPGRADED) ---
+# --- Phase 3: Main Data Synthesis Prompt (DEFINITIVE A+ VERSION) ---
 ITEMIZED_REPORT_PROMPT = """
 You are the Director of Strategy for 'The Future of Fashion', a globally respected trend analysis firm.
 Your task is to synthesize the provided research summaries into a single, cohesive, and insightful fashion trend report.
 You MUST base your analysis strictly on the information provided. Do not invent or hallucinate information.
 
-**CRITICAL RULES:**
-1.  **Prioritize Specificity:** For the 'key_piece_name', you MUST use the specific, culturally relevant garment names found in the research (e.g., "The Embroidered Punjabi," "The Deconstructed Saree"). AVOID overly generic terms like "coat," "dress," or "jacket" unless no specific alternative is mentioned.
-2.  **De-duplicate Lists:** All lists in your response must contain only unique items.
-3.  **Complete Color Codes:** For the 'colors' array, you MUST provide real Pantone TCX codes and their corresponding hex values. Find the closest match if the exact one is unknown. **DO NOT leave `pantone_code` or `hex_value` as null.**
+**CRITICAL RULES OF SYNTHESIS:**
+1.  **NO NULL VALUES:** You MUST provide a value for every field in the schema. If a detail like 'texture' or 'sustainability_comment' is not explicitly mentioned in the research, you must infer a logical value based on the context. For example, for 'Cotton', infer a 'texture' of 'Woven' or 'Smooth'. For a sustainable material, infer *why* (e.g., 'Natural, biodegradable fiber'). Do not use "null", "N/A", or empty strings.
+2.  **PRIORITIZE LOCAL INFLUENCE:** For the 'influential_models', prioritize local or regionally relevant figures found in the research. If none are found, you MUST suggest 2-3 creative archetypes that embody the theme (e.g., 'The Urban Nomad', 'The Digital Artisan').
+3.  **BE SPECIFIC:** For 'key_piece_name', you MUST use specific, culturally relevant garment names from the research. AVOID generic terms like "coat" or "dress" unless no alternative is available.
+4.  **DE-DUPLICATE:** All lists in your response must contain only unique items.
+5.  **COMPLETE COLOR CODES:** You MUST provide real Pantone TCX codes and their corresponding hex values for all colors.
 
 RESEARCH SUMMARIES:
 ---
@@ -44,24 +46,65 @@ SCHEMA:
 {{
   "season": "{season}",
   "year": {year},
-  "overarching_theme": "...",
-  "cultural_drivers": ["..."],
-  "influential_models": ["..."],
-  "accessories": {{ ... }},
+  "overarching_theme": "A concise, evocative name for the collection's theme.",
+  "cultural_drivers": ["A list of the high-level socio-cultural influences."],
+  "influential_models": ["A list of specific or archetypal style icons."],
+  "accessories": {{
+    "Bags": ["A list of relevant bag styles."],
+    "Footwear": ["A list of relevant shoe and boot styles."],
+    "Jewelry": ["A list of relevant jewelry styles."],
+    "Other": ["A list of other relevant accessories."]
+  }},
   "detailed_key_pieces": [
     {{
-      "key_piece_name": "The descriptive name of a key garment. MUST BE SPECIFIC AND AVOID GENERIC DEFAULTS.",
-      "description": "A brief, insightful explanation of this item's role. CRITICAL: Connect its significance directly to one or more of the 'cultural_drivers'.",
-      "inspired_by_designers": ["..."],
-      "wearer_profile": "A short description of the person who would wear this piece, their lifestyle, and attitude.",
-      "fabrics": [ {{ ... }} ],
-      "colors": [ {{ ... }} ],
-      "silhouettes": ["..."],
-      "details_trims": ["..."],
-      "suggested_pairings": ["..."]
+      "key_piece_name": "The descriptive name of a key garment.",
+      "description": "A brief, insightful explanation connecting this item to the 'cultural_drivers'.",
+      "inspired_by_designers": ["A list of 1-2 real-world designers known for this aesthetic."],
+      "wearer_profile": "A short description of the person who would wear this piece.",
+      "fabrics": [
+        {{
+          "material": "The base material.",
+          "texture": "The specific surface texture (inferred if not present).",
+          "sustainable": "boolean",
+          "sustainability_comment": "An insightful comment on the fabric's sustainability."
+        }}
+      ],
+      "colors": [
+        {{
+          "name": "The common name of the color.",
+          "pantone_code": "The official Pantone TCX code.",
+          "hex_value": "The hex value of the color."
+        }}
+      ],
+      "silhouettes": ["A list of specific cuts and shapes."],
+      "details_trims": ["A list of specific design details or trims."],
+      "suggested_pairings": ["A list of other items to style with."]
     }}
   ]
 }}
+"""
+
+# --- NEW: Self-Correction Prompt ---
+# This prompt is used only when the initial JSON generation fails validation.
+JSON_CORRECTION_PROMPT = """
+You are a JSON correction expert. Your task is to fix a broken JSON object based on a provided validation error report.
+
+RULES:
+1.  You MUST fix all the errors listed in the "VALIDATION ERRORS" section.
+2.  The corrected output MUST be ONLY the valid JSON object. Do not include any extra text, explanations, or apologies.
+3.  Ensure the corrected JSON strictly adheres to the original schema structure.
+
+Here is the broken JSON object that you previously generated:
+--- BROKEN JSON ---
+{broken_json}
+---
+
+Here is the Pydantic validation error report detailing exactly what is wrong:
+--- VALIDATION ERRORS ---
+{validation_errors}
+---
+
+Now, provide only the corrected, valid JSON object.
 """
 
 # --- Phase 4: Image Prompt Generation Templates (UPGRADED) ---

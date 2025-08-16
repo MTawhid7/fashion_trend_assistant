@@ -1,186 +1,240 @@
 {
   "season": "Spring/Summer",
-  "year": 2026,
-  "overarching_theme": "I-dentities: Conscious Evolution",
+  "year": 2025,
+  "overarching_theme": "Artisanal Futurism: A Synthesis of Heritage Craft and Sustainable Innovation",
   "cultural_drivers": [
-    "Sustainability & Circularity",
-    "Technological Innovation in Materials",
-    "Reimagined Craftsmanship & Artisanal Virtuosity",
-    "Fluidity of Identity & Gender Expression",
-    "Minimalism & Foundational Versatility",
-    "Well-being & Protection",
-    "Playful Expression & Whimsy"
+    "Slow Fashion Movement",
+    "Heritage Craftsmanship",
+    "Sustainable Material Innovation",
+    "Celebrity Influence",
+    "Thrifting & Y2K Revival",
+    "Urban Folk Art"
   ],
   "influential_models": [
-    "The Conscious Innovator",
-    "The Gender-Fluid Minimalist",
-    "The Artisanal Modernist"
+    "Jenna Ortega",
+    "Bella Hadid",
+    "Hailey Bieber",
+    "Kylie Jenner",
+    "Selena Gomez"
   ],
   "accessories": {
-    "Bags": [],
-    "Footwear": [],
-    "Jewelry": [
-      "Fine jewelry",
-      "High-end jewelry",
-      "Modern metal jewelry"
+    "category": [
+      "Bags"
     ],
-    "Other": [
-      "Scarves",
-      "Apparel trims"
+    "key_trends": [
+      "Vacation Bags",
+      "Food-Inspired Silhouettes"
+    ],
+    "specific_styles": [
+      "The Croissant Bag",
+      "The Onigiri Bag",
+      "The Dumpling Bag",
+      "The Wiesn Bag",
+      "The Switchbag"
+    ],
+    "materials": [
+      "Natural Materials"
+    ],
+    "colors": [
+      "pesto",
+      "granite",
+      "lipstick",
+      "ozean",
+      "cognac",
+      "creme"
+    ],
+    "other_items": [
+      "Scarves"
     ]
   },
   "detailed_key_pieces": [
     {
-      "key_piece_name": "The Regenerative Minimalist Ensemble",
-      "description": "This ensemble embodies the shift towards 'Quiet Luxury' and 'Minimalism', focusing on versatile, foundational garments that offer comfort and timelessness. Its significance is deeply rooted in the 'Sustainability & Circularity' cultural driver, utilizing innovative, low-impact materials and celebrating inherent quality over ostentation.",
+      "key_piece_name": "The Deconstructed Jamdani Saree",
+      "description": "This piece reinterprets the traditional Jamdani Saree, a symbol of identity and UNESCO-recognized heritage. It connects to the 'Heritage Craftsmanship' and 'Slow Fashion Movement' drivers by celebrating indigenous weaving techniques and sustainable, local production. The deconstruction speaks to a modern, global aesthetic while honoring its roots.",
       "inspired_by_designers": [
-        "Donna Karan",
-        "Calvin Klein",
-        "Pierre Mah\u00e9o (Officine G\u00e9n\u00e9rale)"
+        "Maheen Khan (Studio Mayasir)",
+        "Bibi Russell"
       ],
       "fabrics": [
         {
-          "material": "Dehydrated Linen",
-          "texture": "Raw simplicity, understated",
+          "material": "Cotton",
+          "texture": null,
           "sustainable": true,
-          "sustainability_comment": "Natural, low-impact processing, aligns with 'Quiet craft' and 'raw simplicity'."
+          "sustainability_comment": null
         },
         {
-          "material": "Cotton-Cashmere Blend",
-          "texture": "Natural softness, inherent quality",
+          "material": "Cotton",
+          "texture": null,
           "sustainable": true,
-          "sustainability_comment": "Natural fibers, comfortable, aligns with 'Quiet craft' and 'natural softness'."
-        },
-        {
-          "material": "Sustainable Wool Blend",
-          "texture": "Supple, nuanced, comfortable",
-          "sustainable": true,
-          "sustainability_comment": "Focus on responsible sourcing and circularity within the textile industry."
-        },
-        {
-          "material": "Bio-engineered Silk Satin",
-          "texture": "Sleek, silky, voluptuous",
-          "sustainable": true,
-          "sustainability_comment": "Bioengineering and biofabrication for sustainable alternatives to traditional silk."
+          "sustainability_comment": null
         }
       ],
       "colors": [
         {
-          "name": "Turbonite",
-          "pantone_code": "19-4007 TCX",
-          "hex_value": "#343537"
+          "name": "Pahela Falgun Yellow",
+          "pantone_code": "PANTONE 13-0755 TCX",
+          "hex_value": "#F7B718"
         },
         {
-          "name": "Oatmeal",
-          "pantone_code": "13-0000 TCX",
-          "hex_value": "#DCD7C9"
-        },
-        {
-          "name": "Moonbeam",
-          "pantone_code": "14-1118 TCX",
-          "hex_value": "#E8E2D7"
-        },
-        {
-          "name": "Quiet Gray",
-          "pantone_code": "16-0000 TCX",
-          "hex_value": "#9E9E9E"
+          "name": "Perle",
+          "pantone_code": "PANTONE 12-1006 TCX",
+          "hex_value": "#EAE3D5"
         }
       ],
       "silhouettes": [
-        "Simple cuts",
-        "Comfortable",
-        "Minimalistic",
-        "Well-tailored but relaxed",
-        "Ample/loose"
+        "Fluid",
+        "Asymmetrical"
       ],
       "details_trims": [
-        "Matte finishes",
-        "Inherent quality of fabric",
-        "Subtle texture"
+        "Vividly patterned weaves",
+        "Hand quilting",
+        "Hand stitches",
+        "Floral patterns inspired by Rickshaw art"
       ],
       "suggested_pairings": [
-        "Simple accessories",
-        "Modern metal jewelry",
-        "Versatile foundational pieces"
+        "Welsh Linen Shorts",
+        "Minimalist Leather Boots"
       ]
     },
     {
-      "key_piece_name": "The Bio-Craft Casualwear Redefinition",
-      "description": "This piece redefines casual wear by blending cutting-edge 'Technological Innovation in Materials' with 'Reimagined Craftsmanship & Artisanal Virtuosity'. It reflects the 'Fluidity of Identity & Gender Expression' through its adaptable nature and embraces 'Playful Expression & Whimsy' with curated, innovative elements.",
+      "key_piece_name": "The Technical Field Jacket",
+      "description": "An evolution of a utilitarian classic, updated with innovative, sustainable materials. This piece embodies the 'Sustainable Material Innovation' driver, moving beyond traditional fabrics to incorporate high-tech, eco-conscious textiles like PFC-free nylons and melange effects, reflecting a blend of outdoor function and urban sophistication.",
       "inspired_by_designers": [
-        "Jeanne Friot",
-        "Lamine Kouyat\u00e9 (Xuly.B\u00cbT)",
-        "Studio Mayasir"
+        "Herno"
       ],
       "fabrics": [
         {
-          "material": "Fungi-derived Biofabric",
-          "texture": "Sensory, dynamic",
+          "material": "Nylon",
+          "texture": null,
           "sustainable": true,
-          "sustainability_comment": "Innovative sustainable material from bioengineering, responsible materials."
+          "sustainability_comment": null
         },
         {
-          "material": "Acryluna OnceDye",
-          "texture": "Textured, vibrant",
+          "material": "Polyester Blend",
+          "texture": null,
           "sustainable": true,
-          "sustainability_comment": "New patented fibre with low-impact colour via sustainable dyes (waterless processes)."
-        },
-        {
-          "material": "Organic Cotton Blend",
-          "texture": "Fresh, airy, blended",
-          "sustainable": true,
-          "sustainability_comment": "Eco-friendly, natural material, aligns with 'Preppy boy' and 'Cheeky Cheeky' fabrics."
-        },
-        {
-          "material": "Micro-drilled Leather (sustainable)",
-          "texture": "Cool, soft, functional",
-          "sustainable": true,
-          "sustainability_comment": "Leather industry transformation towards sustainability and circularity, innovative texture."
+          "sustainability_comment": null
         }
       ],
       "colors": [
         {
-          "name": "Vanilla Ice",
-          "pantone_code": "12-0817 TCX",
-          "hex_value": "#F3E0C9"
+          "name": "Midnight",
+          "pantone_code": "PANTONE 19-4110 TCX",
+          "hex_value": "#29314A"
         },
         {
-          "name": "Clearwater",
-          "pantone_code": "16-4120 TCX",
-          "hex_value": "#88C4D1"
-        },
-        {
-          "name": "Pink Dogwood",
-          "pantone_code": "15-1905 TCX",
-          "hex_value": "#E0BBE4"
-        },
-        {
-          "name": "Yellow (Saraswati Puja)",
-          "pantone_code": "13-0758 TCX",
-          "hex_value": "#FDD262"
+          "name": "Gravel",
+          "pantone_code": "PANTONE 17-0000 TCX",
+          "hex_value": "#A19C97"
         }
       ],
       "silhouettes": [
-        "Redefined casual wear",
-        "Non-gendered",
-        "Unisex",
-        "Comfortable",
-        "Fluid"
+        "Regular Fit",
+        "Boxy Fit"
       ],
       "details_trims": [
-        "Artisanal embroidery",
-        "Weaving details",
-        "Pigment prints",
-        "Childlike drawn patterns",
-        "Shirring",
-        "Puffed fabrics",
-        "Quilts",
-        "Traditional stitches"
+        "3-Layer Compact Construction",
+        "PFC-free polyurethane coatings",
+        "Natural wax finishes"
       ],
       "suggested_pairings": [
-        "Functional accessories",
-        "Layered pieces",
-        "Playful footwear"
+        "Cargo Trousers",
+        "Pleated Jersey T-shirt",
+        "The Onigiri Bag"
+      ]
+    },
+    {
+      "key_piece_name": "The Crochet Lace Shacket",
+      "description": "This piece merges the casual, utilitarian silhouette of a 'shacket' with the artisanal, open-work texture of crochet. It directly reflects the 'Heritage Craftsmanship' and 'Thrifting & Y2K Revival' cultural drivers, tapping into the DIY spirit of Crochet Clubs and the renewed interest in handcrafted textures seen in the shift away from quiet luxury.",
+      "inspired_by_designers": [
+        "Herno"
+      ],
+      "fabrics": [
+        {
+          "material": "Cotton",
+          "texture": null,
+          "sustainable": true,
+          "sustainability_comment": null
+        },
+        {
+          "material": "Polyester",
+          "texture": null,
+          "sustainable": false,
+          "sustainability_comment": null
+        }
+      ],
+      "colors": [
+        {
+          "name": "Pink Mocha",
+          "pantone_code": "PANTONE 16-1430 TCX",
+          "hex_value": "#D49A83"
+        },
+        {
+          "name": "Chai",
+          "pantone_code": "PANTONE 17-1225 TCX",
+          "hex_value": "#B1836A"
+        }
+      ],
+      "silhouettes": [
+        "Relaxed Fit",
+        "Regular Fit"
+      ],
+      "details_trims": [
+        "Stripe patterns",
+        "Floating threads",
+        "Open-work texture"
+      ],
+      "suggested_pairings": [
+        "Leather Trench",
+        "Cargo Trousers",
+        "The Dumpling Bag"
+      ]
+    },
+    {
+      "key_piece_name": "The Urban Handloom Lungi",
+      "description": "A contemporary take on the traditional Lungi, this piece is elevated through the use of exclusive handloom fabrics like Taant and Gamcha. It champions the 'Slow Fashion Movement' and 'Heritage Craftsmanship' by focusing on indigenous crafts and simple, timeless cuts, moving away from mass-produced materials and foreign embellishments.",
+      "inspired_by_designers": [
+        "Maheen Khan (Studio Mayasir)"
+      ],
+      "fabrics": [
+        {
+          "material": "Cotton",
+          "texture": null,
+          "sustainable": true,
+          "sustainability_comment": null
+        },
+        {
+          "material": "Cotton",
+          "texture": null,
+          "sustainable": true,
+          "sustainability_comment": null
+        }
+      ],
+      "colors": [
+        {
+          "name": "Power Red",
+          "pantone_code": "PANTONE 18-1662 TCX",
+          "hex_value": "#D01C2A"
+        },
+        {
+          "name": "Navy",
+          "pantone_code": "PANTONE 19-3924 TCX",
+          "hex_value": "#2D2F45"
+        }
+      ],
+      "silhouettes": [
+        "Relaxed Fit",
+        "Simple Cuts"
+      ],
+      "details_trims": [
+        "Heritage weaves",
+        "Hand stitches",
+        "Absence of 'chumki' and 'puti'"
+      ],
+      "suggested_pairings": [
+        "Simple T-shirt",
+        "Leather Boots",
+        "Hoodie"
       ]
     }
   ]

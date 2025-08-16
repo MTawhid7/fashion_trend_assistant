@@ -1,6 +1,6 @@
 """
 Core Workflow Service for the Fashion Trend Assistant.
-(Upgraded with a global-first, context-aware search strategy)
+(Final version with correct cache service integration)
 """
 
 import json
@@ -8,6 +8,7 @@ import os
 import asyncio
 from datetime import datetime
 from typing import Dict, List, Any, Coroutine, Optional, Sequence
+from pydantic import ValidationError
 
 from . import cache_service
 from .. import config
@@ -28,10 +29,10 @@ def _generate_search_queries(
 ) -> List[str]:
     """
     Creates a sophisticated, multi-tiered list of search queries that is
-    flexible and now includes queries specifically targeting key garments.
+    flexible and hyper-targeted to find culturally specific information.
     """
     logger.info(
-        "Generating a flexible, context-aware set of professional search queries..."
+        "Generating a flexible, hyper-targeted set of professional search queries..."
     )
 
     audience_query = f" for {target_audience}" if target_audience else ""
@@ -53,19 +54,20 @@ def _generate_search_queries(
         f"Première Vision {season} {year} fabric and textile news",
     ]
 
-    # --- NEW TIER 3: Specific Garment & Item Analysis ---
-    # This tier is designed to find the specific "nouns" of the fashion trend.
+    # --- Tier 3: Specific Garment & Item Analysis ---
     tier3_queries = [
         f"'{theme_hint}' key pieces {season} {year}{region_search_query}",
         f"must-have garments {season} {year} fashion {region_search_query}",
         f"top fashion items {audience_query}{region_search_query} {year}",
     ]
 
-    # --- Tier 4: Cultural & Street-Level Inspiration ---
+    # --- Tier 4: Cultural & Tastemaker Inspiration (UPGRADED) ---
     tier4_queries = [
         f"'{theme_hint}' aesthetic in contemporary art and fashion{region_search_query}",
         f"latest street style {theme_hint}{region_search_query}{audience_query}",
-        f"top fashion influencers {region_search_query} {year}",
+        # UPGRADED: More specific queries for influencers and designers
+        f"top fashion bloggers and street style stars in {region}",
+        f"emerging fashion designers to watch in {region} {year}",
     ]
 
     queries = tier1_queries + tier2_queries + tier3_queries + tier4_queries
@@ -154,7 +156,7 @@ async def _run_tasks_in_batches(
     return all_results
 
 
-# --- Main Service Function (UPGRADED) ---------------------------------------
+# --- Main Service Function (Corrected) ---------------------------------------
 
 
 async def run_creative_process(
@@ -165,35 +167,22 @@ async def run_creative_process(
     region: Optional[str] = None,
 ):
     """
-    Executes the full workflow, now with input validation and smart defaults.
+    Executes the full workflow with input validation and a self-correction loop.
     """
     logger.info(f"--- Received New Creative Brief ---")
 
-    # --- STEP 1: VALIDATE AND SET DEFAULTS ---
-
-    # The THEME_HINT is the only truly essential creative input.
     if not theme_hint or not theme_hint.strip():
-        logger.critical(
-            "Halting process: 'THEME_HINT' cannot be empty. Please provide a creative direction."
-        )
+        logger.critical("Halting process: 'THEME_HINT' cannot be empty.")
         return
 
-    # For SEASON, provide a smart default based on the current month.
     if not season:
         current_month = datetime.now().month
-        # Spring/Summer season roughly from April to September
-        if 4 <= current_month <= 9:
-            season = "Spring/Summer"
-        else:
-            season = "Fall/Winter"
+        season = "Spring/Summer" if 4 <= current_month <= 9 else "Fall/Winter"
         logger.warning(f"No SEASON provided. Defaulting to current season: '{season}'")
 
-    # For YEAR, provide a smart default based on the current year.
     if not year:
         year = datetime.now().year
         logger.warning(f"No YEAR provided. Defaulting to current year: {year}")
-
-    # --- The rest of the function proceeds with validated/defaulted inputs ---
 
     logger.info(
         f"--- Starting New Creative Process for {season} {year}: '{theme_hint}' ---"
@@ -203,8 +192,10 @@ async def run_creative_process(
     if region:
         logger.info(f"Region: {region}")
 
-    cache_key = f"{theme_hint}_{region or 'global'}_{target_audience or 'all'}"
-    cached_report_json = cache_service.check_cache(cache_key)
+    # --- CORRECTED CACHE CHECK ---
+    # The cache check now correctly passes only the theme_hint, as per the
+    # definitive cache_service.py implementation.
+    cached_report_json = cache_service.check_cache(theme_hint)
 
     if cached_report_json:
         logger.warning(
@@ -270,41 +261,73 @@ async def run_creative_process(
     final_prompt = prompt_library.ITEMIZED_REPORT_PROMPT.format(
         research_context=research_context, season=season, year=year
     )
-
     json_response = llm_client.generate_structured_json(final_prompt)
 
     if not json_response:
-        logger.error(
-            "Halting process: Failed to get a valid JSON response from the LLM."
-        )
+        logger.error("Halting process: Failed to get an initial response from the LLM.")
         return
 
+    validated_report = None
     try:
         report_data = json.loads(json_response)
         validated_report = FashionTrendReport(**report_data)
-        logger.info("Successfully validated final LLM response against Pydantic model.")
+        logger.info("Successfully validated LLM response on the first attempt!")
+    except (json.JSONDecodeError, ValidationError) as e:
+        logger.warning(
+            f"Initial validation failed: {e}. Initiating self-correction loop."
+        )
+        correction_prompt = prompt_library.JSON_CORRECTION_PROMPT.format(
+            broken_json=json_response, validation_errors=str(e)
+        )
+        corrected_json_response = llm_client.generate_structured_json(correction_prompt)
+        if not corrected_json_response:
+            logger.error(
+                "Halting process: LLM failed to provide a corrected JSON response."
+            )
+            config.RESULTS_DIR.mkdir(exist_ok=True)
+            with open(
+                os.path.join(config.RESULTS_DIR, "invalid_llm_response.json"), "w"
+            ) as f:
+                f.write(json_response)
+            return
+        try:
+            report_data = json.loads(corrected_json_response)
+            validated_report = FashionTrendReport(**report_data)
+            logger.info("Successfully validated LLM response after self-correction!")
+        except (json.JSONDecodeError, ValidationError) as final_e:
+            logger.error(
+                f"Halting process: Self-correction also failed validation. Final error: {final_e}",
+                exc_info=True,
+            )
+            config.RESULTS_DIR.mkdir(exist_ok=True)
+            with open(
+                os.path.join(config.RESULTS_DIR, "invalid_llm_response.json"), "w"
+            ) as f:
+                f.write(json_response)
+            with open(
+                os.path.join(config.RESULTS_DIR, "failed_correction_response.json"), "w"
+            ) as f:
+                f.write(corrected_json_response)
+            return
+
+    if validated_report:
         _save_json_to_results(
             validated_report.model_dump(), config.TREND_REPORT_FILENAME
         )
 
-        # Add the new report to the cache using the more specific key.
-        cache_service.add_to_cache(cache_key, validated_report.model_dump_json())
-
-    except (json.JSONDecodeError, Exception) as e:
-        logger.error(
-            f"Halting process: Final LLM response failed validation. Error: {e}",
-            exc_info=True,
+        # --- CORRECTED CACHE ADD ---
+        # The call to add_to_cache now correctly passes only the theme_hint and the report,
+        # matching the definitive cache_service.py implementation.
+        cache_service.add_to_cache(
+            theme_hint=theme_hint, report_json=validated_report.model_dump_json()
         )
-        config.RESULTS_DIR.mkdir(exist_ok=True)
-        with open(
-            os.path.join(config.RESULTS_DIR, "invalid_llm_response.json"), "w"
-        ) as f:
-            f.write(json_response)
-        return
 
-    final_prompts = _generate_final_prompts(validated_report)
-    _save_json_to_results(final_prompts, config.PROMPTS_FILENAME)
-
-    logger.info(
-        f"--- Creative Process for {season} {year}: '{theme_hint}' Completed Successfully ---"
-    )
+        final_prompts = _generate_final_prompts(validated_report)
+        _save_json_to_results(final_prompts, config.PROMPTS_FILENAME)
+        logger.info(
+            f"--- Creative Process for {season} {year}: '{theme_hint}' Completed Successfully ---"
+        )
+    else:
+        logger.critical(
+            "Halting process: Reached end of workflow without a validated report."
+        )
