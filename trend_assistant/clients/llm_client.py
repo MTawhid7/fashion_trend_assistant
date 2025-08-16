@@ -1,31 +1,65 @@
 """
 Client for interacting with the Google Generative AI (Gemini) API.
-
-This module encapsulates all the logic required to send prompts to the
-Gemini model and receive responses. It utilizes the modern, unified
-Google GenAI SDK with a client-based approach.
+(Fixed version with proper authentication)
 """
 
 import asyncio
+import os
 from typing import Optional, List
 from google import genai
 from google.genai.types import GenerateContentConfig, EmbedContentConfig
 from .. import config
 from ..utils.logger import logger
 
+# --- PROPER AUTHENTICATION FIX ---
+# The Google GenAI library automatically picks up API keys from environment variables.
+# It looks for GOOGLE_API_KEY first, then other variants.
+# We need to ensure the correct key is set in the environment.
+
+
+def _setup_api_key():
+    """Ensure the correct API key is set in the environment."""
+    try:
+        # Clear any conflicting keys and set the one we want
+        if hasattr(config, "GEMINI_API_KEY") and config.GEMINI_API_KEY:
+            # Set the key that the library expects
+            os.environ["GOOGLE_API_KEY"] = config.GEMINI_API_KEY
+            # Clear any other variants to avoid conflicts
+            for key in ["GEMINI_API_KEY", "GOOGLE_GENERATIVE_AI_API_KEY"]:
+                if key in os.environ and key != "GOOGLE_API_KEY":
+                    del os.environ[key]
+            logger.info("Set GOOGLE_API_KEY from config.GEMINI_API_KEY")
+        elif "GOOGLE_API_KEY" not in os.environ:
+            logger.error("No API key found in config.GEMINI_API_KEY or environment")
+            return False
+        return True
+    except Exception as e:
+        logger.error(f"Error setting up API key: {e}")
+        return False
+
+
+# Set up the API key and initialize client
 try:
-    client = genai.Client(api_key=config.GEMINI_API_KEY)
-    logger.info("Google GenAI client initialized successfully.")
+    if _setup_api_key():
+        client = genai.Client()
+        logger.info(
+            "Google GenAI client initialized successfully with correct API key."
+        )
+    else:
+        client = None
+        logger.critical("Failed to set up API key for GenAI client")
 except Exception as e:
     logger.critical(
-        f"CRITICAL: Failed to initialize Google GenAI client: {e}", exc_info=True
+        f"CRITICAL: Failed to initialize Google GenAI client: {e}",
+        exc_info=True,
     )
     client = None
 
 
 def generate_embedding(text: str) -> Optional[List[float]]:
     """
-    Generates a vector embedding for a given text string with robust error handling.
+    Generates a vector embedding for a given text string using the
+    correctly configured client instance.
     """
     if client is None:
         logger.error(
@@ -41,21 +75,16 @@ def generate_embedding(text: str) -> Optional[List[float]]:
             config=EmbedContentConfig(task_type="RETRIEVAL_DOCUMENT"),
         )
 
-        # --- CRITICAL FIX: Defensive check for a valid response ---
-        # This prevents the "None is not subscriptable" or "AttributeError" crash.
-        # It checks if the result exists AND if the embeddings list is not empty.
         if result and result.embeddings:
             logger.info("Successfully generated embedding.")
             return result.embeddings[0].values
         else:
-            # This case handles a successful API call that returns an empty response.
             logger.warning(
                 "Embedding generation call succeeded but returned no embeddings."
             )
             return None
 
     except Exception as e:
-        # This case handles all other errors (network, API key, etc.).
         logger.error(
             f"An error occurred during embedding generation: {e}", exc_info=True
         )

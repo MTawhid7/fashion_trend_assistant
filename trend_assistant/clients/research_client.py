@@ -52,14 +52,18 @@ async def _scrape_url_content(url: str) -> str:
         return ""
 
     logger.info(f"Starting advanced scrape for URL: {url}")
-    browser = None
+
     try:
         async with Stealth().use_async(async_playwright()) as p:
             browser = await p.chromium.launch(headless=True)
             page = await browser.new_page()
+
+            # Set user agent
             await page.set_extra_http_headers(
                 {"User-Agent": random.choice(USER_AGENTS)}
             )
+
+            # Set up route blocking for resources
             await page.route(
                 "**/*",
                 lambda route: (
@@ -70,60 +74,69 @@ async def _scrape_url_content(url: str) -> str:
                 ),
             )
 
-            # --- UPGRADED WAIT STRATEGY ---
-            # Go to the page and wait for the initial document to load. This is fast.
-            await page.goto(url, wait_until="domcontentloaded", timeout=45000)
-
-            # --- NEW: Handle Cookie Banners ---
-            # A list of common selectors for "accept" buttons on cookie banners.
-            cookie_selectors = [
-                "button:has-text('Accept')",
-                "button:has-text('Agree')",
-                "button:has-text('I understand')",
-                "button:has-text('Allow all')",
-                "#onetrust-accept-btn-handler",
-            ]
-            for selector in cookie_selectors:
-                try:
-                    # Look for the button and click it, with a short timeout.
-                    await page.locator(selector).click(timeout=5000)
-                    logger.info(f"Successfully clicked cookie banner on {url}")
-                    # Wait for a moment for the banner to disappear.
-                    await page.wait_for_timeout(1000)
-                    break  # Stop looking once we've clicked one.
-                except PlaywrightError:
-                    # This is not an error, it just means the button wasn't found.
-                    pass
-
-            # --- UPGRADED: More Patient Smart Wait ---
-            # Now, wait patiently for the main content to appear.
-            content_selectors = [
-                "article",
-                "main",
-                '[role="main"]',
-                "#main-content",
-                "#content",
-                ".article-body",
-                ".post-content",
-            ]
-            combined_selector = ", ".join(content_selectors)
             try:
-                await page.wait_for_selector(
-                    combined_selector, state="visible", timeout=25000
-                )
-                logger.info(
-                    f"Smart wait successful: Found a content selector for {url}"
-                )
-            except PlaywrightError:
-                logger.warning(
-                    f"Smart wait timed out for {url}. Proceeding with available HTML."
-                )
+                # Go to the page and wait for the initial document to load
+                await page.goto(url, wait_until="domcontentloaded", timeout=45000)
 
-            html_content = await page.content()
-            await page.unroute_all(behavior="ignoreErrors")
-            await page.close()
-            await browser.close()
+                # Handle Cookie Banners
+                cookie_selectors = [
+                    "button:has-text('Accept')",
+                    "button:has-text('Agree')",
+                    "button:has-text('I understand')",
+                    "button:has-text('Allow all')",
+                    "#onetrust-accept-btn-handler",
+                ]
+                for selector in cookie_selectors:
+                    try:
+                        await page.locator(selector).click(timeout=5000)
+                        logger.info(f"Successfully clicked cookie banner on {url}")
+                        await page.wait_for_timeout(1000)
+                        break
+                    except PlaywrightError:
+                        pass
 
+                # Wait for main content to appear
+                content_selectors = [
+                    "article",
+                    "main",
+                    '[role="main"]',
+                    "#main-content",
+                    "#content",
+                    ".article-body",
+                    ".post-content",
+                ]
+                combined_selector = ", ".join(content_selectors)
+                try:
+                    await page.wait_for_selector(
+                        combined_selector, state="visible", timeout=25000
+                    )
+                    logger.info(
+                        f"Smart wait successful: Found a content selector for {url}"
+                    )
+                except PlaywrightError:
+                    logger.warning(
+                        f"Smart wait timed out for {url}. Proceeding with available HTML."
+                    )
+
+                # Get the HTML content
+                html_content = await page.content()
+
+                # Critical: Clean up routes BEFORE closing anything
+                await page.unroute_all(behavior="ignoreErrors")
+
+                # Small delay to ensure route cleanup completes
+                await asyncio.sleep(0.1)
+
+            finally:
+                # Ensure page is closed properly
+                if not page.is_closed():
+                    await page.close()
+
+                # Close browser
+                if browser.is_connected():
+                    await browser.close()
+
+        # Process the HTML content with BeautifulSoup
         soup = BeautifulSoup(html_content, "html.parser")
 
         main_content = None
@@ -136,6 +149,8 @@ async def _scrape_url_content(url: str) -> str:
                 break
 
         target_soup = main_content if main_content else soup
+
+        # Remove junk elements
         junk_selectors = [
             ".comments",
             "#comments",
@@ -149,6 +164,7 @@ async def _scrape_url_content(url: str) -> str:
         for junk_selector in junk_selectors:
             for element in target_soup.select(junk_selector):
                 element.decompose()
+
         for element in target_soup(
             ["script", "style", "nav", "aside", "footer", "header"]
         ):
@@ -166,6 +182,7 @@ async def _scrape_url_content(url: str) -> str:
             f"Successfully extracted {len(text)} characters of targeted content from {url}"
         )
         return text
+
     except (PlaywrightError, asyncio.TimeoutError) as e:
         logger.warning(f"Scraping failed for {url}: {e}")
         return ""
@@ -174,9 +191,6 @@ async def _scrape_url_content(url: str) -> str:
             f"An unexpected error occurred while scraping {url}: {e}", exc_info=True
         )
         return ""
-    finally:
-        if browser and browser.is_connected():
-            await browser.close()
 
 
 async def gather_research_documents(queries: List[str]) -> List[str]:

@@ -28,21 +28,16 @@ def _generate_search_queries(
 ) -> List[str]:
     """
     Creates a sophisticated, multi-tiered list of search queries that is
-    flexible and adapts to the specified region for global relevance.
+    flexible and now includes queries specifically targeting key garments.
     """
     logger.info(
         "Generating a flexible, context-aware set of professional search queries..."
     )
 
-    # These fragments will be empty if no region/audience is specified,
-    # allowing the queries to gracefully become global.
     audience_query = f" for {target_audience}" if target_audience else ""
-    # For search, "in {region}" is more natural than just the region name.
     region_search_query = f" in {region}" if region else ""
 
     # --- Tier 1: High-Fashion & Regional Runway Analysis ---
-    # We no longer use the restrictive 'site:' operator. Instead, we make the
-    # region a core part of the query, trusting Google's localization.
     tier1_queries = [
         f"Vogue {region_search_query} {season} {year} runway trend report",
         f"WWD {season} {year} {region_search_query} runway analysis {theme_hint}",
@@ -51,7 +46,6 @@ def _generate_search_queries(
     ]
 
     # --- Tier 2: Global Trend Forecasting & Material Innovation ---
-    # These sources are inherently global, so we query them directly without region.
     tier2_queries = [
         f"WGSN {season} {year} key trends {theme_hint}",
         f"Trendstop forecast {season} {year} {theme_hint}",
@@ -59,19 +53,23 @@ def _generate_search_queries(
         f"Première Vision {season} {year} fabric and textile news",
     ]
 
-    # --- Tier 3: Cultural & Street-Level Inspiration ---
-    # These queries are designed to find local and subcultural context.
+    # --- NEW TIER 3: Specific Garment & Item Analysis ---
+    # This tier is designed to find the specific "nouns" of the fashion trend.
     tier3_queries = [
+        f"'{theme_hint}' key pieces {season} {year}{region_search_query}",
+        f"must-have garments {season} {year} fashion {region_search_query}",
+        f"top fashion items {audience_query}{region_search_query} {year}",
+    ]
+
+    # --- Tier 4: Cultural & Street-Level Inspiration ---
+    tier4_queries = [
         f"'{theme_hint}' aesthetic in contemporary art and fashion{region_search_query}",
         f"latest street style {theme_hint}{region_search_query}{audience_query}",
         f"top fashion influencers {region_search_query} {year}",
-        f"subculture style trends {year}{audience_query}{region_search_query}",
     ]
 
-    queries = tier1_queries + tier2_queries + tier3_queries
-    logger.info(
-        f"Generated {len(queries)} flexible queries for global and regional analysis."
-    )
+    queries = tier1_queries + tier2_queries + tier3_queries + tier4_queries
+    logger.info(f"Generated {len(queries)} flexible queries across 4 strategic tiers.")
     return queries
 
 

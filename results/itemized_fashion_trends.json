@@ -1,291 +1,186 @@
 {
-  "season": "Resort/Cruise",
-  "year": 2025,
-  "overarching_theme": "Conscious Coastal Comfort: Elevated Escapism",
+  "season": "Spring/Summer",
+  "year": 2026,
+  "overarching_theme": "I-dentities: Conscious Evolution",
   "cultural_drivers": [
-    "Sustainability and Ethical Production",
-    "Prioritization of Comfort and Practicality",
-    "Inclusivity and Diverse Representation",
-    "Longevity and Timeless Design",
-    "Casualization of Everyday Fashion",
-    "Wellness and Escapism through Travel"
+    "Sustainability & Circularity",
+    "Technological Innovation in Materials",
+    "Reimagined Craftsmanship & Artisanal Virtuosity",
+    "Fluidity of Identity & Gender Expression",
+    "Minimalism & Foundational Versatility",
+    "Well-being & Protection",
+    "Playful Expression & Whimsy"
   ],
   "influential_models": [
-    "The Conscious Wanderer",
-    "The Effortless Minimalist",
-    "The Inclusive Adventurer"
+    "The Conscious Innovator",
+    "The Gender-Fluid Minimalist",
+    "The Artisanal Modernist"
   ],
   "accessories": {
-    "Bags": [
-      "Totes",
-      "Crossbodies",
-      "Minimalist Bags",
-      "Apple-Leather Bags"
-    ],
-    "Footwear": [
-      "Flip-flops",
-      "Comfortable Sturdy Shoes",
-      "Sea Shoes",
-      "Sandals",
-      "Sneakers"
-    ],
+    "Bags": [],
+    "Footwear": [],
     "Jewelry": [
-      "Shell Jewelry",
-      "Lightweight Aluminium Jewelry",
-      "Gold Accented Jewelry",
-      "Silver Accented Jewelry",
-      "Natural Hag Stone Inspired Jewelry",
-      "Earrings",
-      "Necklaces",
-      "Bracelets",
-      "Rings"
+      "Fine jewelry",
+      "High-end jewelry",
+      "Modern metal jewelry"
     ],
     "Other": [
-      "Versatile Multi-Way Styling Accessories",
-      "Elaborate Headdresses (Festive)",
-      "Sunglasses",
-      "Watches",
-      "Belts",
       "Scarves",
-      "Hats"
+      "Apparel trims"
     ]
   },
   "detailed_key_pieces": [
     {
-      "key_piece_name": "The Versatile Sustainable Swimsuit",
-      "description": "This key piece embodies the Resort/Cruise 2025 ethos by offering comfort, practicality, and style for diverse body types and preferences. Its focus on sustainable materials and inclusive design directly addresses the 'Sustainability and Ethical Production' and 'Inclusivity and Diverse Representation' cultural drivers, while its adaptability caters to the 'Casualization of Everyday Fashion' and 'Wellness and Escapism' trends.",
+      "key_piece_name": "The Regenerative Minimalist Ensemble",
+      "description": "This ensemble embodies the shift towards 'Quiet Luxury' and 'Minimalism', focusing on versatile, foundational garments that offer comfort and timelessness. Its significance is deeply rooted in the 'Sustainability & Circularity' cultural driver, utilizing innovative, low-impact materials and celebrating inherent quality over ostentation.",
       "inspired_by_designers": [
-        "Natasha Tonic",
-        "Mara Hoffman"
+        "Donna Karan",
+        "Calvin Klein",
+        "Pierre Mah\u00e9o (Officine G\u00e9n\u00e9rale)"
       ],
       "fabrics": [
         {
-          "material": "Regenerated Nylon (Econyl)",
-          "texture": "Smooth",
+          "material": "Dehydrated Linen",
+          "texture": "Raw simplicity, understated",
           "sustainable": true,
-          "sustainability_comment": "Recycled from ocean plastic waste and fishing nets, reducing environmental impact."
+          "sustainability_comment": "Natural, low-impact processing, aligns with 'Quiet craft' and 'raw simplicity'."
         },
         {
-          "material": "Recycled PET Plastic Bottles",
-          "texture": "Smooth",
+          "material": "Cotton-Cashmere Blend",
+          "texture": "Natural softness, inherent quality",
           "sustainable": true,
-          "sustainability_comment": "Diverts plastic waste from landfills and oceans, reducing reliance on virgin plastics."
+          "sustainability_comment": "Natural fibers, comfortable, aligns with 'Quiet craft' and 'natural softness'."
         },
         {
-          "material": "Hemp",
-          "texture": "Soft",
+          "material": "Sustainable Wool Blend",
+          "texture": "Supple, nuanced, comfortable",
           "sustainable": true,
-          "sustainability_comment": "Natural, highly renewable fiber requiring minimal water and no pesticides."
+          "sustainability_comment": "Focus on responsible sourcing and circularity within the textile industry."
         },
         {
-          "material": "Organic Cotton",
-          "texture": "Soft",
+          "material": "Bio-engineered Silk Satin",
+          "texture": "Sleek, silky, voluptuous",
           "sustainable": true,
-          "sustainability_comment": "GOTS Certified, grown without harmful chemicals, promoting soil health and biodiversity."
-        },
-        {
-          "material": "Tencel Lyocell",
-          "texture": "Silky",
-          "sustainable": true,
-          "sustainability_comment": "Modern fiber derived from sustainably harvested wood pulp, known for its closed-loop production process."
-        },
-        {
-          "material": "Deadstock Fabric",
-          "texture": "Varied",
-          "sustainable": true,
-          "sustainability_comment": "Utilizes existing textile waste, preventing new production and reducing landfill burden."
-        },
-        {
-          "material": "Elastane",
-          "texture": "Smooth",
-          "sustainable": false,
-          "sustainability_comment": "Consider recycled elastane alternatives for future collections."
+          "sustainability_comment": "Bioengineering and biofabrication for sustainable alternatives to traditional silk."
         }
       ],
       "colors": [
         {
-          "name": "Butter Yellow",
-          "pantone_code": "12-0713 TCX",
-          "hex_value": "#FCE38A"
+          "name": "Turbonite",
+          "pantone_code": "19-4007 TCX",
+          "hex_value": "#343537"
         },
         {
-          "name": "Bright Lime Green",
-          "pantone_code": "14-0452 TCX",
-          "hex_value": "#A2D149"
+          "name": "Oatmeal",
+          "pantone_code": "13-0000 TCX",
+          "hex_value": "#DCD7C9"
         },
         {
-          "name": "Aqua",
-          "pantone_code": "14-4810 TCX",
-          "hex_value": "#7BCDC8"
+          "name": "Moonbeam",
+          "pantone_code": "14-1118 TCX",
+          "hex_value": "#E8E2D7"
         },
         {
-          "name": "Coral Pink",
-          "pantone_code": "16-1529 TCX",
-          "hex_value": "#F88379"
-        },
-        {
-          "name": "Bright Yellow",
-          "pantone_code": "13-0859 TCX",
-          "hex_value": "#FDD700"
-        },
-        {
-          "name": "White",
-          "pantone_code": "11-0601 TCX",
-          "hex_value": "#FFFFFF"
-        },
-        {
-          "name": "Black",
-          "pantone_code": "19-4005 TCX",
-          "hex_value": "#000000"
-        },
-        {
-          "name": "Gold",
-          "pantone_code": "16-0836 TCX",
-          "hex_value": "#B8860B"
-        },
-        {
-          "name": "Silver",
-          "pantone_code": "14-4201 TCX",
-          "hex_value": "#C0C0C0"
+          "name": "Quiet Gray",
+          "pantone_code": "16-0000 TCX",
+          "hex_value": "#9E9E9E"
         }
       ],
       "silhouettes": [
-        "Minimalist",
-        "Classic",
-        "Sporty",
-        "Sleek",
-        "High Coverage",
-        "Tiny",
-        "Flattering",
-        "One-Piece",
-        "Two-Piece",
-        "Bikini",
-        "Swim Binder",
-        "Swim Tank",
-        "Swim Skirt"
+        "Simple cuts",
+        "Comfortable",
+        "Minimalistic",
+        "Well-tailored but relaxed",
+        "Ample/loose"
       ],
       "details_trims": [
-        "Adjustable Strap Sliders",
-        "Hardware Details (Zippers, Cinching)",
-        "Tie Strings",
-        "Compression Features",
-        "Support Features",
-        "Solid Pieces",
-        "Patterned Pieces",
-        "Upcycled Tie Dye",
-        "Bold Patterns"
+        "Matte finishes",
+        "Inherent quality of fabric",
+        "Subtle texture"
       ],
       "suggested_pairings": [
-        "Beach Cover-ups",
-        "Lightweight Maxi Dresses",
-        "Vacation-Ready Coordinates",
-        "Simple Linen Shirts",
-        "Sea Shoes"
+        "Simple accessories",
+        "Modern metal jewelry",
+        "Versatile foundational pieces"
       ]
     },
     {
-      "key_piece_name": "The Elevated Linen Co-ord Set",
-      "description": "This ensemble redefines casual elegance for Resort/Cruise 2025, directly addressing the 'Casualization of Everyday Fashion' and 'Prioritization of Comfort and Practicality' cultural drivers. Its timeless design and natural fabrication align with 'Longevity and Timeless Design' and 'Sustainability and Ethical Production', offering a sophisticated yet relaxed option for travel and leisure.",
+      "key_piece_name": "The Bio-Craft Casualwear Redefinition",
+      "description": "This piece redefines casual wear by blending cutting-edge 'Technological Innovation in Materials' with 'Reimagined Craftsmanship & Artisanal Virtuosity'. It reflects the 'Fluidity of Identity & Gender Expression' through its adaptable nature and embraces 'Playful Expression & Whimsy' with curated, innovative elements.",
       "inspired_by_designers": [
-        "Ralph Lauren",
-        "ARKET"
+        "Jeanne Friot",
+        "Lamine Kouyat\u00e9 (Xuly.B\u00cbT)",
+        "Studio Mayasir"
       ],
       "fabrics": [
         {
-          "material": "Linen",
-          "texture": "Crinkled",
+          "material": "Fungi-derived Biofabric",
+          "texture": "Sensory, dynamic",
           "sustainable": true,
-          "sustainability_comment": "Natural, breathable, and durable fiber with a low environmental footprint."
+          "sustainability_comment": "Innovative sustainable material from bioengineering, responsible materials."
         },
         {
-          "material": "Organic Cotton",
-          "texture": "Soft",
+          "material": "Acryluna OnceDye",
+          "texture": "Textured, vibrant",
           "sustainable": true,
-          "sustainability_comment": "GOTS Certified, grown without harmful chemicals, promoting soil health and biodiversity."
+          "sustainability_comment": "New patented fibre with low-impact colour via sustainable dyes (waterless processes)."
         },
         {
-          "material": "Bamboo",
-          "texture": "Soft",
+          "material": "Organic Cotton Blend",
+          "texture": "Fresh, airy, blended",
           "sustainable": true,
-          "sustainability_comment": "Highly renewable resource, fast-growing and requires minimal water."
+          "sustainability_comment": "Eco-friendly, natural material, aligns with 'Preppy boy' and 'Cheeky Cheeky' fabrics."
         },
         {
-          "material": "Hemp",
-          "texture": "Soft",
+          "material": "Micro-drilled Leather (sustainable)",
+          "texture": "Cool, soft, functional",
           "sustainable": true,
-          "sustainability_comment": "Extremely durable and sustainable, requiring little water and no pesticides."
-        },
-        {
-          "material": "Tencel",
-          "texture": "Smooth",
-          "sustainable": true,
-          "sustainability_comment": "Derived from sustainably sourced wood, produced in a closed-loop system."
-        },
-        {
-          "material": "Cotton Poplin",
-          "texture": "Smooth",
-          "sustainable": false,
-          "sustainability_comment": "Consider organic or recycled cotton poplin for enhanced sustainability."
+          "sustainability_comment": "Leather industry transformation towards sustainability and circularity, innovative texture."
         }
       ],
       "colors": [
         {
-          "name": "Butter Yellow",
-          "pantone_code": "12-0713 TCX",
-          "hex_value": "#FCE38A"
+          "name": "Vanilla Ice",
+          "pantone_code": "12-0817 TCX",
+          "hex_value": "#F3E0C9"
         },
         {
-          "name": "Sky Blue",
-          "pantone_code": "14-4123 TCX",
-          "hex_value": "#87CEEB"
+          "name": "Clearwater",
+          "pantone_code": "16-4120 TCX",
+          "hex_value": "#88C4D1"
         },
         {
-          "name": "Coral",
-          "pantone_code": "16-1529 TCX",
-          "hex_value": "#F88379"
+          "name": "Pink Dogwood",
+          "pantone_code": "15-1905 TCX",
+          "hex_value": "#E0BBE4"
         },
         {
-          "name": "Mint",
-          "pantone_code": "13-5408 TCX",
-          "hex_value": "#98FB98"
-        },
-        {
-          "name": "White",
-          "pantone_code": "11-0601 TCX",
-          "hex_value": "#FFFFFF"
-        },
-        {
-          "name": "Beige",
-          "pantone_code": "13-0905 TCX",
-          "hex_value": "#F5F5DC"
-        },
-        {
-          "name": "Olive",
-          "pantone_code": "18-0625 TCX",
-          "hex_value": "#6B8E23"
+          "name": "Yellow (Saraswati Puja)",
+          "pantone_code": "13-0758 TCX",
+          "hex_value": "#FDD262"
         }
       ],
       "silhouettes": [
-        "Relaxed",
-        "Breezy Cuts",
-        "Loose",
-        "Wide",
-        "Barrel Legs",
-        "Cinched Waists",
-        "Balloon-Shaped"
+        "Redefined casual wear",
+        "Non-gendered",
+        "Unisex",
+        "Comfortable",
+        "Fluid"
       ],
       "details_trims": [
-        "Minimalist Design",
-        "Natural Dyes",
-        "Non-Toxic Dyes",
-        "Versatile Styling (Looping, Bonding, Cinching)"
+        "Artisanal embroidery",
+        "Weaving details",
+        "Pigment prints",
+        "Childlike drawn patterns",
+        "Shirring",
+        "Puffed fabrics",
+        "Quilts",
+        "Traditional stitches"
       ],
       "suggested_pairings": [
-        "Comfortable Sturdy Shoes",
-        "Flip-flops",
-        "Minimalist Bags",
-        "Shell Jewelry",
-        "Simple T-shirts"
+        "Functional accessories",
+        "Layered pieces",
+        "Playful footwear"
       ]
     }
   ]

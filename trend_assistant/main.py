@@ -13,17 +13,17 @@ from .utils.location_helper import get_location_from_ip  # Import our new functi
 # --- Creative Brief Configuration --------------------------------------------
 
 # --- Tier 1: Core Creative Idea (Required) ---
-SEASON = "Resort/Cruise"
+SEASON = "Fall/Winter"
 YEAR = 2025
-THEME_HINT = "Biodegradable swimwear and tropical botanical prints"
-TARGET_AUDIENCE = "Eco-luxury beachgoers (30-55)"
+THEME_HINT = "Minimalist layering for extreme climates"
+TARGET_AUDIENCE = "Outdoor enthusiasts, functional style seekers (28-50)"
 
 # --- Tier 2: Location (Dynamic with Manual Override) ---
 # The system will try to detect your location automatically.
 # If you want to override it, simply type a location into the REGION variable.
 # Default is None, which means it will try to detect automatically.
 # Example: REGION = "Paris, France"
-REGION_OVERRIDE = "Bali, Indonesia"
+REGION_OVERRIDE = "Reykjavik, Iceland"
 
 # --- Main Application Logic --------------------------------------------------
 
