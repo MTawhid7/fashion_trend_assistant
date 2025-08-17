@@ -6,15 +6,15 @@ import requests
 from typing import Optional
 from .logger import logger
 
-# We will use a free, simple, and reliable IP geolocation API.
-IP_GEOLOCATION_API_URL = "http://ip-api.com/json"
+# --- CORRECTED: Using the secure HTTPS endpoint ---
+IP_GEOLOCATION_API_URL = "https://ip-api.com/json"
 
 
 def get_location_from_ip() -> Optional[str]:
     """
     Determines the user's location based on their public IP address.
 
-    Makes a request to a geolocation API and parses the response to get
+    Makes a request to a secure geolocation API and parses the response to get
     a 'City, Country' string.
 
     Returns:
@@ -23,14 +23,11 @@ def get_location_from_ip() -> Optional[str]:
     """
     logger.info("Attempting to determine user location from public IP...")
     try:
-        # Make the request with a reasonable timeout.
         response = requests.get(IP_GEOLOCATION_API_URL, timeout=5)
-        # Raise an exception if the request was not successful (e.g., 4xx or 5xx error).
         response.raise_for_status()
 
         data = response.json()
 
-        # The API returns 'success' in the status field on a good lookup.
         if data.get("status") == "success":
             city = data.get("city")
             country = data.get("country")
@@ -39,18 +36,15 @@ def get_location_from_ip() -> Optional[str]:
                 logger.info(f"Successfully determined location: {location_string}")
                 return location_string
 
-        # If status is not 'success' or data is missing, log it.
         logger.warning(
             f"Geolocation API returned a non-success status: {data.get('message')}"
         )
         return None
 
     except requests.exceptions.RequestException as e:
-        # This catches network errors, timeouts, etc.
         logger.error(f"A network error occurred during location lookup: {e}")
         return None
     except Exception as e:
-        # This catches other potential errors, like JSON decoding.
         logger.error(
             f"An unexpected error occurred during location lookup: {e}", exc_info=True
         )
