@@ -1,7 +1,6 @@
 """
 Client for performing web research and content extraction.
-(Definitive A+ version with controlled concurrency, adaptive fallbacks,
-bulletproof resource management, and enhanced resilience for professional-grade scraping)
+(Fixed version with proper route handling to prevent TargetClosedError)
 """
 
 import asyncio
@@ -201,10 +200,42 @@ def _extract_text_content_enhanced(html_content: str, url: str) -> str:
     return cleaned_text[:50000]
 
 
+async def _defensive_route_handler(route, request):
+    """Defensive route handler that prevents TargetClosedError."""
+    try:
+        # Block resource types that we don't need
+        if request.resource_type in {"image", "font", "media", "websocket"}:
+            await route.abort()
+        else:
+            await route.continue_()
+    except Exception as e:
+        # Handle cases where page/context/browser has been closed
+        error_message = str(e)
+        if any(
+            keyword in error_message
+            for keyword in [
+                "Target page",
+                "Target closed",
+                "TargetClosedError",
+                "context disposed",
+                "browser closed",
+            ]
+        ):
+            # This is a harmless race condition - just ignore it
+            logger.debug(f"Route handler called after page closed: {e}")
+            return
+        # Re-raise other unexpected errors
+        logger.error(f"Unexpected route handler error: {e}")
+        raise
+
+
 async def _scrape_single_url_enhanced(url: str) -> str:
-    """Internal scraping function with proper resource management."""
+    """Internal scraping function with proper resource management and route cleanup."""
     browser = None
+    context = None
+    page = None
     html_content = ""
+
     try:
         async with Stealth().use_async(async_playwright()) as p:  # type: ignore
             browser = await p.chromium.launch(
@@ -216,25 +247,37 @@ async def _scrape_single_url_enhanced(url: str) -> str:
             )
             page = await context.new_page()
             page.set_default_timeout(20000)
-            await page.route(
-                "**/*",
-                lambda route: (
-                    route.abort()
-                    if route.request.resource_type
-                    in {"image", "font", "media", "websocket"}
-                    else route.continue_()
-                ),
-            )
+
+            # Set up route with defensive handler
+            await page.route("**/*", _defensive_route_handler)
 
             html_content = await _scrape_with_fallback_strategy(page, url)
             if html_content:
                 await _handle_cookie_banners(page)
                 html_content = await page.content()
+
     except Exception as e:
         logger.warning(f"Enhanced scraping error for {url}: {e}")
     finally:
-        if browser:
-            await browser.close()
+        # CRITICAL: Clean up routes before closing to prevent TargetClosedError
+        try:
+            if page:
+                # Unregister all routes with error ignoring behavior
+                await page.unroute_all(behavior="ignoreErrors")
+        except Exception as cleanup_error:
+            logger.debug(f"Route cleanup error (harmless): {cleanup_error}")
+
+        try:
+            if context:
+                await context.close()
+        except Exception as context_error:
+            logger.debug(f"Context close error (harmless): {context_error}")
+
+        try:
+            if browser:
+                await browser.close()
+        except Exception as browser_error:
+            logger.debug(f"Browser close error (harmless): {browser_error}")
 
     if not html_content:
         return ""

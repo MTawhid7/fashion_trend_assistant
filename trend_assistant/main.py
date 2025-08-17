@@ -14,9 +14,7 @@ from .utils import brief_utils
 # Simply write your creative idea in the multi-line string below.
 
 USER_PASSAGE = """
-I'm looking for inspiration for next fall's collection, specifically for women
-in their 30s. The location is obviously Paris. The whole vibe should be that
-classic, effortless French girl style.
+I need trend inspiration for luxury menswear in Dubai. Think sharp tailoring with a modern twist, fabrics suitable for hot climates, but still sophisticated.
 """
 
 # --- Main Application Logic --------------------------------------------------
