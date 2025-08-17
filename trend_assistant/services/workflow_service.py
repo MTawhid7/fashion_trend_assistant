@@ -16,12 +16,11 @@ from ..clients import llm_client, research_client
 from ..models.trend_models import FashionTrendReport
 from ..prompts import prompt_library
 from ..utils.logger import logger
-from ..utils import output_utils
+from ..utils import output_utils  # We no longer need brief_utils here
 from ..utils.location_helper import get_location_from_ip
 
+
 # --- Helper Functions --------------------------------------------------------
-
-
 def _generate_search_queries(brief: dict) -> List[str]:
     """
     Creates a definitive, multi-tiered list of search queries from the brief.
@@ -70,6 +69,20 @@ def _generate_search_queries(brief: dict) -> List[str]:
 
     logger.info(f"Generated {len(queries)} definitive, high-quality queries.")
     return queries
+
+
+# --- DEFINITIVE FIX: Restoring the missing helper function ---
+def _chunk_text(text: str, chunk_size: int, overlap: int) -> List[str]:
+    """Breaks a long text into smaller, overlapping chunks."""
+    if len(text) <= chunk_size:
+        return [text]
+    chunks = []
+    start = 0
+    while start < len(text):
+        end = start + chunk_size
+        chunks.append(text[start:end])
+        start += chunk_size - overlap
+    return chunks
 
 
 async def _run_tasks_in_batches(
@@ -170,7 +183,12 @@ async def run_creative_process(
                 exc_info=True,
             )
 
+    logger.info("--- Starting Full Research & Synthesis Workflow ---")
+
+    # --- CORRECTED CALL ---
+    # Now correctly calls the local private helper function.
     queries = _generate_search_queries(brief)
+
     scraped_documents = await research_client.gather_research_documents(queries)
 
     if not scraped_documents:
@@ -180,13 +198,19 @@ async def run_creative_process(
     logger.info(
         f"--- Starting Intelligent Summarization of {len(scraped_documents)} documents ---"
     )
+    all_chunks = []
+    for doc in scraped_documents:
+        chunks = _chunk_text(doc, chunk_size=20000, overlap=1000)
+        all_chunks.extend(chunks)
+    logger.info(
+        f"Broken down {len(scraped_documents)} documents into {len(all_chunks)} total chunks for summarization."
+    )
+
     summarization_tasks = [
         llm_client.generate_text_async(
-            prompt_library.SUMMARIZATION_PROMPT_TEMPLATE.format(
-                document_text=doc[:150000]
-            )
+            prompt_library.SUMMARIZATION_PROMPT_TEMPLATE.format(document_text=chunk)
         )
-        for doc in scraped_documents
+        for chunk in all_chunks
     ]
     summaries = await _run_tasks_in_batches(
         summarization_tasks, config.GEMINI_API_CONCURRENCY_LIMIT, 61
@@ -199,7 +223,10 @@ async def run_creative_process(
         logger.error("Halting process: Failed to generate any valid summaries.")
         return
 
-    research_context = "\n\n--- DOCUMENT SUMMARY ---\n\n".join(valid_summaries)
+    research_context = "\n\n--- DOCUMENT CHUNK SUMMARY ---\n\n".join(valid_summaries)
+    logger.info(
+        f"Successfully generated {len(valid_summaries)} summaries from {len(all_chunks)} chunks."
+    )
 
     final_prompt = prompt_library.ITEMIZED_REPORT_PROMPT.format(
         research_context=research_context, season=brief["season"], year=brief["year"]

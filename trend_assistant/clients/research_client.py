@@ -1,10 +1,12 @@
 """
 Client for performing web research and content extraction.
-(Fixed version that prevents hanging after successful extractions)
+(Definitive A+ version with controlled concurrency, adaptive fallbacks,
+bulletproof resource management, and enhanced resilience for professional-grade scraping)
 """
 
 import asyncio
 import random
+import re
 from typing import List, Set, Any
 from bs4 import BeautifulSoup
 from playwright.async_api import (
@@ -50,237 +52,209 @@ def _sync_google_search(query: str, search_service: Any, num: int) -> List[str]:
         return []
 
 
-async def _scrape_with_fast_strategy(page, url: str) -> str:
-    """Fast, no-nonsense navigation strategy to prevent hanging."""
+async def _scrape_with_fallback_strategy(page, url: str) -> str:
+    """Try multiple loading strategies to ensure content is fetched."""
     strategies = [
-        {"wait_until": "commit", "timeout": 3000, "name": "commit"},
-        {"wait_until": "domcontentloaded", "timeout": 5000, "name": "dom"},
-        {"wait_until": None, "timeout": 2000, "name": "minimal"},
+        {"wait_until": "domcontentloaded", "timeout": 15000, "name": "fast"},
+        {"wait_until": "load", "timeout": 20000, "name": "standard"},
+        {"wait_until": "networkidle", "timeout": 25000, "name": "patient"},
     ]
-
     for i, strategy in enumerate(strategies):
         try:
-            logger.debug(f"Trying strategy {i+1} ({strategy['name']}) for {url}")
-
-            if strategy["wait_until"]:
-                await page.goto(
-                    url, wait_until=strategy["wait_until"], timeout=strategy["timeout"]
-                )
-            else:
-                await page.goto(url, timeout=strategy["timeout"])
-
-            # Get content immediately, no additional waiting
+            logger.debug(
+                f"Trying navigation strategy #{i+1} ({strategy['name']}) for {url}"
+            )
+            await page.goto(
+                url, wait_until=strategy["wait_until"], timeout=strategy["timeout"]
+            )
             content = await page.content()
-            if len(content) > 300:  # Basic sanity check
+            if len(content) > 500:
+                logger.debug(f"Strategy #{i+1} successful for {url}")
                 return content
-
-        except (PlaywrightTimeoutError, PlaywrightError):
-            if i < len(strategies) - 1:
-                continue
-            else:
-                # Last resort - try to get any content
-                try:
-                    return await page.content()
-                except Exception:
-                    return ""
-
+        except (PlaywrightTimeoutError, PlaywrightError) as e:
+            logger.warning(f"Strategy #{i+1} for {url} failed: {e}")
+            if i == len(strategies) - 1:
+                raise
     return ""
 
 
-async def _handle_cookie_banners_fast(page) -> None:
-    """Quick cookie banner handling with very short timeouts."""
+async def _handle_cookie_banners(page) -> None:
+    """Handle cookie banners with quick timeouts."""
     cookie_selectors = [
         "button:has-text('Accept')",
         "button:has-text('Agree')",
+        "button:has-text('OK')",
         "#onetrust-accept-btn-handler",
+        "[id*='cookie'] button",
+        "[class*='cookie'] button",
     ]
-
     for selector in cookie_selectors:
         try:
-            await page.locator(selector).click(timeout=1000)  # Very short timeout
-            await page.wait_for_timeout(200)  # Brief pause
+            await page.locator(selector).click(timeout=2000)
+            logger.info(f"Clicked cookie banner using selector: {selector}")
+            await page.wait_for_timeout(500)
             break
         except PlaywrightError:
             continue
 
 
-async def _scrape_url_content(url: str) -> str:
-    """
-    Fixed scraping function that prevents hanging after successful extractions.
-    """
-    if not url or not url.startswith(("http://", "https://")):
-        return ""
-
-    logger.info(f"Starting scrape for URL: {url}")
-
-    # Wrap entire operation in timeout to prevent infinite hanging
-    try:
-        result = await asyncio.wait_for(_scrape_single_url(url), timeout=15.0)
-        if result:
-            logger.info(f"Successfully extracted {len(result)} characters from {url}")
-        return result
-    except asyncio.TimeoutError:
-        logger.warning(f"Total timeout (15s) exceeded for {url}")
-        return ""
-    except Exception as e:
-        logger.error(f"Scraping failed for {url}: {e}")
-        return ""
-
-
-async def _scrape_single_url(url: str) -> str:
-    """Internal scraping with deterministic cleanup."""
-    playwright_ctx = None
-    browser = None
-    page = None
-    html_content = ""
-
-    try:
-        # Use context manager for Playwright but handle cleanup manually
-        playwright_ctx = await async_playwright().start()
-
-        browser = await playwright_ctx.chromium.launch(
-            headless=True,
-            args=[
-                "--no-sandbox",
-                "--disable-dev-shm-usage",
-                "--disable-gpu",
-                "--disable-extensions",
-                "--disable-background-timer-throttling",
-            ],
-        )
-
-        page = await browser.new_page()
-
-        # Set short timeouts
-        page.set_default_timeout(6000)
-        page.set_default_navigation_timeout(6000)
-
-        await page.set_extra_http_headers({"User-Agent": random.choice(USER_AGENTS)})
-
-        # Block resource-heavy content
-        await page.route(
-            "**/*",
-            lambda route: (
-                route.abort()
-                if route.request.resource_type
-                in {"image", "stylesheet", "font", "media", "websocket"}
-                else route.continue_()
-            ),
-        )
-
-        # Use fast navigation strategy
-        html_content = await _scrape_with_fast_strategy(page, url)
-
-        # Quick cookie handling if we got content
-        if html_content:
-            await _handle_cookie_banners_fast(page)
-            # Don't re-fetch content after cookie handling to avoid hanging
-
-    except Exception as e:
-        logger.warning(f"Scraping error for {url}: {e}")
-        html_content = ""
-
-    finally:
-        # CRITICAL: Deterministic cleanup with individual timeouts
-        cleanup_errors = []
-
-        # Close page first
-        if page:
-            try:
-                await asyncio.wait_for(page.close(), timeout=1.0)
-            except Exception as e:
-                cleanup_errors.append(f"page: {e}")
-
-        # Close browser
-        if browser:
-            try:
-                await asyncio.wait_for(browser.close(), timeout=1.0)
-            except Exception as e:
-                cleanup_errors.append(f"browser: {e}")
-
-        # Stop playwright
-        if playwright_ctx:
-            try:
-                await asyncio.wait_for(playwright_ctx.stop(), timeout=1.0)
-            except Exception as e:
-                cleanup_errors.append(f"playwright: {e}")
-
-        if cleanup_errors:
-            logger.debug(f"Cleanup issues for {url}: {cleanup_errors}")
-
-    # Process content if we got any
-    if not html_content:
-        return ""
-
-    return _extract_text_content(html_content, url)
-
-
-def _extract_text_content(html_content: str, url: str) -> str:
-    """Extract text content from HTML."""
+def _extract_text_content_enhanced(html_content: str, url: str) -> str:
+    """Enhanced text extraction with better selectors and defensive programming."""
     soup = BeautifulSoup(html_content, "html.parser")
-
-    # Try to find main content
     content_selectors = [
+        ".blog-post-content",
+        ".trend-analysis",
+        ".fashion-content",
+        ".post-content",
+        ".article-content",
+        ".blog-content",
         "article",
         "main",
         '[role="main"]',
+        ".main-content",
         "#main-content",
         "#content",
-        ".article-body",
-        ".post-content",
-        ".entry-content",
         ".content",
+        ".article-body",
+        ".post-body",
+        ".entry-content",
+        ".blog-post",
+        ".container",
+        ".wrapper",
+        "#wrapper",
     ]
-
     main_content = None
     for selector in content_selectors:
         main_content = soup.select_one(selector)
-        if main_content:
+        # DEFENSIVE CHECK: Ensure main_content is not None before using it
+        if main_content and len(main_content.get_text(strip=True)) > 300:
+            logger.debug(f"Found content with selector: {selector}")
             break
 
     target_soup = main_content if main_content else soup
 
-    # Remove unwanted elements
     junk_selectors = [
         ".comments",
         "#comments",
-        ".related-posts",
-        ".sidebar",
-        "#sidebar",
+        ".comment-section",
         ".social-share",
-        ".newsletter-signup",
-        ".author-bio",
+        ".social-sharing",
+        ".share-buttons",
         ".advertisement",
         ".ads",
-        ".cookie-banner",
-        ".popup",
+        ".ad-container",
+        ".newsletter-signup",
+        ".newsletter",
+        ".email-signup",
+        ".promo",
+        ".promotion",
+        ".banner-ad",
         ".modal",
+        ".popup",
+        ".overlay",
+        ".cookie-banner",
+        ".cookie-notice",
+        ".gdpr-notice",
+        ".sidebar",
+        "#sidebar",
+        ".widget",
+        ".widgets",
+        ".related-posts",
+        ".related-articles",
+        ".recommended",
+        ".more-stories",
+        ".trending",
+        ".author-bio",
+        ".author-info",
+        ".tags",
+        ".categories",
+        ".post-meta",
+        ".contact-form",
+        ".search-form",
+        "form.search",
     ]
-
     for junk_selector in junk_selectors:
         for element in target_soup.select(junk_selector):
             element.decompose()
 
     for element in target_soup(
-        ["script", "style", "nav", "aside", "footer", "header", "noscript"]
+        ["script", "style", "noscript", "nav", "aside", "footer", "header"]
     ):
         element.decompose()
 
-    text = " ".join(target_soup.get_text(separator=" ", strip=True).split())
+    # DEFINITIVE FIX: Use BeautifulSoup's robust text extraction, then clean.
+    text = target_soup.get_text(separator=" ", strip=True)
+    cleaned_text = re.sub(r"\s+", " ", text).strip()
+    cleaned_text = re.sub(
+        r"(Share:|Follow us:|Subscribe|Newsletter)",
+        "",
+        cleaned_text,
+        flags=re.IGNORECASE,
+    )
 
-    if len(text) < 200:
-        logger.warning(f"URL {url} has insufficient content ({len(text)} chars)")
+    if len(cleaned_text) < 200:
+        logger.warning(
+            f"URL {url} has insufficient content ({len(cleaned_text)} chars)"
+        )
         return ""
 
-    return text
+    return cleaned_text[:50000]
+
+
+async def _scrape_single_url_enhanced(url: str) -> str:
+    """Internal scraping function with proper resource management."""
+    browser = None
+    html_content = ""
+    try:
+        async with Stealth().use_async(async_playwright()) as p:  # type: ignore
+            browser = await p.chromium.launch(
+                headless=True, args=["--no-sandbox", "--disable-dev-shm-usage"]
+            )
+            context = await browser.new_context(
+                user_agent=random.choice(USER_AGENTS),
+                viewport={"width": 1920, "height": 1080},
+            )
+            page = await context.new_page()
+            page.set_default_timeout(20000)
+            await page.route(
+                "**/*",
+                lambda route: (
+                    route.abort()
+                    if route.request.resource_type
+                    in {"image", "font", "media", "websocket"}
+                    else route.continue_()
+                ),
+            )
+
+            html_content = await _scrape_with_fallback_strategy(page, url)
+            if html_content:
+                await _handle_cookie_banners(page)
+                html_content = await page.content()
+    except Exception as e:
+        logger.warning(f"Enhanced scraping error for {url}: {e}")
+    finally:
+        if browser:
+            await browser.close()
+
+    if not html_content:
+        return ""
+    return _extract_text_content_enhanced(html_content, url)
+
+
+async def _scrape_url_content(url: str) -> str:
+    """Wraps the internal scraping function with a total operation timeout."""
+    try:
+        return await asyncio.wait_for(_scrape_single_url_enhanced(url), timeout=30.0)
+    except asyncio.TimeoutError:
+        logger.warning(f"Total scraping timeout (30s) exceeded for {url}")
+        return ""
 
 
 async def gather_research_documents(queries: List[str]) -> List[str]:
-    """Improved research gathering with controlled concurrency and better error handling."""
-    logger.info("--- Starting Research Phase: Gathering Raw Documents ---")
+    """Enhanced research gathering with controlled concurrency."""
+    logger.info("--- Starting Enhanced Research Phase: Gathering Raw Documents ---")
     if not queries:
         return []
-
     try:
         search_service = build("customsearch", "v1", developerKey=config.GOOGLE_API_KEY)
     except Exception as e:
@@ -289,7 +263,6 @@ async def gather_research_documents(queries: List[str]) -> List[str]:
         )
         return []
 
-    # Get URLs from search
     loop = asyncio.get_running_loop()
     search_tasks = [
         loop.run_in_executor(
@@ -299,11 +272,9 @@ async def gather_research_documents(queries: List[str]) -> List[str]:
     ]
     url_lists = await asyncio.gather(*search_tasks)
     all_urls: Set[str] = {url for url_list in url_lists for url in url_list}
-
     if not all_urls:
         return []
 
-    # Filter URLs
     ignored_extensions = [
         ".pdf",
         ".txt",
@@ -315,41 +286,40 @@ async def gather_research_documents(queries: List[str]) -> List[str]:
         ".docx",
         ".xlsx",
     ]
+    ignored_domains = [
+        "pinterest.com",
+        "amazon.com",
+        "instagram.com",
+        "facebook.com",
+        "twitter.com",
+        "youtube.com",
+    ]
     filtered_urls = [
         url
         for url in all_urls
         if not any(url.lower().endswith(ext) for ext in ignored_extensions)
+        and not any(domain in url.lower() for domain in ignored_domains)
     ]
 
     if len(all_urls) > len(filtered_urls):
         logger.info(
-            f"Filtered out {len(all_urls) - len(filtered_urls)} direct file links"
+            f"Filtered out {len(all_urls) - len(filtered_urls)} unsuitable URLs"
         )
-
     if not filtered_urls:
         return []
 
     logger.info(f"Found {len(filtered_urls)} valid URLs to scrape")
 
-    # Use controlled concurrency with semaphore
-    semaphore = asyncio.Semaphore(4)  # Reduced concurrency to prevent overwhelming
+    semaphore = asyncio.Semaphore(4)
 
     async def scrape_with_semaphore(url):
         async with semaphore:
             return await _scrape_url_content(url)
 
-    # Execute scraping tasks
     scraping_tasks = [scrape_with_semaphore(url) for url in filtered_urls]
     scraped_contents = await asyncio.gather(*scraping_tasks, return_exceptions=True)
 
-    # Filter valid results
-    valid_contents = []
-    for i, content in enumerate(scraped_contents):
-        if isinstance(content, str) and content:
-            valid_contents.append(content)
-        elif isinstance(content, Exception):
-            logger.warning(f"Scraping exception for URL {i}: {content}")
-
+    valid_contents = [c for c in scraped_contents if isinstance(c, str) and c]
     logger.info(
         f"Successfully scraped {len(valid_contents)} out of {len(filtered_urls)} URLs"
     )
