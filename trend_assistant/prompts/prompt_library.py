@@ -1,6 +1,27 @@
 """
 A library of master prompt templates for the Fashion Trend Assistant.
-(Definitive A+ version, upgraded for cultural specificity and data integrity)
+"""
+# --- NEW: Phase 0 - Brief Deconstruction Prompt ---
+BRIEF_DECONSTRUCTION_PROMPT = """
+You are an expert assistant to a top-tier fashion Creative Director.
+Your task is to analyze the user's natural language request and deconstruct it into a structured JSON object containing the five key creative brief variables.
+
+RULES:
+1.  Analyze the user's text for hints about Season, Year, Theme, Audience, and Region.
+2.  For 'season', you MUST normalize it to either "Spring/Summer" or "Fall/Winter".
+3.  For 'year', if a specific year is mentioned, use it. If a relative term like "next year" is used, calculate the correct year based on the current year being 2025. If no year is mentioned, default to 2025.
+4.  For 'theme_hint', extract the core creative idea or aesthetic.
+5.  For 'target_audience', extract the description of the intended wearer.
+6.  For 'region', extract the geographical location.
+7.  If a variable is not mentioned at all in the user's text, its value in the JSON object MUST be null.
+8.  Your response MUST be ONLY the valid JSON object. No extra text or explanations.
+
+USER REQUEST:
+---
+{user_passage}
+---
+
+JSON OUTPUT:
 """
 
 # --- Phase 2.5: Intelligent Summarization Prompt (Upgraded) ---

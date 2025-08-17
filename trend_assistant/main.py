@@ -1,29 +1,23 @@
 """
 Main entry point for the Fashion Trend Assistant application.
+(Definitive version with a clean Natural Language Interface)
 """
 
 import asyncio
 import time
-
-# --- MODIFIED IMPORTS ---
 from .services import workflow_service
 from .utils.logger import logger
-from .utils.location_helper import get_location_from_ip  # Import our new function
+from .utils import brief_utils
 
-# --- Creative Brief Configuration --------------------------------------------
+# --- USER INTERFACE: The Natural Language Brief -----------------------------
+# This is the single point of interaction for the user.
+# Simply write your creative idea in the multi-line string below.
 
-# --- Tier 1: Core Creative Idea (Required) ---
-SEASON = "Autumn"
-YEAR = 2025
-THEME_HINT = "Understated elegance and the art of 'sprezzatura'"
-TARGET_AUDIENCE = "Mature, confident women with a minimalist aesthetic"
-
-# --- Tier 2: Location (Dynamic with Manual Override) ---
-# The system will try to detect your location automatically.
-# If you want to override it, simply type a location into the REGION variable.
-# Default is None, which means it will try to detect automatically.
-# Example: REGION = "Paris, France"
-REGION_OVERRIDE = "Milan, Italy"
+USER_PASSAGE = """
+I need some ideas for a summer collection. It should be for a younger crowd,
+something fun and colorful for a vacation. I was thinking maybe something for the
+Italian coast? Not sure about the year, just whatever is current.
+"""
 
 # --- Main Application Logic --------------------------------------------------
 
@@ -34,28 +28,26 @@ async def main():
     logger.info("    FASHION TREND ASSISTANT - CREATIVE PROCESS STARTED   ")
     logger.info("=========================================================")
 
-    # --- DYNAMIC REGION LOGIC ---
-    # Determine the final region to use for the creative brief.
-    # If the user has provided a manual override, use it.
-    if REGION_OVERRIDE:
-        final_region = REGION_OVERRIDE
-        logger.info(f"Using manually specified region: {final_region}")
-    else:
-        # Otherwise, attempt to detect the location automatically.
-        final_region = get_location_from_ip()
-        if not final_region:
-            logger.warning(
-                "Could not determine location automatically. Proceeding with a broader, non-regional search."
-            )
-
     start_time = time.time()
+
+    # --- NEW: Phase 0 - AI-Powered Brief Deconstruction ---
+    structured_brief = brief_utils.deconstruct_brief_with_ai(USER_PASSAGE)
+
+    if not structured_brief:
+        logger.critical(
+            "Could not understand the creative brief. Please rephrase your request."
+        )
+        return
+
     try:
+        # The deconstructed brief is then passed into our workflow.
+        # The service layer is now responsible for all validation and defaults.
         await workflow_service.run_creative_process(
-            season=SEASON,
-            year=YEAR,
-            theme_hint=THEME_HINT,
-            target_audience=TARGET_AUDIENCE,
-            region=final_region,  # Pass the final, determined region to the service
+            season=structured_brief.get("season"),
+            year=structured_brief.get("year"),
+            theme_hint=structured_brief.get("theme_hint"),
+            target_audience=structured_brief.get("target_audience"),
+            region=structured_brief.get("region"),
         )
     except Exception as e:
         logger.critical(f"A critical unexpected error occurred: {e}", exc_info=True)
