@@ -60,3 +60,14 @@ requests
 
 # A stealth plugin for Playwright to help evade bot detection mechanisms.
 playwright-stealth
+
+# -----------------------------------------------------------------------------
+# Resilience & Retries
+# -----------------------------------------------------------------------------
+
+# For implementing robust, automatic retry logic with exponential backoff,
+# making our API clients resilient to transient server errors.
+tenacity
+
+# ADDED FOR LANGUAGE DETECTION
+langdetect

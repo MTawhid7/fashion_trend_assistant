@@ -14,7 +14,7 @@ from .utils import brief_utils
 # Simply write your creative idea in the multi-line string below.
 
 USER_PASSAGE = """
-I need trend inspiration for luxury menswear in Dubai. Think sharp tailoring with a modern twist, fabrics suitable for hot climates, but still sophisticated.
+Show me modest fashion trends for young Muslim women in Jakarta — elegant but stylish.
 """
 
 # --- Main Application Logic --------------------------------------------------

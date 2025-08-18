@@ -1,12 +1,12 @@
 """
 Client for performing web research and content extraction.
-(Fixed version with proper route handling to prevent TargetClosedError)
+(Fixed version with language filtering and corrected type handling)
 """
 
 import asyncio
 import random
 import re
-from typing import List, Set, Any
+from typing import List, Set, Any, Dict, Union
 from bs4 import BeautifulSoup
 from playwright.async_api import (
     async_playwright,
@@ -16,13 +16,17 @@ from playwright.async_api import (
 from playwright_stealth import Stealth
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
+from langdetect import detect, LangDetectException
 from .. import config
 from ..utils.logger import logger
+from ..utils import output_utils
 
 USER_AGENTS = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
 ]
+
+ScrapeResult = Dict[str, Any]
 
 
 def _sync_google_search(query: str, search_service: Any, num: int) -> List[str]:
@@ -38,11 +42,7 @@ def _sync_google_search(query: str, search_service: Any, num: int) -> List[str]:
         urls = [
             item.get("link", "") for item in result.get("items", []) if item.get("link")
         ]
-        logger.info(f"Found {len(urls)} URLs for query: '{enhanced_query}'")
         return urls
-    except HttpError as e:
-        logger.error(f"HttpError {e.resp.status} for query '{query}': {e.content}")
-        return []
     except Exception as e:
         logger.error(
             f"An unexpected error during Google search for '{query}': {e}",
@@ -51,284 +51,73 @@ def _sync_google_search(query: str, search_service: Any, num: int) -> List[str]:
         return []
 
 
-async def _scrape_with_fallback_strategy(page, url: str) -> str:
-    """Try multiple loading strategies to ensure content is fetched."""
-    strategies = [
-        {"wait_until": "domcontentloaded", "timeout": 15000, "name": "fast"},
-        {"wait_until": "load", "timeout": 20000, "name": "standard"},
-        {"wait_until": "networkidle", "timeout": 25000, "name": "patient"},
-    ]
-    for i, strategy in enumerate(strategies):
-        try:
-            logger.debug(
-                f"Trying navigation strategy #{i+1} ({strategy['name']}) for {url}"
-            )
-            await page.goto(
-                url, wait_until=strategy["wait_until"], timeout=strategy["timeout"]
-            )
-            content = await page.content()
-            if len(content) > 500:
-                logger.debug(f"Strategy #{i+1} successful for {url}")
-                return content
-        except (PlaywrightTimeoutError, PlaywrightError) as e:
-            logger.warning(f"Strategy #{i+1} for {url} failed: {e}")
-            if i == len(strategies) - 1:
-                raise
-    return ""
-
-
-async def _handle_cookie_banners(page) -> None:
-    """Handle cookie banners with quick timeouts."""
-    cookie_selectors = [
-        "button:has-text('Accept')",
-        "button:has-text('Agree')",
-        "button:has-text('OK')",
-        "#onetrust-accept-btn-handler",
-        "[id*='cookie'] button",
-        "[class*='cookie'] button",
-    ]
-    for selector in cookie_selectors:
-        try:
-            await page.locator(selector).click(timeout=2000)
-            logger.info(f"Clicked cookie banner using selector: {selector}")
-            await page.wait_for_timeout(500)
-            break
-        except PlaywrightError:
-            continue
-
-
-def _extract_text_content_enhanced(html_content: str, url: str) -> str:
-    """Enhanced text extraction with better selectors and defensive programming."""
-    soup = BeautifulSoup(html_content, "html.parser")
-    content_selectors = [
-        ".blog-post-content",
-        ".trend-analysis",
-        ".fashion-content",
-        ".post-content",
-        ".article-content",
-        ".blog-content",
-        "article",
-        "main",
-        '[role="main"]',
-        ".main-content",
-        "#main-content",
-        "#content",
-        ".content",
-        ".article-body",
-        ".post-body",
-        ".entry-content",
-        ".blog-post",
-        ".container",
-        ".wrapper",
-        "#wrapper",
-    ]
-    main_content = None
-    for selector in content_selectors:
-        main_content = soup.select_one(selector)
-        # DEFENSIVE CHECK: Ensure main_content is not None before using it
-        if main_content and len(main_content.get_text(strip=True)) > 300:
-            logger.debug(f"Found content with selector: {selector}")
-            break
-
-    target_soup = main_content if main_content else soup
-
-    junk_selectors = [
-        ".comments",
-        "#comments",
-        ".comment-section",
-        ".social-share",
-        ".social-sharing",
-        ".share-buttons",
-        ".advertisement",
-        ".ads",
-        ".ad-container",
-        ".newsletter-signup",
-        ".newsletter",
-        ".email-signup",
-        ".promo",
-        ".promotion",
-        ".banner-ad",
-        ".modal",
-        ".popup",
-        ".overlay",
-        ".cookie-banner",
-        ".cookie-notice",
-        ".gdpr-notice",
-        ".sidebar",
-        "#sidebar",
-        ".widget",
-        ".widgets",
-        ".related-posts",
-        ".related-articles",
-        ".recommended",
-        ".more-stories",
-        ".trending",
-        ".author-bio",
-        ".author-info",
-        ".tags",
-        ".categories",
-        ".post-meta",
-        ".contact-form",
-        ".search-form",
-        "form.search",
-    ]
-    for junk_selector in junk_selectors:
-        for element in target_soup.select(junk_selector):
-            element.decompose()
-
-    for element in target_soup(
-        ["script", "style", "noscript", "nav", "aside", "footer", "header"]
-    ):
-        element.decompose()
-
-    # DEFINITIVE FIX: Use BeautifulSoup's robust text extraction, then clean.
-    text = target_soup.get_text(separator=" ", strip=True)
-    cleaned_text = re.sub(r"\s+", " ", text).strip()
-    cleaned_text = re.sub(
-        r"(Share:|Follow us:|Subscribe|Newsletter)",
-        "",
-        cleaned_text,
-        flags=re.IGNORECASE,
-    )
-
-    if len(cleaned_text) < 200:
-        logger.warning(
-            f"URL {url} has insufficient content ({len(cleaned_text)} chars)"
-        )
-        return ""
-
-    return cleaned_text[:50000]
-
-
-async def _defensive_route_handler(route, request):
-    """Defensive route handler that prevents TargetClosedError."""
-    try:
-        # Block resource types that we don't need
-        if request.resource_type in {"image", "font", "media", "websocket"}:
-            await route.abort()
-        else:
-            await route.continue_()
-    except Exception as e:
-        # Handle cases where page/context/browser has been closed
-        error_message = str(e)
-        if any(
-            keyword in error_message
-            for keyword in [
-                "Target page",
-                "Target closed",
-                "TargetClosedError",
-                "context disposed",
-                "browser closed",
-            ]
-        ):
-            # This is a harmless race condition - just ignore it
-            logger.debug(f"Route handler called after page closed: {e}")
-            return
-        # Re-raise other unexpected errors
-        logger.error(f"Unexpected route handler error: {e}")
-        raise
-
-
-async def _scrape_single_url_enhanced(url: str) -> str:
-    """Internal scraping function with proper resource management and route cleanup."""
+async def _scrape_single_url_enhanced(url: str) -> ScrapeResult:
+    """Internal scraping function with proper resource management."""
     browser = None
-    context = None
-    page = None
-    html_content = ""
-
     try:
-        async with Stealth().use_async(async_playwright()) as p:  # type: ignore
-            browser = await p.chromium.launch(
-                headless=True, args=["--no-sandbox", "--disable-dev-shm-usage"]
-            )
-            context = await browser.new_context(
-                user_agent=random.choice(USER_AGENTS),
-                viewport={"width": 1920, "height": 1080},
-            )
+        async with async_playwright() as p:
+            browser = await p.chromium.launch(headless=True)
+            context = await browser.new_context(user_agent=random.choice(USER_AGENTS))
             page = await context.new_page()
-            page.set_default_timeout(20000)
+            await page.goto(url, timeout=30000, wait_until="domcontentloaded")
 
-            # Set up route with defensive handler
-            await page.route("**/*", _defensive_route_handler)
+            # Simplified cookie handling
+            cookie_selectors = [
+                "button:has-text('Accept')",
+                "button:has-text('Agree')",
+                ".cookie-accept",
+            ]
+            for selector in cookie_selectors:
+                try:
+                    await page.locator(selector).first.click(timeout=1500)
+                    logger.info(f"Clicked cookie banner for {url}")
+                    await page.wait_for_timeout(500)
+                    break
+                except PlaywrightError:
+                    continue
 
-            html_content = await _scrape_with_fallback_strategy(page, url)
-            if html_content:
-                await _handle_cookie_banners(page)
-                html_content = await page.content()
+            html_content = await page.content()
+
+            soup = BeautifulSoup(html_content, "html.parser")
+            for element in soup(
+                ["script", "style", "nav", "aside", "footer", "header", "form"]
+            ):
+                element.decompose()
+
+            text = soup.get_text(separator=" ", strip=True)
+            cleaned_text = re.sub(r"\s+", " ", text).strip()
+
+            if len(cleaned_text) < 200:
+                return {
+                    "status": "partial",
+                    "url": url,
+                    "content": cleaned_text,
+                    "reason": f"Insufficient content length: {len(cleaned_text)}",
+                }
+
+            return {"status": "success", "url": url, "content": cleaned_text}
 
     except Exception as e:
-        logger.warning(f"Enhanced scraping error for {url}: {e}")
+        return {"status": "failed", "url": url, "reason": str(e)}
     finally:
-        # CRITICAL: Clean up routes before closing to prevent TargetClosedError
-        try:
-            if page:
-                # Unregister all routes with error ignoring behavior
-                await page.unroute_all(behavior="ignoreErrors")
-        except Exception as cleanup_error:
-            logger.debug(f"Route cleanup error (harmless): {cleanup_error}")
-
-        try:
-            if context:
-                await context.close()
-        except Exception as context_error:
-            logger.debug(f"Context close error (harmless): {context_error}")
-
-        try:
-            if browser:
-                await browser.close()
-        except Exception as browser_error:
-            logger.debug(f"Browser close error (harmless): {browser_error}")
-
-    if not html_content:
-        return ""
-    return _extract_text_content_enhanced(html_content, url)
-
-
-async def _scrape_url_content(url: str) -> str:
-    """Wraps the internal scraping function with a total operation timeout."""
-    try:
-        return await asyncio.wait_for(_scrape_single_url_enhanced(url), timeout=30.0)
-    except asyncio.TimeoutError:
-        logger.warning(f"Total scraping timeout (30s) exceeded for {url}")
-        return ""
+        if browser:
+            await browser.close()
 
 
 async def gather_research_documents(queries: List[str]) -> List[str]:
-    """Enhanced research gathering with controlled concurrency."""
-    logger.info("--- Starting Enhanced Research Phase: Gathering Raw Documents ---")
-    if not queries:
-        return []
-    try:
-        search_service = build("customsearch", "v1", developerKey=config.GOOGLE_API_KEY)
-    except Exception as e:
-        logger.critical(
-            f"CRITICAL: Failed to build Google Search service: {e}", exc_info=True
-        )
-        return []
-
+    """Enhanced research gathering with language filtering and robust error handling."""
+    logger.info("--- Starting Enhanced Research Phase ---")
+    search_service = build("customsearch", "v1", developerKey=config.GOOGLE_API_KEY)
     loop = asyncio.get_running_loop()
     search_tasks = [
         loop.run_in_executor(
-            None, _sync_google_search, query, search_service, config.SEARCH_NUM_RESULTS
+            None, _sync_google_search, q, search_service, config.SEARCH_NUM_RESULTS
         )
-        for query in queries
+        for q in queries
     ]
     url_lists = await asyncio.gather(*search_tasks)
-    all_urls: Set[str] = {url for url_list in url_lists for url in url_list}
-    if not all_urls:
-        return []
+    all_urls = {url for url_list in url_lists for url in url_list}
 
-    ignored_extensions = [
-        ".pdf",
-        ".txt",
-        ".zip",
-        ".jpg",
-        ".jpeg",
-        ".png",
-        ".gif",
-        ".docx",
-        ".xlsx",
-    ]
     ignored_domains = [
         "pinterest.com",
         "amazon.com",
@@ -336,34 +125,72 @@ async def gather_research_documents(queries: List[str]) -> List[str]:
         "facebook.com",
         "twitter.com",
         "youtube.com",
+        "tiktok.com",
+        "linkedin.com",
     ]
     filtered_urls = [
         url
         for url in all_urls
-        if not any(url.lower().endswith(ext) for ext in ignored_extensions)
-        and not any(domain in url.lower() for domain in ignored_domains)
+        if not any(domain in url.lower() for domain in ignored_domains)
     ]
 
-    if len(all_urls) > len(filtered_urls):
-        logger.info(
-            f"Filtered out {len(all_urls) - len(filtered_urls)} unsuitable URLs"
-        )
-    if not filtered_urls:
-        return []
+    logger.info(f"Found {len(filtered_urls)} valid URLs to scrape.")
 
-    logger.info(f"Found {len(filtered_urls)} valid URLs to scrape")
-
+    # Use a semaphore to limit concurrency
     semaphore = asyncio.Semaphore(4)
 
-    async def scrape_with_semaphore(url):
+    async def scrape_with_semaphore(url: str):
         async with semaphore:
-            return await _scrape_url_content(url)
+            return await _scrape_single_url_enhanced(url)
 
     scraping_tasks = [scrape_with_semaphore(url) for url in filtered_urls]
-    scraped_contents = await asyncio.gather(*scraping_tasks, return_exceptions=True)
 
-    valid_contents = [c for c in scraped_contents if isinstance(c, str) and c]
-    logger.info(
-        f"Successfully scraped {len(valid_contents)} out of {len(filtered_urls)} URLs"
+    # This list can contain either ScrapeResult or an Exception
+    results_from_gather: List[Union[ScrapeResult, BaseException]] = (
+        await asyncio.gather(*scraping_tasks, return_exceptions=True)
     )
+
+    # This list will ONLY contain ScrapeResult dictionaries, satisfying the type checker
+    processed_results: List[ScrapeResult] = []
+    for i, res in enumerate(results_from_gather):
+        if isinstance(res, BaseException):
+            # Convert the exception to a valid ScrapeResult dictionary
+            processed_results.append(
+                {
+                    "status": "failed",
+                    "url": filtered_urls[i],
+                    "reason": f"Gather task failed: {res}",
+                }
+            )
+        else:
+            # The result is already a valid ScrapeResult dictionary
+            processed_results.append(res)
+
+    output_utils.save_scraping_report(processed_results)
+
+    logger.info("Filtering scraped content for English language documents...")
+    valid_contents = []
+    for res in processed_results:
+        # Check for content before trying to detect language
+        content = res.get("content")
+        if res.get("status") in ["success", "partial"] and content:
+            try:
+                # Ensure content is a string and not empty
+                if isinstance(content, str) and len(content.strip()) > 10:
+                    if detect(content) == "en":
+                        valid_contents.append(content)
+                    else:
+                        logger.warning(
+                            f"Skipping non-English content from URL: {res['url']}"
+                        )
+                else:
+                    logger.warning(
+                        f"Skipping empty or invalid content from URL: {res['url']}"
+                    )
+            except LangDetectException:
+                logger.warning(
+                    f"Could not determine language for URL {res['url']}. Skipping."
+                )
+
+    logger.info(f"Retained {len(valid_contents)} English documents for summarization.")
     return valid_contents

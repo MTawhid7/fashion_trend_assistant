@@ -25,7 +25,7 @@ if not SEARCH_ENGINE_ID:
     raise ValueError("Error: SEARCH_ENGINE_ID is not set.")
 
 # --- LLM & Search Configuration ---
-GEMINI_MODEL_NAME = "gemini-2.5-pro"
+GEMINI_MODEL_NAME = "gemini-2.5-flash"
 # --- MODIFIED: Focus on higher quality results ---
 SEARCH_NUM_RESULTS = 3
 

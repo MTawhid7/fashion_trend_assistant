@@ -4,7 +4,7 @@ Utility functions for handling and saving the final application outputs.
 
 import json
 import os
-from typing import Dict, Any
+from typing import Dict, Any, List
 
 from .. import config
 from ..models.trend_models import FashionTrendReport
@@ -25,6 +25,51 @@ def save_json_to_results(data: Dict[str, Any], filename: str) -> bool:
     except Exception as e:
         logger.error(f"Failed to save JSON file '{filename}': {e}", exc_info=True)
         return False
+
+
+# NEW: This function generates and saves the detailed scraping report.
+def save_scraping_report(results: List[Dict[str, Any]]) -> bool:
+    """
+    Organizes all scraping results by outcome and saves them to a JSON file.
+    This report includes the full content for successful and partial scrapes.
+    """
+    logger.info("Generating structured web scraping report with full content...")
+
+    # Initialize the structure for the report
+    report = {"successful_scrapes": [], "partial_scrapes": [], "failed_scrapes": []}
+
+    # Categorize each result
+    for res in results:
+        status = res.get("status", "failed")  # Default to 'failed' if status is missing
+
+        if status == "success":
+            report["successful_scrapes"].append(
+                {
+                    "url": res.get("url"),
+                    "status": "success",
+                    "content": res.get("content", ""),  # Include the full content
+                }
+            )
+        elif status == "partial":
+            report["partial_scrapes"].append(
+                {
+                    "url": res.get("url"),
+                    "status": "partial",
+                    "reason": res.get("reason"),
+                    "content": res.get("content", ""),  # Include the partial content
+                }
+            )
+        else:  # status == "failed"
+            report["failed_scrapes"].append(
+                {
+                    "url": res.get("url"),
+                    "status": "failed",
+                    "reason": res.get("reason", "Unknown failure"),
+                }
+            )
+
+    # Use the existing utility to save the final JSON file
+    return save_json_to_results(report, "scraping_report.json")
 
 
 def generate_final_prompts(report: FashionTrendReport) -> Dict[str, Any]:
