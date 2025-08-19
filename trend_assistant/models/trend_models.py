@@ -24,9 +24,6 @@ class FabricTrend(BaseModel):
     sustainable: bool = Field(
         ..., description="Indicates if the primary material is sustainable."
     )
-
-    # --- NEW FIELD ---
-    # This will hold the actionable sustainability advice.
     sustainability_comment: Optional[str] = Field(
         None, description="Suggests a sustainable alternative if the material is not."
     )
@@ -35,13 +32,20 @@ class FabricTrend(BaseModel):
 class KeyPieceDetail(BaseModel):
     key_piece_name: str = Field(..., description="The descriptive name of the garment.")
     description: str = Field(..., description="This item's role and significance.")
-
-    # --- NEW FIELD ---
-    # Adds a direct creative reference for designers.
     inspired_by_designers: List[str] = Field(
         ..., description="Real-world designers known for this aesthetic."
     )
 
+    # --- FINAL FIX IS HERE ---
+    # Re-adding the 'wearer_profile' to match the prompt's schema.
+    wearer_profile: str = Field(
+        ..., description="A short description of the person who would wear this piece."
+    )
+
+    cultural_patterns: List[str] = Field(
+        default=[],
+        description="Specific cultural or heritage patterns identified for this piece (e.g., 'Batik', 'Songket', 'Tartan').",
+    )
     fabrics: List[FabricTrend] = Field(..., description="Recommended fabrics.")
     colors: List[ColorTrend] = Field(
         ..., description="Curated list of suitable colors."
@@ -56,6 +60,13 @@ class KeyPieceDetail(BaseModel):
 class FashionTrendReport(BaseModel):
     season: str = Field(..., description="The target season.")
     year: int = Field(..., description="The target year.")
+    region: Optional[str] = Field(
+        None, description="The geographical region for the trend report."
+    )
+    target_model_ethnicity: str = Field(
+        ...,
+        description="The appropriate model ethnicity for the target region (e.g., 'Indonesian or Southeast Asian').",
+    )
     overarching_theme: str = Field(
         ..., description="The high-level theme of the collection."
     )

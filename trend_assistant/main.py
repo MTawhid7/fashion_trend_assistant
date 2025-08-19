@@ -14,8 +14,7 @@ from .utils import brief_utils
 # Simply write your creative idea in the multi-line string below.
 
 USER_PASSAGE = """
-Show me modest fashion trends for young Muslim women in Jakarta — elegant but stylish.
-"""
+T shirt prints for boys aged 10-12, inspired by the 90s grunge aesthetic global audience."""
 
 # --- Main Application Logic --------------------------------------------------
 

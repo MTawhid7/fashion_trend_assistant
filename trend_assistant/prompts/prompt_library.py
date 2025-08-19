@@ -54,19 +54,23 @@ You MUST base your analysis strictly on the information provided. Do not invent 
 3.  **BE SPECIFIC:** For 'key_piece_name', you MUST use specific, culturally relevant garment names from the research. AVOID generic terms like "coat" or "dress" unless no alternative is available.
 4.  **DE-DUPLICATE:** All lists in your response must contain only unique items.
 5.  **COMPLETE COLOR CODES:** You MUST provide real Pantone TCX codes and their corresponding hex values for all colors.
+6.  **NEW - EXTRACT CULTURAL DETAILS:** From the research, you MUST identify and list any culturally specific patterns or textiles (like 'Batik', 'Songket', 'Tartan') in the `cultural_patterns` field for each garment. If a garment is minimalist and has no pattern, provide an empty list [].
+7.  **NEW - INFER MODEL ETHNICITY:** Based on the specified `{region}`, you MUST infer and provide a descriptive ethnicity for the `target_model_ethnicity` field (e.g., for 'Indonesia', use 'Indonesian or Southeast Asian'; for 'Beverly Hills', use 'Diverse and racially ambiguous').
 
 RESEARCH SUMMARIES:
 ---
 {research_context}
 ---
 
-Based ONLY on the provided research, generate a single, valid JSON object for the {season} {year} season.
+Based ONLY on the provided research, generate a single, valid JSON object for the {season} {year} season in the {region} region.
 The JSON object MUST strictly adhere to the following schema.
 
 SCHEMA:
 {{
   "season": "{season}",
   "year": {year},
+  "region": "{region}",
+  "target_model_ethnicity": "A descriptive ethnicity for the target region.",
   "overarching_theme": "A concise, evocative name for the collection's theme.",
   "cultural_drivers": ["A list of the high-level socio-cultural influences."],
   "influential_models": ["A list of specific or archetypal style icons."],
@@ -82,6 +86,7 @@ SCHEMA:
       "description": "A brief, insightful explanation connecting this item to the 'cultural_drivers'.",
       "inspired_by_designers": ["A list of 1-2 real-world designers known for this aesthetic."],
       "wearer_profile": "A short description of the person who would wear this piece.",
+      "cultural_patterns": ["A list of specific cultural patterns identified for this piece."],
       "fabrics": [
         {{
           "material": "The base material.",
@@ -130,39 +135,75 @@ Now, provide only the corrected, valid JSON object.
 
 # --- Phase 4: Image Prompt Generation Templates (UPGRADED) ---
 INSPIRATION_BOARD_PROMPT_TEMPLATE = """
-Create a hyper-detailed, atmospheric flat lay of a fashion designer's physical inspiration board or workbench.
+Create a hyper-detailed, atmospheric flat lay of a professional fashion designer's physical inspiration board. The board must be a sophisticated blend of historical research and contemporary market awareness.
 
-Theme: '{theme}'.
-Aesthetic Focus: The conceptual idea of a '{key_piece_name}'.
-Cultural Drivers: {cultural_drivers}.
-Muse: The style of {model_style}.
+**Core Concept:**
+- Theme: '{theme}'
+- Aesthetic Focus: The conceptual idea of a '{key_piece_name}'
+- Muse: The style of {model_style}
 
-Composition: The board is a chaotic yet artfully arranged collage with multiple layers of pinned and taped elements. It should feel like a real, work-in-progress creative space.
+**Regional & Cultural Elements (CRITICAL):**
+- This collection is for the '{region}' market. The board MUST include specific, authentic visual references to this region, such as: {regional_context}
 
-Included Items: It features a mix of: blurry, cinematic film stills; close-up photos of architectural textures (e.g., raw concrete, weathered wood); torn pages from vintage art books with handwritten annotations in the margins; rough charcoal sketches of garment details like collars and seams; and physical fabric swatches with frayed edges.
+**Core Color Story:**
+- The board features a clear and intentional color palette, represented by neatly pinned Pantone-style color chips for: {color_names}.
 
-Overall Mood: Tactile, authentic, intellectual, work-in-progress, moody, cinematic, nostalgic.
+**Composition & Included Items:**
+The board is an artfully arranged collage that juxtaposes historical and modern elements. It MUST include a mix of the following:
+1.  **Archival & Textural Layer:** Torn pages from vintage art books, faded historical photographs, rough charcoal sketches of garment details (collars, seams), and handwritten notes on aged paper.
+2.  **Modern Context Layer:** High-quality, candid street style photos from '{region}', glossy tear sheets from contemporary fashion magazines (like Vogue Korea or Ginza Magazine if relevant), and screenshots of modern digital art that reflect the theme.
+3.  **Material Layer:** Physical, tactile swatches of key fabrics like {fabric_names} with frayed edges, alongside close-up photos of specific hardware, trims, or embroidery techniques.
 
-Style: Ultra-realistic photograph, top-down perspective, shot on a Hasselblad camera, dramatic and moody lighting with deep shadows, extreme detail, 8k.
+**Overall Mood:**
+A dynamic synthesis of old and new. Tactile, authentic, intellectual, culturally-aware, contemporary, and cinematic.
+
+**Style:**
+Ultra-realistic photograph, top-down perspective, shot on a Hasselblad camera, soft but dramatic lighting with deep shadows, extreme detail, 8k.
 """
 
 MOOD_BOARD_PROMPT_TEMPLATE = """
-Create a professional fashion designer's mood board, meticulously organized on a raw concrete or linen surface.
-Focus: Defining the physical materials for a '{key_piece_name}'.
-Fabric Swatches: The board features hyper-realistic, neatly cut physical fabric swatches of: {fabric_names}. Show the texture and drape.
-Color Palette: A color story is arranged with official Pantone-style color chips for: {color_names}.
-Hardware & Trims: Include close-up, macro shots of key trims and hardware like: {details_trims}.
-Style: Professional studio photography, top-down view (flat lay), soft and diffused lighting, extreme detail, macro photography, 8k.
+Create a professional fashion designer's mood board, meticulously organized on a raw concrete or linen surface. The board must be a sophisticated and focused tool for defining a specific garment.
+
+**Focus:** Defining the materials, details, and styling for a '{key_piece_name}' for the '{region}' market.
+
+**1. Material & Color Story:**
+- **Fabric Swatches:** The board features hyper-realistic, neatly cut physical fabric swatches of: {fabric_names}. The texture and drape must be clearly visible. MUST include a prominent swatch of '{culturally_specific_fabric}' to anchor the regional identity.
+- **Color Palette:** A focused color story is arranged with official Pantone-style color chips for: {color_names}.
+
+**2. Detail & Craftsmanship:**
+- **Detail Shots:** A dedicated section with macro-photography close-ups of key design details, such as: {details_trims}. This should showcase specific techniques like embroidery, stitching, or hardware.
+
+**3. Styling & Accessories:**
+- **Key Accessories:** The board MUST feature 2-3 key physical accessories or high-quality photos of them, such as: {key_accessories}. This provides essential styling context.
+
+**4. Cultural & Demographic Context:**
+- **Contextual Images:** To ground the design in its target market, the board MUST include 2-3 smaller, high-quality photographs: a candid street style photo of a young, stylish woman in '{region}', and a close-up of a relevant cultural motif like '{regional_context}'.
+
+**Style:** Professional studio photography, top-down view (flat lay), soft and diffused lighting, extreme detail, macro photography, 8k.
 """
 
 FINAL_GARMENT_PROMPT_TEMPLATE = """
-Full-body editorial fashion photograph for a Vogue or Dazed Magazine lookbook.
-Model: A runway model with the specific attitude and presence of {model_style}.
-Garment: The model is wearing a stunning '{main_color} {key_piece_name}' crafted from high-quality, hyper-realistic {main_fabric}.
-Silhouette: The design's silhouette is clearly {silhouette}.
-Key Details: Macro details of the garment are visible, showing: {details_trims}.
-Pose & Attitude: The model has a confident, nonchalant, and powerful pose.
-Setting: Shot in a minimalist brutalist architectural setting with dramatic shadows and a single light source.
-Style: Cinematic fashion photography, shot on a 50mm lens, hyper-detailed, dramatic lighting, professional color grading, 8k.
-Negative Prompt: -nsfw, -deformed, -bad anatomy, -blurry, -low quality
+Full-body editorial fashion photograph for a Vogue Arabia or a high-end Indonesian fashion magazine lookbook.
+
+**Model:**
+- A young, professional {model_ethnicity} runway model with the confident, elegant, and stylish presence of {model_style}.
+
+**Garment & Cultural Integration:**
+- The model is wearing a stunning '{main_color} {key_piece_name}' crafted from hyper-realistic {main_fabric}.
+- **CRITICAL:** Key parts of the garment, such as the sleeves, bodice, or trim, MUST be adorned with a subtle, elegant, tone-on-tone '{cultural_pattern}' pattern, reflecting the design heritage of the region.
+- **CRITICAL:** The design strictly adheres to modern modest fashion principles, featuring a high, elegant neckline (no plunging V-necks or shoulder cutouts) and full-length, non-transparent sleeves.
+
+**Silhouette & Details:**
+- The silhouette is a modern '{silhouette}', subtly influenced by traditional '{region}' garments.
+- Macro details are visible, showcasing the exquisite craftsmanship, such as: {details_trims}.
+
+**Pose & Setting:**
+- The model has a confident, poised, and powerful pose.
+- Setting: Shot in a minimalist, contemporary architectural setting with dramatic natural light and soft shadows.
+
+**Style:**
+- Cinematic fashion photography, shot on a 50mm lens, hyper-detailed, professional color grading, 8k.
+
+**Negative Prompt:**
+- -nsfw, -deformed, -bad anatomy, -blurry, -low quality, -generic
 """

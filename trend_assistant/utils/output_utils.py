@@ -27,27 +27,20 @@ def save_json_to_results(data: Dict[str, Any], filename: str) -> bool:
         return False
 
 
-# NEW: This function generates and saves the detailed scraping report.
 def save_scraping_report(results: List[Dict[str, Any]]) -> bool:
     """
     Organizes all scraping results by outcome and saves them to a JSON file.
-    This report includes the full content for successful and partial scrapes.
     """
     logger.info("Generating structured web scraping report with full content...")
-
-    # Initialize the structure for the report
     report = {"successful_scrapes": [], "partial_scrapes": [], "failed_scrapes": []}
-
-    # Categorize each result
     for res in results:
-        status = res.get("status", "failed")  # Default to 'failed' if status is missing
-
+        status = res.get("status", "failed")
         if status == "success":
             report["successful_scrapes"].append(
                 {
                     "url": res.get("url"),
                     "status": "success",
-                    "content": res.get("content", ""),  # Include the full content
+                    "content": res.get("content", ""),
                 }
             )
         elif status == "partial":
@@ -56,10 +49,10 @@ def save_scraping_report(results: List[Dict[str, Any]]) -> bool:
                     "url": res.get("url"),
                     "status": "partial",
                     "reason": res.get("reason"),
-                    "content": res.get("content", ""),  # Include the partial content
+                    "content": res.get("content", ""),
                 }
             )
-        else:  # status == "failed"
+        else:
             report["failed_scrapes"].append(
                 {
                     "url": res.get("url"),
@@ -67,13 +60,14 @@ def save_scraping_report(results: List[Dict[str, Any]]) -> bool:
                     "reason": res.get("reason", "Unknown failure"),
                 }
             )
-
-    # Use the existing utility to save the final JSON file
     return save_json_to_results(report, "scraping_report.json")
 
 
 def generate_final_prompts(report: FashionTrendReport) -> Dict[str, Any]:
-    """Generates the final image prompts from the validated trend report."""
+    """
+    Generates the final image prompts from the validated trend report,
+    pulling dynamic cultural and demographic data directly from the report.
+    """
     logger.info("--- Starting Prompt Generation Phase ---")
     if not report.detailed_key_pieces:
         logger.error("Cannot generate prompts because 'detailed_key_pieces' is empty.")
@@ -83,9 +77,15 @@ def generate_final_prompts(report: FashionTrendReport) -> Dict[str, Any]:
     model_style = (
         report.influential_models[0] if report.influential_models else "a fashion model"
     )
+    region = getattr(report, "region", "the specified region")
+
+    # --- DYNAMIC DATA EXTRACTION (NO HARDCODED MAPS) ---
+    # The AI now provides the model ethnicity directly in the report.
+    model_ethnicity = getattr(report, "target_model_ethnicity", "diverse")
 
     for piece in report.detailed_key_pieces:
         logger.info(f"Generating prompts for key piece: '{piece.key_piece_name}'")
+
         main_fabric = (
             piece.fabrics[0].material if piece.fabrics else "a high-quality fabric"
         )
@@ -94,26 +94,58 @@ def generate_final_prompts(report: FashionTrendReport) -> Dict[str, Any]:
             piece.silhouettes[0] if piece.silhouettes else "a modern silhouette"
         )
 
+        color_names = ", ".join([c.name for c in piece.colors])
+        fabric_names = ", ".join([f.material for f in piece.fabrics])
+        details_trims = ", ".join(piece.details_trims)
+
+        # --- DYNAMIC DATA EXTRACTION (NO HARDCODED MAPS) ---
+        # The AI now provides cultural patterns directly in the report for each piece.
+        cultural_pattern = (
+            piece.cultural_patterns[0]
+            if piece.cultural_patterns
+            else "a subtle geometric"
+        )
+        regional_context = f"traditional {cultural_pattern} patterns"
+
+        key_accessories_list = []
+        if report.accessories.get("Bags"):
+            key_accessories_list.append(report.accessories["Bags"][0])
+        if "Headscarves" in report.accessories.get("Other", []):
+            key_accessories_list.append("a stylishly tied Headscarf")
+        if report.accessories.get("Jewelry"):
+            key_accessories_list.append(report.accessories["Jewelry"][0])
+        key_accessories = ", ".join(key_accessories_list[:3])
+
         piece_prompts = {
             "inspiration_board": prompt_library.INSPIRATION_BOARD_PROMPT_TEMPLATE.format(
                 theme=report.overarching_theme,
                 key_piece_name=piece.key_piece_name,
-                cultural_drivers=", ".join(report.cultural_drivers),
                 model_style=model_style,
+                region=region,
+                regional_context=regional_context,
+                color_names=color_names,
+                fabric_names=fabric_names,
             ),
             "mood_board": prompt_library.MOOD_BOARD_PROMPT_TEMPLATE.format(
                 key_piece_name=piece.key_piece_name,
-                fabric_names=", ".join([f.material for f in piece.fabrics]),
-                color_names=", ".join([c.name for c in piece.colors]),
-                details_trims=", ".join(piece.details_trims),
+                region=region,
+                fabric_names=fabric_names,
+                culturally_specific_fabric=cultural_pattern,
+                color_names=color_names,
+                details_trims=details_trims,
+                key_accessories=key_accessories,
+                regional_context=regional_context,
             ),
             "final_garment": prompt_library.FINAL_GARMENT_PROMPT_TEMPLATE.format(
                 model_style=model_style,
+                model_ethnicity=model_ethnicity,
                 key_piece_name=piece.key_piece_name,
                 main_color=main_color,
                 main_fabric=main_fabric,
+                cultural_pattern=cultural_pattern,
                 silhouette=silhouette,
-                details_trims=", ".join(piece.details_trims),
+                region=region,
+                details_trims=details_trims,
             ),
         }
         all_prompts[piece.key_piece_name] = piece_prompts

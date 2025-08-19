@@ -127,6 +127,7 @@ async def gather_research_documents(queries: List[str]) -> List[str]:
         "youtube.com",
         "tiktok.com",
         "linkedin.com",
+        "reddit.com",
     ]
     filtered_urls = [
         url

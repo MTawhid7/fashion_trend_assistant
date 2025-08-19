@@ -229,7 +229,10 @@ async def run_creative_process(
     )
 
     final_prompt = prompt_library.ITEMIZED_REPORT_PROMPT.format(
-        research_context=research_context, season=brief["season"], year=brief["year"]
+        research_context=research_context,
+        season=brief["season"],
+        year=brief["year"],
+        region=brief["region"],
     )
     json_response = llm_client.generate_structured_json(final_prompt)
 

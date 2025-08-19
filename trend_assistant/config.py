@@ -27,7 +27,7 @@ if not SEARCH_ENGINE_ID:
 # --- LLM & Search Configuration ---
 GEMINI_MODEL_NAME = "gemini-2.5-flash"
 # --- MODIFIED: Focus on higher quality results ---
-SEARCH_NUM_RESULTS = 3
+SEARCH_NUM_RESULTS = 2
 
 # --- Embedding & Caching Configuration ---
 EMBEDDING_MODEL_NAME = "gemini-embedding-001"
